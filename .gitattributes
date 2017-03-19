@@ -1,0 +1,3 @@
+*.unity binary diff=unity
+*.prefab binary diff=unity
+*.asset binary diff=unity
