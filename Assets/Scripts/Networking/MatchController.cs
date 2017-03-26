@@ -15,7 +15,7 @@ public class MatchController : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject); // Imortallize object
+        DontDestroyOnLoad(transform.gameObject); // Immortalize object
     }
 
     #region Event Handlers
@@ -51,7 +51,6 @@ public class MatchController : MonoBehaviour
 
     void Configure()
     {
-
         // This method determines wether or not 2 players have connected, if they have it sets the local and remote player
         // And shows the machines are connected on screen.
 
@@ -67,7 +66,7 @@ public class MatchController : MonoBehaviour
             }
         }
 
-        hostPlayer = (localPlayer.isServer) ? localPlayer : remotePlayer;
+        hostPlayer = (localPlayer.isServer) ? localPlayer : remotePlayer; // If isSer then lP if not then rP
         clientPlayer = (localPlayer.isServer) ? remotePlayer : localPlayer;
 
         localPlayer.CmdConnectionStatus("Connected!");

@@ -67,6 +67,7 @@ public class ButtonManager : MonoBehaviour
         const string benIP = "50.30.232.143";
         const string jeremyIP = "192.168.2.12";
         const string steveIP = "129.21.141.231";
+        const string trevorIP = "129.21.104.188";
 
         switch (playerName)
         {
@@ -85,6 +86,10 @@ public class ButtonManager : MonoBehaviour
             case "steve":
                 ipAddressfield.text = steveIP;
                 manager.networkAddress = steveIP;
+                break;
+            case "trevor":
+                ipAddressfield.text = trevorIP;
+                manager.networkAddress = trevorIP;
                 break;
         }
 

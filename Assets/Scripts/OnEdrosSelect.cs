@@ -13,6 +13,7 @@ public class OnEdrosSelect : MonoBehaviour, IPointerClickHandler{
         StartGame.characterPick = new Edros();
 		//SceneManager.LoadScene("WarforgedBoard",LoadSceneMode.Single);
 
+        // Set up some sort of selector indication here
 	}
 
 	// Use this for initialization
