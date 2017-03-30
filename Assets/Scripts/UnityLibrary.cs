@@ -109,7 +109,13 @@ namespace Warforged
 			barrier.SignalAndWait(threadID);
 		}
 
-		public override Character.Card waitForClick()
+        public override void endSlate(Character ch) // End game UI method
+        {
+            StartGame.signal = () => { return StartGame.endSlate(ch); };
+            barrier.SignalAndWait(threadID);
+        }
+
+        public override Character.Card waitForClick()
 		{
 			OnClick.cardReturn = OnClick.NoReturn;
 			StartGame.signal = () => { return StartGame.waitForClick(); };

@@ -342,6 +342,30 @@ public class StartGame : MonoBehaviour {
         yield return null;
     }
 
+    public static IEnumerator endSlate(Character ch) // End game UI method
+    {
+        //Debug.Log("Game Over reached top");
+        OnClick.GameOver.text = "Game Over.\n";
+        if (ch.endGame == 1)
+        {
+            OnClick.GameOver.text += ch.name; // Add the appropriate name to the win text
+        }
+        else
+        {
+            OnClick.GameOver.text += ch.opponent.name;
+        }
+        OnClick.GameOver.text += " wins!\nClick anywhere to quit.";
+        OnClick.GameOver.rectTransform.position = new Vector3(0, 0, -.1f); // Move the message on screen
+        while (true) // Nice
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Application.Quit();
+            }
+            yield return null;
+        }
+    }
+
 
     public static IEnumerator updateOpponentUI(Character ch, bool showCurrCard, bool showHand)
     {

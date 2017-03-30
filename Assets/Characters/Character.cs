@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Xml.Serialization;
+using UnityEngine;
 
 namespace Warforged
 {
@@ -59,6 +60,7 @@ namespace Warforged
         [XmlIgnore]
         public Character opponent{get; protected set;}
 		private List<Card> stroveCards;
+        public int endGame {get; set;} // True will trigger end game slate and indicates winning player (no need for new scene, just an overlay)
 
 		/// Set the opponent character.
 		/// There doesn't need to be a way to un-set this.
@@ -95,6 +97,7 @@ namespace Warforged
             suspended = new List<Card>();
             recentSuspended = new List<Card>();
 			stroveCards = new List<Card>();
+            endGame = 0;
 		}
 
 		/// Bolster the first card that is bolster-able.
@@ -130,6 +133,12 @@ namespace Warforged
 			{
 				hp = 1;
 			}
+            if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
+            {
+                //Debug.Log("Endgame triggered");
+                endGame = 2;
+                opponent.endGame = 1;
+            }
 		}
 
 		/// Add damage from a red card.
@@ -411,6 +420,7 @@ namespace Warforged
 				// Safety check
 				if (align.Length < 2)
 				{
+                    Debug.Log("Align not long enough");
 					return false;
 				}
 				bool found = false;
@@ -418,10 +428,16 @@ namespace Warforged
 				{
 					if (standby[i].color == color)
 					{
+                        Debug.Log("Found card at position " + i);
+                        if (i+1 > standby.Count-1) // If the align would continue, but there are no more cards in the standby row with which to continue it
+                        {
+                            return false;
+                        }
 						found = hasAlign(align.Substring(1), i+1);
 					}
 					if (found)
 					{
+                        Debug.Log("Align is good");
 						return true;
 					}
 				}
@@ -430,15 +446,25 @@ namespace Warforged
 			// Stop recursion if the align breaks
 			if (standby[index].color != color)
 			{
+                Debug.Log("Align Broken");
 				return false;
 			}
 			// Also stop if we're at the last character
 			if (standby[index].color == color && align.Length == 1)
 			{
+                Debug.Log("Align is good");
 				return true;
 			}
-			// If we're good on the current character, go to the next one
-			return (hasAlign(align.Substring(1), index+1));
+
+            // If we're good on the current character, go to the next one, unless there's not one, then return false
+            if (index + 1 > standby.Count - 1) // If the align would continue, but there are no more cards in the standby row with which to continue it
+            {
+                return false;
+            }
+            else
+            {
+                return (hasAlign(align.Substring(1), index + 1));
+            }
 		}
 
 
