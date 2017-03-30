@@ -286,7 +286,14 @@ public class StartGame : MonoBehaviour {
             else
             {
                 OnClick.Standby[i].sprite = OnClick.CardImages[ch.standby[i].name];
-                OnClick.Standby[i].color = new UnityEngine.Color(1, 1, 1);
+				if (ch.standby [i].active)
+				{
+					OnClick.Standby [i].color = new UnityEngine.Color (1, 1, 1);
+				}
+				else
+				{
+					OnClick.Standby [i].color = new UnityEngine.Color (0, 0, 0);
+				}
                 OnClick.Standby[i].gameObject.SetActive(true);
                 OnClick.cardDict["Standby" + (i + 1)] = ch.standby[i];
             }
@@ -300,8 +307,8 @@ public class StartGame : MonoBehaviour {
                 OnClick.Invocation[i].gameObject.SetActive(false);
             }
             else if (!ch.invocation[i].active)
-            {
-                OnClick.Invocation[i].sprite = null;
+			{
+				OnClick.Invocation[i].sprite = OnClick.CardImages[ch.invocation[i].name];
                 OnClick.Invocation[i].color = new UnityEngine.Color(0, 0, 0);
                 OnClick.Invocation[i].gameObject.SetActive(true);
                 OnClick.cardDict["Invocation" + (i + 1)] = OnClick.NoReturn; ;
@@ -329,7 +336,7 @@ public class StartGame : MonoBehaviour {
         }
         else
         {
-            OnClick.PlaySlot.sprite = null;
+			OnClick.PlaySlot.sprite = OnClick.CardImages[ch.currCard.name]; // CHANGED
             OnClick.PlaySlot.color = new UnityEngine.Color(0, 0, 0);
             OnClick.PlaySlot.gameObject.SetActive(true);
             OnClick.cardDict["PlaySlot"] = ch.currCard;
