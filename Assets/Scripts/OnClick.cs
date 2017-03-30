@@ -132,10 +132,6 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             {
                 GameOver = null;
             }
-            else
-            {
-                Debug.Log(GameOver);
-            }
         }
 
         if (Reinforce == null)

@@ -355,7 +355,8 @@ public class StartGame : MonoBehaviour {
             OnClick.GameOver.text += ch.opponent.name;
         }
         OnClick.GameOver.text += " wins!\nClick anywhere to quit.";
-        OnClick.GameOver.rectTransform.position = new Vector3(0, 0, -.1f); // Move the message on screen
+        OnClick.GameOver.rectTransform.anchoredPosition3D = new Vector3(0, 0, -.1f); // Move the message on screen
+        OnClick.GameOver.rectTransform.pivot = new Vector2(.5f, .5f);
         while (true) // Nice
         {
             if (Input.GetMouseButtonDown(0))
