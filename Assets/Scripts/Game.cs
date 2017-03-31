@@ -259,7 +259,7 @@ namespace Warforged
 		public static void Main()
 		{
 
-            //We need to determin our opponent before this point.
+            //We need to determine our opponent before this point.
             Game game = new Game();
             library = new UnityLibrary();
 
