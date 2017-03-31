@@ -298,6 +298,7 @@ public class StartGame : MonoBehaviour {
                 OnClick.cardDict["Standby" + (i + 1)] = ch.standby[i];
             }
         }
+
         for (int i = 0; i < OnClick.Invocation.Count; ++i)
         {
             if (ch.invocation.Count <= i)
