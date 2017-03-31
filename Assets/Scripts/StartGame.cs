@@ -286,7 +286,14 @@ public class StartGame : MonoBehaviour {
             else
             {
                 OnClick.Standby[i].sprite = OnClick.CardImages[ch.standby[i].name];
-                OnClick.Standby[i].color = new UnityEngine.Color(1, 1, 1);
+				if (ch.standby [i].active)
+				{
+					OnClick.Standby [i].color = new UnityEngine.Color (1, 1, 1);
+				}
+				else
+				{
+					OnClick.Standby [i].color = new UnityEngine.Color (0, 0, 0);
+				}
                 OnClick.Standby[i].gameObject.SetActive(true);
                 OnClick.cardDict["Standby" + (i + 1)] = ch.standby[i];
             }
@@ -300,8 +307,8 @@ public class StartGame : MonoBehaviour {
                 OnClick.Invocation[i].gameObject.SetActive(false);
             }
             else if (!ch.invocation[i].active)
-            {
-                OnClick.Invocation[i].sprite = null;
+			{
+				OnClick.Invocation[i].sprite = OnClick.CardImages[ch.invocation[i].name];
                 OnClick.Invocation[i].color = new UnityEngine.Color(0, 0, 0);
                 OnClick.Invocation[i].gameObject.SetActive(true);
                 OnClick.cardDict["Invocation" + (i + 1)] = OnClick.NoReturn; ;
@@ -329,7 +336,7 @@ public class StartGame : MonoBehaviour {
         }
         else
         {
-            OnClick.PlaySlot.sprite = null;
+			OnClick.PlaySlot.sprite = OnClick.CardImages[ch.currCard.name]; // CHANGED
             OnClick.PlaySlot.color = new UnityEngine.Color(0, 0, 0);
             OnClick.PlaySlot.gameObject.SetActive(true);
             OnClick.cardDict["PlaySlot"] = ch.currCard;
@@ -340,6 +347,31 @@ public class StartGame : MonoBehaviour {
         OnClick.Empower.text = "Empower(" + ch.empower + ")";
         OnClick.Reinforce.text = "Reinforce(" + ch.reinforce + ")";
         yield return null;
+    }
+
+    public static IEnumerator endSlate(Character ch) // End game UI method
+    {
+        //Debug.Log("Game Over reached top");
+        OnClick.GameOver.text = "Game Over.\n";
+        if (ch.endGame == 1)
+        {
+            OnClick.GameOver.text += ch.name; // Add the appropriate name to the win text
+        }
+        else
+        {
+            OnClick.GameOver.text += ch.opponent.name;
+        }
+        OnClick.GameOver.text += " wins!\nClick anywhere to quit.";
+        OnClick.GameOver.rectTransform.anchoredPosition3D = new Vector3(0, 0, -.1f); // Move the message on screen
+        OnClick.GameOver.rectTransform.pivot = new Vector2(.5f, .5f);
+        while (true) // Nice
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Application.Quit();
+            }
+            yield return null;
+        }
     }
 
 
