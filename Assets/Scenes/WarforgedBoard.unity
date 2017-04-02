@@ -1074,8 +1074,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 602, y: 34.000023}
-  m_SizeDelta: {x: 102, y: 55}
+  m_AnchoredPosition: {x: 650, y: 34.000023}
+  m_SizeDelta: {x: 200, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148242484
 MonoBehaviour:
@@ -1120,7 +1120,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: REI(0)
+  m_Text: Reinforce(0)
 --- !u!222 &148242486
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7634,8 +7634,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 601.43, y: -207.15}
-  m_SizeDelta: {x: 102, y: 55}
+  m_AnchoredPosition: {x: 650, y: -207.15}
+  m_SizeDelta: {x: 200, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238867525
 MonoBehaviour:
@@ -7680,7 +7680,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: REI(0)
+  m_Text: Reinforce(0)
 --- !u!222 &1238867527
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8398,8 +8398,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: 33.999992}
-  m_SizeDelta: {x: 102, y: 55}
+  m_AnchoredPosition: {x: 450, y: 33.999992}
+  m_SizeDelta: {x: 200, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387965508
 MonoBehaviour:
@@ -8444,7 +8444,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EMP(0)
+  m_Text: Empower(0)
 --- !u!222 &1387965510
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9064,8 +9064,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 498.23, y: -208}
-  m_SizeDelta: {x: 102, y: 55}
+  m_AnchoredPosition: {x: 450, y: -208}
+  m_SizeDelta: {x: 200, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1572851801
 MonoBehaviour:
@@ -9110,7 +9110,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EMP(0)
+  m_Text: Empower(0)
 --- !u!222 &1572851803
 CanvasRenderer:
   m_ObjectHideFlags: 0

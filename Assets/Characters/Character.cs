@@ -61,6 +61,17 @@ namespace Warforged
         public Character opponent{get; protected set;}
 		private List<Card> stroveCards;
         public int endGame {get; set;} // True will trigger end game slate and indicates winning player (no need for new scene, just an overlay)
+        // Stores the current phase information to track what phase the game is currently on
+        public enum Phase
+        {
+            Dawn,
+            Selection,
+            Waiting,
+            Declare,
+            Damage,
+            Dusk
+        }
+        public Phase phase {get; set;}
 
 		/// Set the opponent character.
 		/// There doesn't need to be a way to un-set this.
@@ -98,6 +109,7 @@ namespace Warforged
             recentSuspended = new List<Card>();
 			stroveCards = new List<Card>();
             endGame = 0;
+            phase = Phase.Selection;
 		}
 
 		/// Bolster the first card that is bolster-able.
@@ -163,7 +175,7 @@ namespace Warforged
 		/// Also removes overheal from further back than last turn
 		public virtual void dawn()
 		{
-			stroveCards = new List<Card>();
+            stroveCards = new List<Card>();
             recentSuspended.Clear();
 			negate = 0;
 			damage = 0;
@@ -189,17 +201,17 @@ namespace Warforged
                 seal = navySeal;
                 navySeal = Color.black;
             }
-		}
+        }
 
 		/// Play a card from your hand
 		/// If your hand does not contain the card, the method returns false
 		/// Returns true otherwise
 		public bool playCard()
 		{
-			if(hand.Count == 0)
+            if (hand.Count == 0)
 			{
 				currCard = null;
-				return false;
+                return false;
 			}
 			while (true)
 			{
@@ -216,7 +228,7 @@ namespace Warforged
 				}
 				currCard = card;
 				hand.Remove(card);
-				return true;
+                return true;
 			}
 		}
 
@@ -225,7 +237,7 @@ namespace Warforged
 		/// then calculates damages and healing.
 		public virtual void declarePhase()
 		{
-			seal = Color.black; // Reset any seal from last turn
+            seal = Color.black; // Reset any seal from last turn
 			// Declarations should happen BEFORE activateCard(), since activateCard()reads current information and declarations should happen before card calculations.
 			currCard.declare();
 			activateCard();
@@ -234,7 +246,7 @@ namespace Warforged
 		/// Calculate all damage and healing occuring this turn.
 		public virtual void damagePhase()
 		{
-			dealDamage();
+            dealDamage();
 			healSelf();
 			prevCard = currCard;
 			rotate();
@@ -246,9 +258,9 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
 		{
-			// TODO will need changing based on stuff
-			// Can't think of any examples, but I know they exist.
-			bloodlust = (damage > opponent.negate) ? true : false;
+            // TODO will need changing based on stuff
+            // Can't think of any examples, but I know they exist.
+            bloodlust = (damage > opponent.negate) ? true : false;
 			stalwart = (opponent.damage > 0 && negate > 0) ? true : false;
 		}
 
@@ -544,6 +556,38 @@ namespace Warforged
 			hand.Add(card);
 			standby.Remove(card);
 		}
+
+        public string displayPhase() // Phase display UI method
+        {
+            if (phase.Equals(Phase.Selection))
+            {
+                return phase + " Phase: Please select a card to play.";
+            }
+            else if (phase.Equals(Phase.Waiting))
+            {
+                return phase + " Phase: Waiting for other player.";
+            }
+            else if (phase.Equals(Phase.Declare))
+            {
+                return phase + " Phase: Please choose card effects.";
+            }
+            else if (phase.Equals(Phase.Damage))
+            {
+                return phase + " Phase: Dealing damange.";
+            }
+            else if (phase.Equals(Phase.Dusk))
+            {
+                return phase + " Phase: Activating dusk effects.";
+            }
+            else if (phase.Equals(Phase.Dawn))
+            {
+                return phase + " Phase: Activating dawn effects.";
+            }
+            else
+            {
+                return phase + "Phase: ";
+            }
+        }
 
 
         /* Nested class representing a generic card */

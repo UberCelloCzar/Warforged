@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEngine;
 
 namespace Warforged
 {
@@ -192,6 +191,7 @@ namespace Warforged
         {
             try
             {
+                p1.phase = Character.Phase.Selection;
                 //library.setPromptText("before sleep0");
                 library.updateUI(p1, true);
                 ++p1.turn;
@@ -204,17 +204,21 @@ namespace Warforged
                 p1.playCard();
                 //p2.playCard();
 
+                p1.phase = Character.Phase.Waiting;
                 library.updateUI(p1, false);
                 ++p1.turn;
                 library.updateNetowrk(p1);
                 library.waitOnNetwork(ref p1, ref p2);
                 library.updateOpponentUI(p2, false, false);
                 //library.setPromptText("before sleep1");
+                p1.phase = Character.Phase.Declare;
+                library.updateUI(p1, false);
 
                 p1.declarePhase();
                 //p2.declarePhase();
 
-
+                p1.phase = Character.Phase.Waiting;
+                p2.phase = Character.Phase.Waiting;
                 library.updateUI(p1, true);
                 ++p1.turn;
                 library.updateNetowrk(p1);
@@ -222,11 +226,18 @@ namespace Warforged
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("before sleep2");
+
+                p1.phase = Character.Phase.Damage;
+                p2.phase = Character.Phase.Damage;
+                library.updateUI(p1, true);
+
                 p1.damagePhase();
                 p2.damagePhase();
                 //library.setPromptText("before sleep3");
                 Thread.Sleep(2500);
                 //library.setPromptText("after sleep");
+
+                p1.phase = Character.Phase.Dusk;
                 library.updateUI(p1, true);
                 ++p1.turn;
                 library.updateNetowrk(p1);
@@ -234,14 +245,11 @@ namespace Warforged
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("after sleep1");
-                if (p1.endGame != 0) // If the endgame is triggered, show it
-                {
-                    //Debug.Log("Game Over escalated");
-                    library.endSlate(p1);
-                }
 
                 p1.dusk();
+                Thread.Sleep(2500);
 
+                p1.phase = Character.Phase.Dawn;
                 library.updateUI(p1, true);
                 ++p1.turn;
                 library.updateNetowrk(p1);
@@ -250,10 +258,10 @@ namespace Warforged
                 //library.setPromptText("after sleep2");
 
                 p1.dawn();
+                Thread.Sleep(2500);
             } catch(Exception e)
             {
-                Debug.Log("Exception: " + e);
-                library.setPromptText("Exception: " + e);
+                library.setPromptText("Exception: "+e);
             }
 
 			// Heal

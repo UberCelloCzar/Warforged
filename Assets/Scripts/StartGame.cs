@@ -347,6 +347,7 @@ public class StartGame : MonoBehaviour {
         OnClick.Health.text = ch.hp + "HP";
         OnClick.Empower.text = "Empower(" + ch.empower + ")";
         OnClick.Reinforce.text = "Reinforce(" + ch.reinforce + ")";
+        OnClick.Phase.text = ch.displayPhase();
         yield return null;
     }
 
@@ -374,7 +375,6 @@ public class StartGame : MonoBehaviour {
             yield return null;
         }
     }
-
 
     public static IEnumerator updateOpponentUI(Character ch, bool showCurrCard, bool showHand)
     {

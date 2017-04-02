@@ -64,6 +64,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static List<Image> OSuspend = new List<Image>();
     public static object NoReturn = new object();
     public static Text GameOver = null;
+    public static Text Phase = null;
 
     // Use this for initialization
     void Start () {
@@ -131,6 +132,15 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             if (GameOver != null && !GameOver.tag.Equals("GameOver"))
             {
                 GameOver = null;
+            }
+        }
+
+        if (Phase == null)
+        {
+            Phase = gameObject.GetComponent<Text>();
+            if (Phase != null && !Phase.tag.Equals("Phase"))
+            {
+                Phase = null;
             }
         }
 
