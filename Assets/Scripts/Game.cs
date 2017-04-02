@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEngine;
 
 namespace Warforged
 {
@@ -246,8 +247,15 @@ namespace Warforged
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("after sleep1");
 
+                if (p1.endGame != 0) // If the endgame is triggered, show it
+                {
+
+                    //Debug.Log("Game Over escalated");
+                    library.endSlate(p1);
+                 }
+
                 p1.dusk();
-                Thread.Sleep(2500);
+                Thread.Sleep(1500);
 
                 p1.phase = Character.Phase.Dawn;
                 library.updateUI(p1, true);
@@ -258,9 +266,11 @@ namespace Warforged
                 //library.setPromptText("after sleep2");
 
                 p1.dawn();
-                Thread.Sleep(2500);
+                Thread.Sleep(1500);
             } catch(Exception e)
             {
+                Debug.Log("Exception: " + e);
+                library.setPromptText("Exception: " + e);
                 library.setPromptText("Exception: "+e);
             }
 
