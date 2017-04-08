@@ -544,28 +544,49 @@ public class StartGame : MonoBehaviour {
         CurrCardImages.Add("Tremoring Impact", Resources.Load("CardImages/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
         CurrCardImages.Add("Unyielding Faith", Resources.Load("CardImages/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
         CurrCardImages.Add("Will Unbreakable", Resources.Load("CardImages/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
+
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Ascendance", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Ascendance", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Earth Piercer", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Earth Piercer", typeof(Sprite)) as Sprite);
+
+        OnClick.CardThumbnails.Add(Resources.Load<Sprite>("CardImages/Adrius/Adrius (Ral'Taris Incarnate)"), Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (Ral'Taris Incarnate)"));
+        OnClick.CardThumbnails.Add(Resources.Load<Sprite>("CardImages/Adrius/Adrius (The Aspirer)"), Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (The Aspirer)"));
+        OnClick.CardThumbnails.Add(Resources.Load<Sprite>("CardImages/Adrius/Adrius (The Realm Bearer)"), Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (The Realm Bearer)"));
+
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Emerald Core", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Emerald Core", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite);
+
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Ruby Heart", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Ruby Heart", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Shattering Blow", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Shattering Blow", typeof(Sprite)) as Sprite);
+
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Surging Hope", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Surging Hope", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
+        OnClick.CardThumbnails.Add(Resources.Load("CardImages/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
         yield return null;
     }
 
     public static IEnumerator setupTyras(Dictionary<string, Sprite> CurrCardImages)
 	{
 
-		CurrCardImages.Add("A Brother's Virtue", Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("A Promise Unbroken", Resources.Load("CardImages/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("A Soldier's Remorse", Resources.Load("CardImages/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("An Oath Unforgotten", Resources.Load<Sprite>("CardImages/Tyras/An Oath Unforgotten"));
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load<Sprite>("CardImages/Tyras/An Oath Unforgotten"), Resources.Load<Sprite>("CardThumbnails/Tyras/An Oath Unforgotten"));
 
-		CurrCardImages.Add("Armor of Aldras", Resources.Load("CardImages/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Decrying Roar", Resources.Load("CardImages/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Grim Knight's Dread", Resources.Load("CardImages/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Decrying Roar", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
 
-		CurrCardImages.Add("In the King's Wake", Resources.Load("CardImages/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Onrai's Strike", Resources.Load("CardImages/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Onslaught of Tyras", Resources.Load("CardImages/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/In the King's Wake", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
 
-		CurrCardImages.Add("Sundering Star", Resources.Load("CardImages/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Tyras", Resources.Load("CardImages/Tyras/Tyras", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Warrior's Resolve", Resources.Load("CardImages/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Sundering Star", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Tyras", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Tyras", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
 		yield return null;
 	}
 }
