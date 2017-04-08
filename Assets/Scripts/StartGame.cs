@@ -571,6 +571,23 @@ public class StartGame : MonoBehaviour {
     public static IEnumerator setupTyras(Dictionary<string, Sprite> CurrCardImages)
 	{
 
+		CurrCardImages.Add("A Brother's Virtue", Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("A Promise Unbroken", Resources.Load("CardImages/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("A Soldier's Remorse", Resources.Load("CardImages/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("An Oath Unforgotten", Resources.Load<Sprite>("CardImages/Tyras/An Oath Unforgotten"));
+
+		CurrCardImages.Add("Armor of Aldras", Resources.Load("CardImages/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Decrying Roar", Resources.Load("CardImages/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Grim Knight's Dread", Resources.Load("CardImages/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
+
+		CurrCardImages.Add("In the King's Wake", Resources.Load("CardImages/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Onrai's Strike", Resources.Load("CardImages/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Onslaught of Tyras", Resources.Load("CardImages/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+
+		CurrCardImages.Add("Sundering Star", Resources.Load("CardImages/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Tyras", Resources.Load("CardImages/Tyras/Tyras", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Warrior's Resolve", Resources.Load("CardImages/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
+
 		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
 		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
 		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
