@@ -19,8 +19,9 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static Text Reinforce = null;
     public static Text OEmpower = null;
     public static Text OReinforce = null;
-    public static Dictionary<string, object> cardDict = null;
-    public static Dictionary<string, Sprite> CardImages = new Dictionary<string, Sprite>();
+	public static Dictionary<string, object> cardDict = null;
+	public static Dictionary<string, Sprite> CardImages = new Dictionary<string, Sprite>();
+	public static Dictionary<Sprite, Sprite> CardThumbnails = new Dictionary<Sprite, Sprite>();
     static List<string> cardTags = new List<string>() {"Invocation1","Invocation2","Invocation3","Invocation4",
             "Hand1", "Hand2", "Hand3" , "Hand4" , "Hand5" ,"Hand6" ,"Hand7" ,"Hand8" ,"Hand9" ,"Hand0",
             "Standby1","Standby2","Standby3","Standby4",

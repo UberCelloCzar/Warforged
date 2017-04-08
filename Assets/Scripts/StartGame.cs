@@ -501,6 +501,23 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Sky Blessed Shield", Resources.Load("CardImages/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Toren's Favored", Resources.Load("CardImages/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Wrath of Lightning", Resources.Load("CardImages/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
+
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Celestial Surge", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Purging Lightning", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Crashing Sky", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load<Sprite>("CardImages/Edros/Edros"), Resources.Load<Sprite>("CardThumbnails/Edros/Edros"));
+
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Grace of Heaven", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Hand of Toren", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
+
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Pillar of Lightning", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Pillar of Lightning", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Rolling Thunder", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Scorn of Thunder", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Scorn of Thunder", typeof(Sprite)) as Sprite);
+
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Toren's Favored", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
+		OnClick.CardThumbnails.Add(Resources.Load("CardImages/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite, Resources.Load("CardThumbnails/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
 		yield return null;
 	}
 
