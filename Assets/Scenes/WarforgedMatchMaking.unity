@@ -1974,14 +1974,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Updates:
 
-    - Added Trevor IP button
+    - Fixed lingering prompts
 
-    - Manually Hoiseted all onclick variables to top of script for readability
+    - Fixed Empower display
 
-    - Added endgame
-
-    - Fixed align bug caused by checkign for continuing align past the number of present
-    standby cards
+    - Fixed button layout
 
 
     Notes: For those who haven''t spelunked the code yet, Character.cs is where the

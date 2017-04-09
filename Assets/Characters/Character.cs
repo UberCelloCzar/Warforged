@@ -157,8 +157,7 @@ namespace Warforged
 		/// Also adds empower and resets empower to 0.
 		public void addDamage(int dmg)
 		{
-			damage += dmg + currEmpower;
-			currEmpower = 0;
+            damage += dmg;
 		}
 
 		/// Add negation effects from a blue card.
@@ -179,8 +178,6 @@ namespace Warforged
             recentSuspended.Clear();
 			negate = 0;
 			damage = 0;
-            currEmpower = empower;
-            empower = 0;
             currReinforce = reinforce;
             reinforce = 0;
             pierce = 0;
@@ -240,17 +237,21 @@ namespace Warforged
             seal = Color.black; // Reset any seal from last turn
 			// Declarations should happen BEFORE activateCard(), since activateCard()reads current information and declarations should happen before card calculations.
 			currCard.declare();
-			activateCard();
+            Game.library.setPromptText("");
+            activateCard();
 		}
 
 		/// Calculate all damage and healing occuring this turn.
 		public virtual void damagePhase()
-		{
+        {
+            damage += currEmpower;
             dealDamage();
 			healSelf();
 			prevCard = currCard;
 			rotate();
-		}
+            currEmpower = empower;
+            empower = 0;
+        }
 
 		/// Calculates if the character dealt or negated damage this turn
 		/// Probably will be overwritten a ton

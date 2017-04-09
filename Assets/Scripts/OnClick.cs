@@ -97,9 +97,8 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             for (int i = 0; i < 6; ++i)
             {
                 allButtons[i].gameObject.SetActive(false);
-                allButtons[i].GetComponentInChildren<Text>().text = "";
+                allButtons[i].GetComponentInChildren<Text>().text = i.ToString();
             }
-
         }
         if(Prompt == null)
         {
@@ -254,8 +253,6 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     }
 
-
-
     public void OnPointerClick(PointerEventData eventData)
     {
         if (cardTags.Contains(eventData.pointerCurrentRaycast.gameObject.tag))
@@ -274,16 +271,15 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
         }
         else
         {
-            
+
         }
     }
 
-    public static void setButtonOptions(string promptText,List<string> names,List<object> returns)
+    public static void setButtonOptions(string promptText, List<string> names, List<object> returns)
     {
         Prompt.text = promptText;
-        for(int i =0; i<Math.Min(Math.Min(names.Count,6),returns.Count);++i)
+        for (int i = 0; i < Math.Min(Math.Min(names.Count, 6), returns.Count); ++i)
         {
-            
             allButtons[i].gameObject.SetActive(true);
             allButtons[i].GetComponentInChildren<Text>().text = names[i];
             buttonDict[allButtons[i].tag] = returns[i];

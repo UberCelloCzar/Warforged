@@ -80,7 +80,7 @@ public class StartGame : MonoBehaviour {
 		OnClick.buttonReturn = OnClick.NoReturn;
 		yield return null;
 	}
-	public static IEnumerator multiPrompt(string text, List<string> buttonTexts,List<object> returns)
+	public static IEnumerator multiPrompt(string text, List<string> buttonTexts, List<object> returns)
 	{
 		OnClick.Prompt.text = text;
 		OnClick.setButtonOptions(text, buttonTexts, returns);
@@ -129,7 +129,7 @@ public class StartGame : MonoBehaviour {
     }
     public static IEnumerator waitOnNetwork(Character ch1, Character ch2)
     {
-        yield return new WaitUntil(() => { Debug.Log("Turn 1: "+ Game.p1.turn+" Turn 2: "+ Game.p2.turn); return networkUpdated; });
+        yield return new WaitUntil(() => { /*Debug.Log("Turn 1: "+ Game.p1.turn+" Turn 2: "+ Game.p2.turn);*/ return networkUpdated; });
         networkUpdated = false;
     }
     public static IEnumerator updateNetwork(Character ch)
@@ -345,7 +345,7 @@ public class StartGame : MonoBehaviour {
         OnClick.CharacterSlot.sprite = OnClick.CardImages[ch.name];
         OnClick.CharacterSlot.color = new UnityEngine.Color(1, 1, 1);
         OnClick.Health.text = ch.hp + "HP";
-        OnClick.Empower.text = "Empower(" + ch.empower + ")";
+        OnClick.Empower.text = "Empower(" + ch.currEmpower + ")";
         OnClick.Reinforce.text = "Reinforce(" + ch.reinforce + ")";
         OnClick.Phase.text = ch.displayPhase();
         yield return null;
@@ -357,13 +357,13 @@ public class StartGame : MonoBehaviour {
         OnClick.GameOver.text = "Game Over.\n";
         if (ch.endGame == 1)
         {
-            OnClick.GameOver.text += ch.name; // Add the appropriate name to the win text
+            OnClick.GameOver.text += "You win"; // Add the appropriate name to the win text
         }
         else
         {
-            OnClick.GameOver.text += ch.opponent.name;
+            OnClick.GameOver.text += "Your opponent wins";
         }
-        OnClick.GameOver.text += " wins!\nClick anywhere to quit.";
+        OnClick.GameOver.text += "!\nClick anywhere to quit.";
         OnClick.GameOver.rectTransform.anchoredPosition3D = new Vector3(0, 0, -.1f); // Move the message on screen
         OnClick.GameOver.rectTransform.pivot = new Vector2(.5f, .5f);
         while (true) // Nice

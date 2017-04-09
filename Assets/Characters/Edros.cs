@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Warforged
 {
@@ -470,9 +471,10 @@ namespace Warforged
 
                     texts.Add((i + 1 - awakening) + "");
                     returns.Add(i + 1 - awakening);
-
                 }
-                if(texts.Count == 0)
+                foreach (string text in texts) Debug.Log("Text:" + text);
+                foreach (object ret in returns) Debug.Log("Return:" + ret);
+                if (texts.Count == 0)
                 {
                     return;
                 }
