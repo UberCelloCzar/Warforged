@@ -297,7 +297,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             var img = eventData.pointerEnter.GetComponent<Image>();
             if (img != null && LeftZoom != null && img.sprite != null)
             {
-				LeftZoom.sprite = CardThumbnails[img.sprite];
+				LeftZoom.sprite = img.sprite;
                 LeftZoom.color = new UnityEngine.Color(1,1,1,1);
             }
         }
