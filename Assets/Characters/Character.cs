@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Warforged
 {
@@ -110,7 +111,7 @@ namespace Warforged
 			stroveCards = new List<Card>();
             endGame = 0;
             phase = Phase.Selection;
-		}
+        }
 
 		/// Bolster the first card that is bolster-able.
 		/// Places the card in hand if it's an awakening.
@@ -175,6 +176,42 @@ namespace Warforged
 		/// Also removes overheal from further back than last turn
 		public virtual void dawn()
 		{
+            switch (opponent.seal)
+            {
+                case Color.blue:
+                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.red:
+                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.green:
+                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.black:
+                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = false;
+                    break;
+
+            }
+            switch (seal)
+            {
+                case Color.blue:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.red:
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.green:
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.black:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
+                    break;
+
+            }
             stroveCards = new List<Card>();
             recentSuspended.Clear();
 			negate = 0;
@@ -194,11 +231,13 @@ namespace Warforged
 			{
 				overheal = hp - 10;
 			}
+
             if (navySeal != Color.black && seal == Color.black) // Takes the 2nd turn seal and applies it to this turn then gets rid of the 2nd turn seal (Super Seal)
             {
                 seal = navySeal;
-                navySeal = Color.black;
+                navySeal = Color.black;            
             }
+            
         }
 
 		/// Play a card from your hand
@@ -206,6 +245,7 @@ namespace Warforged
 		/// Returns true otherwise
 		public bool playCard()
 		{
+            
             if (hand.Count == 0)
 			{
 				currCard = null;
@@ -242,6 +282,23 @@ namespace Warforged
 			currCard.declare();
             Game.library.setPromptText("");
             activateCard();
+            switch (seal)
+            {
+                case Color.blue:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.red:
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.green:
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.black:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
+                    break;
+            }
         }
 
 		/// Calculate all damage and healing occuring this turn.
@@ -254,6 +311,23 @@ namespace Warforged
 			rotate();
             currEmpower = empower;
             empower = 0;
+            switch (seal)
+            {
+                case Color.blue:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.red:
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.green:
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.black:
+                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
+                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
+                    break;
+            }
         }
 
 		/// Calculates if the character dealt or negated damage this turn
@@ -486,13 +560,25 @@ namespace Warforged
 
 		/// Seals a certain card type for the opponent next turn
 		public void sealCard(Color color)
-        {
+		{
             opponent.seal = color;
             Debug.Log("Sealing Opponent: " + opponent.seal);
-		}
+            switch (opponent.seal)
+            {
+                case Color.blue:
+                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.red:
+                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = true;
+                    break;
+                case Color.green:
+                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = true;
+                    break;
+            }
+        }
 
         /// Seals a certain card type for the opponent's next two turns
-        public void superSeal(Color color)
+        public void superSeal(Color color) // Super Seal doesn't work unless we add it to the network stuff
         {
             opponent.seal = color;
             opponent.navySeal = color;

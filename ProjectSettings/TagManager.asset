@@ -87,6 +87,14 @@ TagManager:
   - OReinforce
   - GameOver
   - Phase
+  - Seal
+  - OSeal
+  - SealB
+  - OSealB
+  - SealR
+  - OSealR
+  - SealG
+  - OSealG
   layers:
   - Default
   - TransparentFX
