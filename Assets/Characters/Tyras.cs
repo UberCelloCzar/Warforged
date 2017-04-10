@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Warforged
 {
@@ -300,7 +301,7 @@ namespace Warforged
                 user.addNegate(2);
                 if (user.opponent.currCard.color == Color.red)
                 {
-                    user.sealColor(Color.blue);
+                    user.sealCard(Color.blue);
                 }
             }
         }

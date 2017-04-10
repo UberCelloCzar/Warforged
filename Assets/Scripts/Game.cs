@@ -196,7 +196,7 @@ namespace Warforged
                 //library.setPromptText("before sleep0");
                 library.updateUI(p1, true);
                 ++p1.turn;
-                library.updateNetowrk(p1);
+                library.updateNetwork(p1, p2, false);
                 library.waitOnNetwork(ref p1, ref p2);
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
@@ -208,7 +208,7 @@ namespace Warforged
                 p1.phase = Character.Phase.Waiting;
                 library.updateUI(p1, false);
                 ++p1.turn;
-                library.updateNetowrk(p1);
+                library.updateNetwork(p1, p2, false);
                 library.waitOnNetwork(ref p1, ref p2);
                 library.updateOpponentUI(p2, false, false);
                 //library.setPromptText("before sleep1");
@@ -216,17 +216,20 @@ namespace Warforged
                 library.updateUI(p1, false);
 
                 p1.declarePhase();
-                //p2.declarePhase();
+                Debug.Log("My seal: " + p1.seal);
+                Debug.Log("His seal: " + p2.seal);
 
                 p1.phase = Character.Phase.Waiting;
                 p2.phase = Character.Phase.Waiting;
                 library.updateUI(p1, true);
                 ++p1.turn;
-                library.updateNetowrk(p1);
+                library.updateNetwork(p1, p2, true);
                 library.waitOnNetwork(ref p1, ref p2);
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("before sleep2");
+                Debug.Log("My seal updated: " + p1.seal);
+                Debug.Log("His seal updated: " + p2.seal);
 
                 p1.phase = Character.Phase.Damage;
                 p2.phase = Character.Phase.Damage;
@@ -241,7 +244,7 @@ namespace Warforged
                 p1.phase = Character.Phase.Dusk;
                 library.updateUI(p1, true);
                 ++p1.turn;
-                library.updateNetowrk(p1);
+                library.updateNetwork(p1, p2, false);
                 library.waitOnNetwork(ref p1, ref p2);
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
@@ -260,7 +263,7 @@ namespace Warforged
                 p1.phase = Character.Phase.Dawn;
                 library.updateUI(p1, true);
                 ++p1.turn;
-                library.updateNetowrk(p1);
+                library.updateNetwork(p1, p2, false);
                 library.waitOnNetwork(ref p1, ref p2);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("after sleep2");

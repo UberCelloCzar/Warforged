@@ -91,9 +91,9 @@ namespace Warforged
             }
         }
 
-        public override void updateNetowrk(Character ch)
+        public override void updateNetwork(Character ch1, Character ch2, bool UpdateVars)
         {
-            StartGame.signal = () => { return StartGame.updateNetwork(ch); };
+            StartGame.signal = () => { return StartGame.updateNetwork(ch1, ch2, UpdateVars); };
             barrier.SignalAndWait(threadID);
         }
 

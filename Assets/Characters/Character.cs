@@ -22,9 +22,9 @@ namespace Warforged
 		public string name{get; set;}
 		public string title{get; protected set;}
 		public int hp{get; protected set;}
-		// Information about the current turn
+        // Information about the current turn
         // Card color that cannot be played this turn; set one turn in advance and reset after a card is played
-		protected Color seal;
+        public Color seal;
         // Card color that cannot be played next turn; set two turn in advance and reset on dawn on the second turn
         // This is transitioned into regular seal on the second turn
         // i.e. Turn 0 sets seal and navySeal
@@ -151,7 +151,8 @@ namespace Warforged
                 endGame = 2;
                 opponent.endGame = 1;
             }
-		}
+            //Debug.Log("I'm opponent, taking damage: " + hp);
+        }
 
 		/// Add damage from a red card.
 		/// Also adds empower and resets empower to 0.
@@ -193,7 +194,7 @@ namespace Warforged
 			{
 				overheal = hp - 10;
 			}
-            if (navySeal != Color.black && seal == Color.black)
+            if (navySeal != Color.black && seal == Color.black) // Takes the 2nd turn seal and applies it to this turn then gets rid of the 2nd turn seal (Super Seal)
             {
                 seal = navySeal;
                 navySeal = Color.black;
@@ -208,6 +209,7 @@ namespace Warforged
             if (hand.Count == 0)
 			{
 				currCard = null;
+                seal = Color.black; // Reset any seal from last turn
                 return false;
 			}
 			while (true)
@@ -221,10 +223,12 @@ namespace Warforged
 				}
 				if (card.color == seal)
 				{
+                    Debug.Log("Sealed: " + seal);
 					continue;
 				}
 				currCard = card;
 				hand.Remove(card);
+                seal = Color.black; // Reset any seal from last turn
                 return true;
 			}
 		}
@@ -234,12 +238,11 @@ namespace Warforged
 		/// then calculates damages and healing.
 		public virtual void declarePhase()
 		{
-            seal = Color.black; // Reset any seal from last turn
 			// Declarations should happen BEFORE activateCard(), since activateCard()reads current information and declarations should happen before card calculations.
 			currCard.declare();
             Game.library.setPromptText("");
             activateCard();
-		}
+        }
 
 		/// Calculate all damage and healing occuring this turn.
 		public virtual void damagePhase()
@@ -465,7 +468,7 @@ namespace Warforged
 			// Also stop if we're at the last character
 			if (standby[index].color == color && align.Length == 1)
 			{
-                Debug.Log("Align is good");
+                //Debug.Log("Align is good");
 				return true;
 			}
 
@@ -482,9 +485,10 @@ namespace Warforged
 
 
 		/// Seals a certain card type for the opponent next turn
-		public void sealColor(Color color)
-		{
-			opponent.seal = color;
+		public void sealCard(Color color)
+        {
+            opponent.seal = color;
+            Debug.Log("Sealing Opponent: " + opponent.seal);
 		}
 
         /// Seals a certain card type for the opponent's next two turns

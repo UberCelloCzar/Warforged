@@ -132,115 +132,31 @@ public class StartGame : MonoBehaviour {
         yield return new WaitUntil(() => { /*Debug.Log("Turn 1: "+ Game.p1.turn+" Turn 2: "+ Game.p2.turn);*/ return networkUpdated; });
         networkUpdated = false;
     }
-    public static IEnumerator updateNetwork(Character ch)
+    public static IEnumerator updateNetwork(Character ch1, Character ch2, bool UpdateVars)
     {
         XmlSerializer xml = new XmlSerializer(typeof(Character));
         StringWriter sw = new StringWriter();
         //var xwrite = XmlWriter.Create(sw);
-        xml.Serialize(sw, ch);
-        if (PlayerController.controller.localPlayer.isServer)
-        {
-            PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer);
-        }
-        else
-        {
-            PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer);
-        }
-        /*if (!PlayerController.controller.localPlayer.isServer)
-        {
-            //yield return new WaitUntil(() => PlayerController.controller.remotePlayer.remoteSequence + 1 >= PlayerController.controller.remotePlayer.localSequence);
-            Debug.Log("ClientReady: "+ PlayerController.playerController.getClientReady()+" ServerReady: "+ PlayerController.playerController.getServerReady());
-            PlayerController.controller.localPlayer.CmdClientReady(PlayerController.playerController.getClientReady() + 1);
-            yield return new WaitUntil(() => {
-                var rdy = PlayerController.playerController.getServerReady() > PlayerController.controller.localPlayer.prevServerReady+3;
-                if(rdy)
-                {
-                    PlayerController.controller.localPlayer.CmdClientReady(PlayerController.playerController.getClientReady() + 6);
-                    PlayerController.controller.localPlayer.prevServerReady = PlayerController.playerController.getServerReady();
-                    return true;
-                }
-                else
-                {
-                    PlayerController.controller.localPlayer.CmdClientReady(PlayerController.playerController.getClientReady()+1);
-                    Debug.Log("ClientReady: " + PlayerController.playerController.getClientReady() + " ServerReady: " + PlayerController.playerController.getServerReady());
-                }
-                return false;
-            });
-            //yield return new WaitUntil(() => PlayerController.controller.remotePlayer.readyFlag == false);
-        }
-        else
-        {
-            //yield return new WaitUntil(() => PlayerController.controller.remotePlayer.remoteSequence + 1 >= PlayerController.controller.remotePlayer.localSequence);
-            yield return new WaitUntil(() => {
-                var rdy = PlayerController.playerController.getClientReady() > PlayerController.controller.localPlayer.prevClientReady+5;
-                if (rdy)
-                {
-                    PlayerController.controller.localPlayer.prevClientReady = PlayerController.playerController.getClientReady();
-                    PlayerController.playerController.updateServerReady(PlayerController.playerController.getServerReady()+4);
-                    Debug.Log("ClientReady: " + PlayerController.playerController.getClientReady() + " ServerReady: " + PlayerController.playerController.getServerReady());
-                    return true;
-                }
-                else
-                {
-                    PlayerController.playerController.updateServerReady(PlayerController.playerController.getServerReady() + 1);
-                    Debug.Log("ClientReady: " + PlayerController.playerController.getClientReady() + " ServerReady: " + PlayerController.playerController.getServerReady());
-                }
-                return false;
-            });
-            //yield return new WaitUntil(() => PlayerController.controller.remotePlayer.readyFlag == false);
-        }*/
-        //PlayerController.controller.localPlayer.CmdImReady(PlayerController.controller.localPlayer.isServer);
-        ////if (!PlayerController.controller.remotePlayer.readyFlag)
+        xml.Serialize(sw, ch1);
+        //if (PlayerController.controller.localPlayer.isServer)
         //{
-        //    yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady1(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.remotePlayer.readyFlag;
-        //    });
-        //    /*yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady1(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.localPlayer.readyFlag;
-        //    });*/
+            PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer, 1, UpdateVars);
         //}
-        //PlayerController.controller.remotePlayer.readyFlag = false;
-        //PlayerController.controller.localPlayer.readyFlag = false;
-        //PlayerController.controller.localPlayer.CmdImReady1(PlayerController.controller.localPlayer.isServer);
-        ////if (!PlayerController.controller.remotePlayer.readyFlag)
+        //else
         //{
-        //    yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady1(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady2(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.remotePlayer.readyFlag1;
-        //    });
-        //    /*yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady1(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady2(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.localPlayer.readyFlag1;
-        //    });*/
+        //    PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer);
         //}
-        //PlayerController.controller.remotePlayer.readyFlag1 = false;
-        //PlayerController.controller.localPlayer.readyFlag1 = false;
-        //PlayerController.controller.localPlayer.CmdImReady2(PlayerController.controller.localPlayer.isServer);
-        ////if (!PlayerController.controller.remotePlayer.readyFlag)
+        xml = new XmlSerializer(typeof(Character));
+        sw.Close();
+        sw = new StringWriter();
+        xml.Serialize(sw, ch2);
+        //if (PlayerController.controller.localPlayer.isServer)
         //{
-        //    yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady2(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.remotePlayer.readyFlag2;
-        //    });
-        //    /*yield return new WaitUntil(() => {
-        //        PlayerController.controller.localPlayer.CmdImReady2(PlayerController.controller.localPlayer.isServer);
-        //        PlayerController.controller.localPlayer.CmdImReady(PlayerController.controller.localPlayer.isServer);
-        //        return PlayerController.controller.localPlayer.readyFlag2;
-        //    });*/
+               PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer, 2, UpdateVars);
         //}
-
-        //PlayerController.controller.remotePlayer.readyFlag2 = false;
-        //PlayerController.controller.localPlayer.readyFlag2 = false;
-        //PlayerController.controller.localPlayer.CmdUnReady(PlayerController.controller.localPlayer.isServer);
-        //yield return new WaitUntil(() => PlayerController.controller.remotePlayer.readyFlag == false);
-        //yield return new WaitUntil(() => PlayerController.controller.localPlayer.readyFlag == false);
+        //else
+        //{
+        // 
         yield return null;
     }
 

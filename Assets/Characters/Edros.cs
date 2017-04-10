@@ -125,7 +125,7 @@ namespace Warforged
                 user.addDamage(2);
                 if (user.opponent.currCard.color == Color.green)
                 {
-                    user.sealColor(Color.blue);
+                    user.sealCard(Color.blue);
                 }
             }
         }

@@ -26,7 +26,7 @@ namespace Warforged
         public abstract void endSlate(Character ch); // End game UI method
 
         //Updates the Network, so that the opponent recieves our changes
-        public abstract void updateNetowrk(Character ch);
+        public abstract void updateNetwork(Character ch1, Character ch2, bool UpdateVars);
         //Waits for both players to have cards out on the field
         public abstract void waitOnNetwork(ref Character ch1, ref Character ch2);
         //Updates the UI for Player 2 based on the character object passed in.

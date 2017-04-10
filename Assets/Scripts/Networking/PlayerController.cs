@@ -270,28 +270,36 @@ public class PlayerController : NetworkBehaviour
         SceneManager.LoadScene(scene);
     }
     [Command]
-    public void CmdSetCharacter(string data, bool isServer)
+    public void CmdSetCharacter(string data, bool isServer, int ch, bool UpdateVars)
     {
-        RpcSetCharacter(data, isServer);
+        RpcSetCharacter(data, isServer, ch, UpdateVars);
     }
 
     [ClientRpc]
-    public void RpcSetCharacter(string charcter, bool isServer)
+    public void RpcSetCharacter(string character, bool isServer, int ch, bool UpdateVars)
     {
         /// Gets the opposing character from the network
-        if (controller.localPlayer.isServer == isServer)
+        if (ch == 1)
         {
-            
+            if (controller.localPlayer.isServer != isServer)
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(Character));
+                Character ch2 = (Character)xml.Deserialize(new StringReader(character));
+                if (UpdateVars) ch2.seal = Game.p2.seal; // We take the enemy, but give them the seal we think they have
+                Game.p2 = ch2;
+                SetupReferences(Game.p2, Game.p1);
+            }
         }
         else
         {
-            /*XmlSerializer xml = new XmlSerializer(typeof(Character));
-            Game.p1 = (Character)xml.Deserialize(new StringReader(charcter));
-            SetupReferences(Game.p1, Game.p2);*/
-            XmlSerializer xml = new XmlSerializer(typeof(Character));
-            Game.p2 = (Character)xml.Deserialize(new StringReader(charcter));
-            SetupReferences(Game.p2, Game.p1);
-            StartGame.networkUpdated = true;
+            if (controller.localPlayer.isServer != isServer)
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(Character));
+                Character ch1 = (Character)xml.Deserialize(new StringReader(character));
+                if (UpdateVars) Game.p1.seal = ch1.seal; // We give ourselves the seal they think we have
+                SetupReferences(Game.p1, Game.p2);
+                StartGame.networkUpdated = true;
+            }
         }
     }
 
