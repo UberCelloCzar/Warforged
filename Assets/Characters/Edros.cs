@@ -115,7 +115,7 @@ namespace Warforged
         {
             public PillarofLightning() : base()
             {
-                name = "Pillar of Lightning";
+                name = "Suppressing Bolt";
                 effect = "Deal 2 damage.\nCounter(G): Seal (B)";
                 color = Color.red;
             }
@@ -345,7 +345,7 @@ namespace Warforged
         {
             public ScornofThunder() : base()
             {
-                name = "Scorn of Thunder";
+                name = "Imminent Storm";
                 effect = "Depart: Return up to 2 Standby cards to your hand.";
                 color = Color.black;
                 active = false;
@@ -488,8 +488,8 @@ namespace Warforged
                         var card = Game.library.waitForClick();
                         if(user.invocation.Contains(card) && !selected.Contains(card))
                         {
-                            //TODO: Change Scorn of Thunder to 
-                            if (card.name.Equals("Scorn of Thunder") || card.name.Equals("Imminent Storm"))
+                            //TODO: Change Imminent Storm to 
+                            if (card.name.Equals("Imminent Storm") || card.name.Equals("Imminent Storm"))
                             {
                                 Game.library.highlight(card,255,0,0);
                                 selected.Add(card);

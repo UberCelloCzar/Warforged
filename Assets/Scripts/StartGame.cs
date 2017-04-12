@@ -410,68 +410,68 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Grace of Heaven", Resources.Load("CardImages/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Hand of Toren", Resources.Load("CardImages/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
 
-		CurrCardImages.Add("Pillar of Lightning", Resources.Load("CardImages/Edros/Pillar of Lightning", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Suppressing Bolt", Resources.Load("CardImages/Edros/Suppressing Bolt", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Rolling Thunder", Resources.Load("CardImages/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
-		CurrCardImages.Add("Scorn of Thunder", Resources.Load("CardImages/Edros/Scorn of Thunder", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Imminent Storm", Resources.Load("CardImages/Edros/Imminent Storm", typeof(Sprite)) as Sprite);
 
 		CurrCardImages.Add("Sky Blessed Shield", Resources.Load("CardImages/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Toren's Favored", Resources.Load("CardImages/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Wrath of Lightning", Resources.Load("CardImages/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Celestial Surge"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Celestial Surge"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Celestial Surge"], Resources.Load("CardThumbnails/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Celestial Surge"], Resources.Load("CardZooms/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Purging Lightning"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Purging Lightning"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Purging Lightning"], Resources.Load("CardThumbnails/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Purging Lightning"], Resources.Load("CardZooms/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Crashing Sky"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Crashing Sky"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Crashing Sky"], Resources.Load("CardThumbnails/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Edros"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Edros"], Resources.Load<Sprite>("CardThumbnails/Edros/Edros"));
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Faith Unquestioned"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Faith Unquestioned"], Resources.Load("CardThumbnails/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Grace of Heaven"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Grace of Heaven"], Resources.Load("CardThumbnails/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Crashing Sky"], Resources.Load("CardZooms/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Hand of Toren"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Edros"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Hand of Toren"], Resources.Load("CardThumbnails/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Edros"], Resources.Load<Sprite>("CardZooms/Edros/Edros"));
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Pillar of Lightning"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Faith Unquestioned"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Pillar of Lightning"], Resources.Load("CardThumbnails/Edros/Pillar of Lightning", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Faith Unquestioned"], Resources.Load("CardZooms/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Rolling Thunder"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Grace of Heaven"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Rolling Thunder"], Resources.Load("CardThumbnails/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Grace of Heaven"], Resources.Load("CardZooms/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Scorn of Thunder"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Hand of Toren"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Scorn of Thunder"], Resources.Load("CardThumbnails/Edros/Scorn of Thunder", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Hand of Toren"], Resources.Load("CardZooms/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Sky Blessed Shield"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Suppressing Bolt"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Sky Blessed Shield"], Resources.Load("CardThumbnails/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Suppressing Bolt"], Resources.Load("CardZooms/Edros/Suppressing Bolt", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Toren's Favored"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Rolling Thunder"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Toren's Favored"], Resources.Load("CardThumbnails/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Rolling Thunder"], Resources.Load("CardZooms/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Wrath of Lightning"]))
+
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Imminent Storm"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Wrath of Lightning"], Resources.Load("CardThumbnails/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Imminent Storm"], Resources.Load("CardZooms/Edros/Imminent Storm", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sky Blessed Shield"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Sky Blessed Shield"], Resources.Load("CardZooms/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Toren's Favored"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Toren's Favored"], Resources.Load("CardZooms/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Wrath of Lightning"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Wrath of Lightning"], Resources.Load("CardZooms/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
         }
 		yield return null;
 	}
@@ -500,73 +500,73 @@ public class StartGame : MonoBehaviour {
         CurrCardImages.Add("Unyielding Faith", Resources.Load("CardImages/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
         CurrCardImages.Add("Will Unbreakable", Resources.Load("CardImages/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
 
-		if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Ascendance"]))
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ascendance"]))
 		{
-			OnClick.CardThumbnails.Add(CurrCardImages["Ascendance"], Resources.Load("CardThumbnails/Adrius/Ascendance", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add(CurrCardImages["Ascendance"], Resources.Load("CardZooms/Adrius/Ascendance", typeof(Sprite)) as Sprite);
 		}
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Divine Cataclysm"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Divine Cataclysm"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Divine Cataclysm"], Resources.Load("CardThumbnails/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Divine Cataclysm"], Resources.Load("CardZooms/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Earth Piercer"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Earth Piercer"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Earth Piercer"], Resources.Load("CardThumbnails/Adrius/Earth Piercer", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Adrius (Ral'Taris Incarnate)"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Adrius (Ral'Taris Incarnate)"], Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (Ral'Taris Incarnate)"));
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Adrius (The Aspirer)"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Adrius (The Aspirer)"], Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (The Aspirer)"));
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Adrius (The Realm Bearer)"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Adrius (The Realm Bearer)"], Resources.Load<Sprite>("CardThumbnails/Adrius/Adrius (The Realm Bearer)"));
+            OnClick.CardZooms.Add(CurrCardImages["Earth Piercer"], Resources.Load("CardZooms/Adrius/Earth Piercer", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Emerald Core"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (Ral'Taris Incarnate)"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Emerald Core"], Resources.Load("CardThumbnails/Adrius/Emerald Core", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Adrius (Ral'Taris Incarnate)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (Ral'Taris Incarnate)"));
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Fist of Ruin"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (The Aspirer)"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Fist of Ruin"], Resources.Load("CardThumbnails/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Adrius (The Aspirer)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Aspirer)"));
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Hero’s Resolution"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (The Realm Bearer)"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Hero’s Resolution"], Resources.Load("CardThumbnails/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Ruby Heart"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Ruby Heart"], Resources.Load("CardThumbnails/Adrius/Ruby Heart", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Sapphire Mantle"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Sapphire Mantle"], Resources.Load("CardThumbnails/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Shattering Blow"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Shattering Blow"], Resources.Load("CardThumbnails/Adrius/Shattering Blow", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Adrius (The Realm Bearer)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Realm Bearer)"));
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Surging Hope"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Emerald Core"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Surging Hope"], Resources.Load("CardThumbnails/Adrius/Surging Hope", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Emerald Core"], Resources.Load("CardZooms/Adrius/Emerald Core", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Tremoring Impact"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Fist of Ruin"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Tremoring Impact"], Resources.Load("CardThumbnails/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Fist of Ruin"], Resources.Load("CardZooms/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Unyielding Faith"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Hero’s Resolution"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Unyielding Faith"], Resources.Load("CardThumbnails/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Hero’s Resolution"], Resources.Load("CardZooms/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Will Unbreakable"]))
+
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ruby Heart"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Will Unbreakable"], Resources.Load("CardThumbnails/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Ruby Heart"], Resources.Load("CardZooms/Adrius/Ruby Heart", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sapphire Mantle"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Sapphire Mantle"], Resources.Load("CardZooms/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Shattering Blow"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Shattering Blow"], Resources.Load("CardZooms/Adrius/Shattering Blow", typeof(Sprite)) as Sprite);
+        }
+
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Surging Hope"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Surging Hope"], Resources.Load("CardZooms/Adrius/Surging Hope", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Tremoring Impact"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Tremoring Impact"], Resources.Load("CardZooms/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Unyielding Faith"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Unyielding Faith"], Resources.Load("CardZooms/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Will Unbreakable"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Will Unbreakable"], Resources.Load("CardZooms/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
         }
         yield return null;
     }
@@ -591,60 +591,60 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Tyras", Resources.Load("CardImages/Tyras/Tyras", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Warrior's Resolve", Resources.Load("CardImages/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["A Brother's Virtue"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Brother's Virtue"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["A Brother's Virtue"], Resources.Load("CardThumbnails/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["A Brother's Virtue"], Resources.Load("CardZooms/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["A Promise Unbroken"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Promise Unbroken"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["A Promise Unbroken"], Resources.Load("CardThumbnails/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["A Promise Unbroken"], Resources.Load("CardZooms/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["A Soldier's Remorse"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Soldier's Remorse"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["A Soldier's Remorse"], Resources.Load("CardThumbnails/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["A Soldier's Remorse"], Resources.Load("CardZooms/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["An Oath Unforgotten"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["An Oath Unforgotten"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["An Oath Unforgotten"], Resources.Load<Sprite>("CardThumbnails/Tyras/An Oath Unforgotten"));
-        }
-
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Armor of Aldras"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Armor of Aldras"], Resources.Load("CardThumbnails/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Decrying Roar"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Decrying Roar"], Resources.Load("CardThumbnails/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Grim Knight's Dread"]))
-        {
-            OnClick.CardThumbnails.Add(CurrCardImages["Grim Knight's Dread"], Resources.Load("CardThumbnails/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["An Oath Unforgotten"], Resources.Load<Sprite>("CardZooms/Tyras/An Oath Unforgotten"));
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["In the King's Wake"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Armor of Aldras"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["In the King's Wake"], Resources.Load("CardThumbnails/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Armor of Aldras"], Resources.Load("CardZooms/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Onrai's Strike"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Decrying Roar"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Onrai's Strike"], Resources.Load("CardThumbnails/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Decrying Roar"], Resources.Load("CardZooms/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Onslaught of Tyras"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Grim Knight's Dread"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Onslaught of Tyras"], Resources.Load("CardThumbnails/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Grim Knight's Dread"], Resources.Load("CardZooms/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Sundering Star"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["In the King's Wake"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Sundering Star"], Resources.Load("CardThumbnails/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["In the King's Wake"], Resources.Load("CardZooms/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Tyras"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Onrai's Strike"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Tyras"], Resources.Load("CardThumbnails/Tyras/Tyras", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Onrai's Strike"], Resources.Load("CardZooms/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardThumbnails.ContainsKey(CurrCardImages["Warrior's Resolve"]))
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Onslaught of Tyras"]))
         {
-            OnClick.CardThumbnails.Add(CurrCardImages["Warrior's Resolve"], Resources.Load("CardThumbnails/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add(CurrCardImages["Onslaught of Tyras"], Resources.Load("CardZooms/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+        }
+
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sundering Star"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Sundering Star"], Resources.Load("CardZooms/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Tyras"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Tyras"], Resources.Load("CardZooms/Tyras/Tyras", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Warrior's Resolve"]))
+        {
+            OnClick.CardZooms.Add(CurrCardImages["Warrior's Resolve"], Resources.Load("CardZooms/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
         }
 		yield return null;
 	}

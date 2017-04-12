@@ -21,7 +21,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static Text OReinforce = null;
 	public static Dictionary<string, object> cardDict = null;
 	public static Dictionary<string, Sprite> CardImages = new Dictionary<string, Sprite>();
-	public static Dictionary<Sprite, Sprite> CardThumbnails = new Dictionary<Sprite, Sprite>();
+	public static Dictionary<Sprite, Sprite> CardZooms = new Dictionary<Sprite, Sprite>();
     static List<string> cardTags = new List<string>() {"Invocation1","Invocation2","Invocation3","Invocation4",
             "Hand1", "Hand2", "Hand3" , "Hand4" , "Hand5" ,"Hand6" ,"Hand7" ,"Hand8" ,"Hand9" ,"Hand0",
             "Standby1","Standby2","Standby3","Standby4",
@@ -293,7 +293,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             var img = eventData.pointerEnter.GetComponent<Image>();
             if (img != null && LeftZoom != null && img.sprite != null)
             {
-				LeftZoom.sprite = img.sprite;
+				LeftZoom.sprite = CardZooms[img.sprite];
                 LeftZoom.color = new UnityEngine.Color(1,1,1,1);
             }
         }
