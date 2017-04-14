@@ -40,6 +40,7 @@ namespace Warforged
         public int currEmpower{get; set;} // How much attacks this turn are empowered by
 		public int reinforce{get; set;} // Same as above
 		public int currReinforce{get; set;}
+        public bool lifesteal{get; set;}
 		public bool reflect{get; set;}
 		public bool absorb{get; set;}
 		public bool undying{get; set;}
@@ -55,7 +56,9 @@ namespace Warforged
 		public List<Card> invocation{get; protected set;}
         public List<Card> suspended{get; protected set;}
         public List<Card> recentSuspended{get; protected set;}
-		public Card prevCard{get; protected set;}
+        // Keeps track of the last four cards played (for aligns and such)
+        // The most recent card played is at the end of the queue
+		public List<Card> prevCards{get; protected set;}
         // Represents the opposing character
         // Should be fine this way since the game is 1v1
         [XmlIgnore]
@@ -98,6 +101,7 @@ namespace Warforged
 			reflect = false;
 			absorb = false;
 			undying = false;
+            lifesteal = false;
 
 			stalwart = false;
 			bloodlust = false;
@@ -111,6 +115,7 @@ namespace Warforged
             suspended = new List<Card>();
             recentSuspended = new List<Card>();
 			stroveCards = new List<Card>();
+            prevCards = new List<Card>(5);
             endGame = 0;
             phase = Phase.Dawn;
         }
@@ -137,6 +142,7 @@ namespace Warforged
 
 		/// Take damage and double check that damage numbers are within the allowed range
 		/// Behaves just about exactly as expected
+        // TODO change this so that negate is calculated here
 		public virtual void takeDamage(int dmg)
 		{
 			if (dmg < 0)
@@ -309,7 +315,13 @@ namespace Warforged
             damage += currEmpower;
             dealDamage();
 			healSelf();
-			prevCard = currCard;
+            // Keeps track of the last four cards played
+			prevCard.Add(currCard);
+            if (prevCards.Count > 4)
+            {
+                // Remove the first card in the list if it's getting too long
+                prevCards.RemoveAt(0);
+            }
 			rotate();
             currEmpower = empower;
             empower = 0;
@@ -330,6 +342,7 @@ namespace Warforged
                     GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
                     break;
             }
+            lifesteal = false;
         }
 
 		/// Calculates if the character dealt or negated damage this turn
@@ -427,6 +440,8 @@ namespace Warforged
 		public virtual int dealDamage()
 		{
 			// Will probably need more logic in the future
+            // TODO change this so that negate is calculated by takeDamage
+            //      have it take pierce as a parameter or something
             int tempnegate = opponent.negate - pierce;
             if (tempnegate < 0)
             {
@@ -446,6 +461,10 @@ namespace Warforged
 			else
 			{
 				opponent.takeDamage(tempdamage);
+                if (lifesteal)
+                {
+                    heal += tempdamage;
+                }
                 return tempdamage;
 			}
 		}
@@ -481,6 +500,32 @@ namespace Warforged
 				standby.Remove(hand[hand.Count-1]);
 			}
 		}
+
+        /// Tells if the user has a chain active.
+        /// chain is formatted without any spaces, just letters
+        /// e.g. "GB"
+        public bool hasChain(string chain)
+        {
+            string currChain = "";
+            // Loop through the history backwards to see what chain we DO have
+            for (int i = prevCards.Count-1; i >= 0; i--)
+            {
+                switch (prevCards[i].color)
+                {
+                    case (Color.red):
+                        currChain += "R";
+                        break;
+                    case (Color.green):
+                        currChain += "G";
+                        break;
+                    case (Color.blue):
+                        currChain += "B";
+                        break;
+                }
+            }
+            string toCompare = currChain.Substring(0, chain.Length);
+            return chain.Equals(toCompare);
+        }
 
 		/// Tells whether or not a player has an align on their standby
 		/// align is formatted without any spaces, just letters
@@ -724,6 +769,12 @@ namespace Warforged
             }
         }
 
+        /// Tells whether or not this character can use Rally effects
+        /// i.e. If this character lower health than their opponent?
+        public bool hasRally()
+        {
+            return hp < opponent.hp;
+        }
 
         /* Nested class representing a generic card */
         [XmlInclude(typeof(Adrius.Ascendance))]
@@ -822,6 +873,15 @@ namespace Warforged
             public void init(Character user)
             {
                 this.user = user;
+            }
+
+            public override bool Equals(Object other)
+            {
+                if (!(other is Card))
+                {
+                    return false;
+                }
+                return this.name == ((Card)other).name;
             }
 		}
 	}
