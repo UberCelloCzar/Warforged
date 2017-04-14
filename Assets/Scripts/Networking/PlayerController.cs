@@ -80,6 +80,10 @@ public class PlayerController : NetworkBehaviour
 
     void OnDestroy() // Called on disconnect
     {
+        Game.p1.phase = Character.Phase.Leave;
+        Game.p2.phase = Character.Phase.Leave;
+        SetupReferences(Game.p1, Game.p2);
+        StartGame.networkUpdated = true;
         controller.OnPlayerDestroyed(this, null);
     }
     #endregion

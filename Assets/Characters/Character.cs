@@ -67,10 +67,12 @@ namespace Warforged
         {
             Dawn,
             Selection,
-            Waiting,
+            WaitingSelection,
             Declare,
+            WaitingDeclare,
             Damage,
-            Dusk
+            Dusk,
+            Leave
         }
         public Phase phase {get; set;}
 
@@ -110,7 +112,7 @@ namespace Warforged
             recentSuspended = new List<Card>();
 			stroveCards = new List<Card>();
             endGame = 0;
-            phase = Phase.Selection;
+            phase = Phase.Dawn;
         }
 
 		/// Bolster the first card that is bolster-able.
@@ -648,23 +650,65 @@ namespace Warforged
 			standby.Remove(card);
 		}
 
-        public string displayPhase() // Phase display UI method
+        // Method to switch to the next phase.
+        public void nextPhase()
+        {
+            if (phase.Equals(Phase.Selection))
+            {
+                phase = Phase.WaitingSelection;
+            }
+            else if (phase.Equals(Phase.WaitingSelection))
+            {
+                phase = Phase.Declare;
+            }
+            else if (phase.Equals(Phase.Declare))
+            {
+                phase = Phase.WaitingDeclare;
+            }
+            else if (phase.Equals(Phase.WaitingDeclare))
+            {
+                phase = Phase.Damage;
+            }
+            else if (phase.Equals(Phase.Damage))
+            {
+                phase = Phase.Dusk;
+            }
+            else if (phase.Equals(Phase.Dusk))
+            {
+                phase = Phase.Dawn;
+            }
+            else if (phase.Equals(Phase.Dawn))
+            {
+                phase = Phase.Selection;
+            }
+            else
+            {
+                phase = Phase.Leave;
+            }
+        }
+
+        // Phase display UI method
+        public string displayPhase()
         {
             if (phase.Equals(Phase.Selection))
             {
                 return phase + " Phase: Please select a card to play.";
             }
-            else if (phase.Equals(Phase.Waiting))
+            else if (phase.Equals(Phase.WaitingSelection))
             {
-                return phase + " Phase: Waiting for other player.";
+                return "Waiting Phase: Waiting for other player to select a card.";
             }
             else if (phase.Equals(Phase.Declare))
             {
                 return phase + " Phase: Please choose card effects.";
             }
+            else if(phase.Equals(Phase.WaitingDeclare))
+            {
+                return "Waiting: Phase: Waiting for other player to select a card.";
+            }
             else if (phase.Equals(Phase.Damage))
             {
-                return phase + " Phase: Dealing damange.";
+                return phase + " Phase: Dealing damage.";
             }
             else if (phase.Equals(Phase.Dusk))
             {
@@ -676,7 +720,7 @@ namespace Warforged
             }
             else
             {
-                return phase + "Phase: ";
+                return "Game Message: Your opponent has left the game.";
             }
         }
 

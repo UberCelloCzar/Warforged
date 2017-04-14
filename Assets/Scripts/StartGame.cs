@@ -152,7 +152,7 @@ public class StartGame : MonoBehaviour {
         xml.Serialize(sw, ch2);
         //if (PlayerController.controller.localPlayer.isServer)
         //{
-               PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer, 2, UpdateVars);
+            PlayerController.controller.localPlayer.CmdSetCharacter(sw.GetStringBuilder().ToString(), PlayerController.controller.localPlayer.isServer, 2, UpdateVars);
         //}
         //else
         //{
