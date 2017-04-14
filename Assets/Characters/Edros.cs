@@ -439,81 +439,70 @@ namespace Warforged
 
         public class CrashingSky : Card
         {
+            short strove = 0;
             public CrashingSky() : base()
             {
                 name = "Crashing Sky";
-                effect = "Choose 1:\nStrive (X)\nOR\nStrive(3): Deal 3 damage.";
+                effect = "Choose 1:\nStrive (X)\nOR\nStrive (3): Deal 3 damage.";
                 color = Color.red;
                 setAwakening();
                 active = false;
             }
-            bool dealsOwnDamage = false;
+            
             public override void activate()
             {
-                if(dealsOwnDamage)
+                if(strove == 3)
                 {
                     user.addDamage(3);
                 }
             }
+
             public override void declare()
             {
-                List<string> texts = new List<string>();
-                List<object> returns = new List<object>();
-                int awakening = 0;
-                for (int i = 0; i < 3; ++i)
+                // First declare
+                while (true)
                 {
-                    var card = user.invocation[i];
-                    if (card.isAwakening || !card.active)
+                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive.");
+                    if (card1 == null)
                     {
-                        awakening += 1;
-                        continue;
+                        break;
                     }
-
-                    texts.Add((i + 1 - awakening) + "");
-                    returns.Add(i + 1 - awakening);
-                }
-                foreach (string text in texts) Debug.Log("Text:" + text);
-                foreach (object ret in returns) Debug.Log("Return:" + ret);
-                if (texts.Count == 0)
-                {
-                    return;
-                }
-                int cards = (int)Game.library.multiPrompt("How many cards do you want to Strive?", texts, returns);
-                List<Card> selected = new List<Card>();
-                for(int i =0; i< cards;++i)
-                {
-                    while(true)
+                    else if (user.strive(card1))
                     {
-                        Game.library.setPromptText("Please select "+(cards-i)+" card(s) to strive");
-                        var card = Game.library.waitForClick();
-                        if(user.invocation.Contains(card) && !selected.Contains(card))
-                        {
-                            //TODO: Change Imminent Storm to 
-                            if (card.name.Equals("Imminent Storm") || card.name.Equals("Imminent Storm"))
-                            {
-                                Game.library.highlight(card,255,0,0);
-                                selected.Add(card);
-                            }
-                            else
-                            {
-                                Game.library.highlight(card, 255, 0, 0);
-                                selected.Insert(0, card);
-                            }
-
-                            break;
-                        }
+                        ((CrashingSky)this).strove += 1;
+                        break;
                     }
                 }
-                foreach(Card card in  selected)
+
+                // Second declare
+                while (true)
                 {
-                    user.strive(card);
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    if (card2 == null)
+                    {
+                        break;
+                    }
+                    else if (user.strive(card2))
+                    {
+                        ((CrashingSky)this).strove += 1;
+                        break;
+                    }
                 }
-                Game.library.setPromptText("");
-                if(cards == 3)
+
+                // Third declare
+                while (true)
                 {
-                    dealsOwnDamage = true;
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    if (card2 == null)
+                    {
+                        break;
+                    }
+                    else if (user.strive(card2))
+                    {
+                        ((CrashingSky)this).strove += 1;
+                        break;
+                    }
                 }
-                Game.library.clearAllHighlighting();
             }
         }
     }
