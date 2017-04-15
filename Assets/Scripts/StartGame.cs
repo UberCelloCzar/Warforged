@@ -264,6 +264,25 @@ public class StartGame : MonoBehaviour {
         OnClick.Empower.text = "Empower(" + ch.currEmpower + ")";
         OnClick.Reinforce.text = "Reinforce(" + ch.reinforce + ")";
         OnClick.Phase.text = ch.displayPhase();
+        switch (ch.seal)
+        {
+            case Warforged.Color.blue:
+                OnClick.Seal.sprite = OnClick.SealSprites[0];
+                OnClick.Seal.gameObject.SetActive(true);
+                break;
+            case Warforged.Color.red:
+                OnClick.Seal.sprite = OnClick.SealSprites[1];
+                OnClick.Seal.gameObject.SetActive(true);
+                break;
+            case Warforged.Color.green:
+                OnClick.Seal.sprite = OnClick.SealSprites[2];
+                OnClick.Seal.gameObject.SetActive(true);
+                break;
+            default:
+                OnClick.Seal.sprite = null;
+                OnClick.Seal.gameObject.SetActive(false);
+                break;
+        }
         yield return null;
     }
 
@@ -392,8 +411,27 @@ public class StartGame : MonoBehaviour {
         OnClick.OCharacterSlot.sprite = OnClick.OCardImages[ch.name];
         OnClick.OCharacterSlot.color = new UnityEngine.Color(1, 1, 1);
         OnClick.OHealth.text = ch.hp + "HP";
-        OnClick.OEmpower.text = "Empower(" + ch.empower + ")";
+        OnClick.OEmpower.text = "Empower(" + ch.currEmpower + ")";
         OnClick.OReinforce.text = "Reinforce(" + ch.reinforce + ")";
+        switch (ch.seal)
+        {
+            case Warforged.Color.blue:
+                OnClick.OSeal.sprite = OnClick.SealSprites[0];
+                OnClick.OSeal.gameObject.SetActive(true);
+                break;
+            case Warforged.Color.red:
+                OnClick.OSeal.sprite = OnClick.SealSprites[1];
+                OnClick.OSeal.gameObject.SetActive(true);
+                break;
+            case Warforged.Color.green:
+                OnClick.OSeal.sprite = OnClick.SealSprites[2];
+                OnClick.OSeal.gameObject.SetActive(true);
+                break;
+            default:
+                OnClick.OSeal.sprite = null;
+                OnClick.OSeal.gameObject.SetActive(false);
+                break;
+        }
         yield return null;
     }
 
@@ -648,4 +686,12 @@ public class StartGame : MonoBehaviour {
         }
 		yield return null;
 	}
+
+    public static IEnumerator setupSeals(List<Sprite> seals)
+    {
+        seals.Add(Resources.Load("seal_symbol_blue", typeof(Sprite)) as Sprite);
+        seals.Add(Resources.Load("seal_symbol_red", typeof(Sprite)) as Sprite);
+        seals.Add(Resources.Load("seal_symbol_green", typeof(Sprite)) as Sprite);
+        yield return null;
+    }
 }

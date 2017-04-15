@@ -65,7 +65,7 @@ namespace Warforged
             {
                 if (inherent.active)
                 {
-                    if (inherent.name == "Ruby Heart" && hasAlign("GB") && prevCard.color == Color.blue && currCard.color == Color.red)
+                    if (inherent.name == "Ruby Heart" && hasAlign("GB") && prevCards[0].color == Color.blue && currCard.color == Color.red)
                     {
                         if (form == Form.Aspier)
                         {
@@ -381,7 +381,7 @@ namespace Warforged
                         }
                     }
                 }
-                if (((Adrius)user).form >= Form.Bearer && user.prevCard.color == Color.red)
+                if (((Adrius)user).form >= Form.Bearer && user.prevCards[0].color == Color.red)
                 {
                     for (int i = 0; i < 2; i++)
                     {

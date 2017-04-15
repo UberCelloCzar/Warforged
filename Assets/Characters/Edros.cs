@@ -24,10 +24,12 @@ namespace Warforged
             int tempdamage = damage - opponent.negate;
             if (opponent.reflect) {
                 takeDamage(tempdamage);
+                ((Edros)this).bonusEmp = false;
                 return 0;
             }
             else if (opponent.absorb) {
                 opponent.heal += tempdamage;
+                ((Edros)this).bonusEmp = false;
                 return 0;
             }
             else
@@ -37,17 +39,19 @@ namespace Warforged
                 if(tempdamage > 0 ||(opponentDamage > 0 && reflect))
                 {
                     bolster();
+                    if (((Edros)this).bonusEmp)
+                    {
+                        empower += 1;
+                        //Debug.Log("Added Edros Emp 1");
+                    }
                 }
-                if (((Edros)this).bonusEmp)
-                {
-                    empower += 1;
-                    ((Edros)this).bonusEmp = false;
-                }
+
                 if (((Edros)this).bolster2 && (tempdamage > 0 || (opponentDamage > 0 && reflect)))
                 {
                     bolster();
                     ((Edros)this).bolster2 = false;
                 }
+                ((Edros)this).bonusEmp = false;
                 return tempdamage;
             }
         }
@@ -102,7 +106,7 @@ namespace Warforged
 
             public override void activate()
             {
-                if (user.prevCard.color == Color.red)
+                if (user.hasChain("R"))
                 {
                     user.addDamage(2);
                 }
@@ -143,6 +147,7 @@ namespace Warforged
             {
                 user.addDamage(2);
                 ((Edros)user).bonusEmp = true;
+                Debug.Log("Edros may or may not get empower");
             }
         }
 

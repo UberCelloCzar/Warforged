@@ -217,8 +217,8 @@ namespace Warforged
                 library.updateUI(p1, false);
 
                 p1.declarePhase();
-                Debug.Log("My seal: " + p1.seal);
-                Debug.Log("His seal: " + p2.seal);
+                //Debug.Log("My seal: " + p1.seal);
+                //Debug.Log("His seal: " + p2.seal);
 
                 p1.nextPhase();
                 p2.nextPhase();
@@ -229,8 +229,8 @@ namespace Warforged
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("before sleep2");
-                Debug.Log("My seal updated: " + p1.seal);
-                Debug.Log("His seal updated: " + p2.seal);
+                //Debug.Log("My seal updated: " + p1.seal);
+                //Debug.Log("His seal updated: " + p2.seal);
 
                 p1.nextPhase();
                 p2.nextPhase();
@@ -317,6 +317,8 @@ namespace Warforged
             {
                 library.setupAdrius(2);
             }
+
+            library.setupSeals();
 
             while (true)
             {

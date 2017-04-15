@@ -44,6 +44,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             "OLink4_1","OLink4_2","OLink4_3","OLink4_4","OLink4_5","OLink4_6","OLink4_7","OLink4_8",
             "OCharacterSlot","OPlaySlot"};
     static List<string> buttonTags = new List<string>() { "Choice1", "Choice2", "Choice3", "Choice4", "Choice5", "Choice6" };
+    public static List<Sprite> SealSprites = new List<Sprite>();
     static Dictionary<string, object> buttonDict = null;
     private Image im;
     private Button button;
@@ -56,6 +57,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static List<Image> Hand = new List<Image>();
     public static List<Image> Invocation = new List<Image>();
     public static List<Image> Suspend = new List<Image>();
+    public static Image Seal = null;
 
     public static Image OCharacterSlot = null;
     public static Image OPlaySlot = null;
@@ -63,6 +65,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static List<Image> OHand = new List<Image>();
     public static List<Image> OInvocation = new List<Image>();
     public static List<Image> OSuspend = new List<Image>();
+    public static Image OSeal = null;
     public static object NoReturn = new object();
     public static Text GameOver = null;
     public static Text Phase = null;
@@ -179,11 +182,23 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
                 OEmpower = null;
             }
         }
+
         if (im == null)
         {
             return;
         }
-        if(im.tag.StartsWith("OHand"))
+
+        if (im.tag.Equals("OSeal"))
+        {
+            OSeal = im;
+            OnClick.OSeal.gameObject.SetActive(false);
+        }
+        else if (im.tag.Equals("Seal"))
+        {
+            Seal = im;
+            OnClick.Seal.gameObject.SetActive(false);
+        }
+        else if (im.tag.StartsWith("OHand"))
         {
             OHand.Add(im);
             OHand.Sort((x, y) => x.tag.CompareTo(y.tag));
@@ -243,8 +258,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
         {
             LeftZoom = im;
         }
-
-
+        
     }
 	
 	// Update is called once per frame
@@ -268,10 +282,6 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
                 allButtons[i].gameObject.SetActive(false);
                 allButtons[i].GetComponentInChildren<Text>().text = "";
             }
-        }
-        else
-        {
-
         }
     }
 

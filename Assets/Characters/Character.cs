@@ -184,42 +184,6 @@ namespace Warforged
 		/// Also removes overheal from further back than last turn
 		public virtual void dawn()
 		{
-            switch (opponent.seal)
-            {
-                case Color.blue:
-                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.red:
-                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.green:
-                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.black:
-                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = false;
-                    break;
-
-            }
-            switch (seal)
-            {
-                case Color.blue:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.red:
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.green:
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.black:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
-                    break;
-
-            }
             stroveCards = new List<Card>();
             recentSuspended.Clear();
 			negate = 0;
@@ -271,7 +235,7 @@ namespace Warforged
 				}
 				if (card.color == seal)
 				{
-                    Debug.Log("Sealed: " + seal);
+                    //Debug.Log("Sealed: " + seal);
 					continue;
 				}
 				currCard = card;
@@ -290,33 +254,17 @@ namespace Warforged
 			currCard.declare();
             Game.library.setPromptText("");
             activateCard();
-            switch (seal)
-            {
-                case Color.blue:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.red:
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.green:
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.black:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
-                    break;
-            }
         }
 
 		/// Calculate all damage and healing occuring this turn.
 		public virtual void damagePhase()
         {
+            //Debug.Log(name + " Added " + currEmpower + " to dmg");
             damage += currEmpower;
             dealDamage();
 			healSelf();
             // Keeps track of the last four cards played
-			prevCard.Add(currCard);
+			prevCards.Add(currCard);
             if (prevCards.Count > 4)
             {
                 // Remove the first card in the list if it's getting too long
@@ -325,23 +273,7 @@ namespace Warforged
 			rotate();
             currEmpower = empower;
             empower = 0;
-            switch (seal)
-            {
-                case Color.blue:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.red:
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.green:
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.black:
-                    GameObject.FindGameObjectWithTag("SealB").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealR").GetComponent<RawImage>().enabled = false;
-                    GameObject.FindGameObjectWithTag("SealG").GetComponent<RawImage>().enabled = false;
-                    break;
-            }
+            //Debug.Log(name + " Empower reset, curr: " + currEmpower);
             lifesteal = false;
         }
 
@@ -609,19 +541,7 @@ namespace Warforged
 		public void sealCard(Color color)
 		{
             opponent.seal = color;
-            Debug.Log("Sealing Opponent: " + opponent.seal);
-            switch (opponent.seal)
-            {
-                case Color.blue:
-                    GameObject.FindGameObjectWithTag("OSealB").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.red:
-                    GameObject.FindGameObjectWithTag("OSealR").GetComponent<RawImage>().enabled = true;
-                    break;
-                case Color.green:
-                    GameObject.FindGameObjectWithTag("OSealG").GetComponent<RawImage>().enabled = true;
-                    break;
-            }
+            //Debug.Log("Sealing Opponent: " + opponent.seal);
         }
 
         /// Seals a certain card type for the opponent's next two turns
@@ -875,15 +795,11 @@ namespace Warforged
                 this.user = user;
             }
 
-            public override bool Equals(Object other)
+            public bool Equals(Card other) // Method for card comparison
             {
-                if (!(other is Card))
-                {
-                    return false;
-                }
-                return this.name == ((Card)other).name;
+                return this.name == other.name;
             }
-		}
+        }
 	}
 }
 

@@ -91,6 +91,12 @@ namespace Warforged
             }
         }
 
+        public override void setupSeals()
+        {
+            StartGame.signal = () => { return StartGame.setupSeals(OnClick.SealSprites); };
+            barrier.SignalAndWait(threadID);
+        }
+
         public override void updateNetwork(Character ch1, Character ch2, bool UpdateVars)
         {
             StartGame.signal = () => { return StartGame.updateNetwork(ch1, ch2, UpdateVars); };

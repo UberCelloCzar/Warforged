@@ -22,7 +22,8 @@ namespace Warforged
                 {
                     if (bloodlust)
                     {
-                        empower += 1;
+                        currEmpower += 1;
+                        //Debug.Log("Added Tyras Emp 1");
                     }
                     if (stalwart)
                     {
@@ -125,7 +126,7 @@ namespace Warforged
 
             public override void declare()
             {
-                if (user.prevCard.color == Color.red)
+                if (user.hasChain("R"))
                 {
                     while (true)
                     {

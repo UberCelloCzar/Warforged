@@ -19,6 +19,7 @@ namespace Warforged
 		public abstract void setupEdros(int player);
 		public abstract void setupTyras(int player);
         public abstract void setupAdrius(int player);
+        public abstract void setupSeals();
 
         //Updates the UI for Player 1 based on the character object passed in.
         //@param showCurrCard: If this is true the played card will be shown on the UI, otherwise the back of the card is used.

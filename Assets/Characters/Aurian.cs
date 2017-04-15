@@ -1,6 +1,6 @@
 using System;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Warforged
 {
@@ -14,7 +14,7 @@ namespace Warforged
         {
             name = "Aurian";
             title = "the Hand of Era";
-            strike = false;
+            //strike = false; UNCOMMENT, done for test build
         }
 
         public override void takeDamage(int dmg)
@@ -27,7 +27,7 @@ namespace Warforged
                 {
                     Game.library.setPromptText("Choose a Standby card to send to your hand.");
                     cardToTake = Game.library.waitForClick();
-                    if (user.standby.Contains(cardToTake))
+                    if (standby.Contains(cardToTake))
                     {
                         Game.library.setPromptText("");
                         break;
@@ -46,10 +46,10 @@ namespace Warforged
                 {
                     Card cardToTake;
                     while (true)
-                    {{
+                    {
                         Game.library.setPromptText("Choose a Standby Offense card to send to your hand.");
                         cardToTake = Game.library.waitForClick();
-                        if (user.standby.Contains(cardToTake))
+                        if (standby.Contains(cardToTake))
                         {
                             // This is nested as a safety check
                             if (cardToTake.color == Color.red)
@@ -61,8 +61,8 @@ namespace Warforged
                     }
                     takeStandby(cardToTake);
                 }
-
             }
+            return 0; // DO NOT LEAVE, TEMP FOR TEST BUILD
         }
 
         private class OpeningBlow : Card
@@ -231,7 +231,7 @@ namespace Warforged
             public override void activate()
             {
                 user.addNegate(2);
-                user.waitingForGuard = true;
+                //user.waitingForGuard = true; UNCOMMENT, DONE FOR TEST BUILD
             }
         }
 
