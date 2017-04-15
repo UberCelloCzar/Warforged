@@ -77,19 +77,33 @@ namespace Warforged
 			}
 		}
 
-        public override void setupAdrius(int player)
-        {
-            if (player == 2)
-            {
-                StartGame.signal = () => { return StartGame.setupAdrius(OnClick.OCardImages); };
-                barrier.SignalAndWait(threadID);
-            }
-            else
-            {
-                StartGame.signal = () => { return StartGame.setupAdrius(OnClick.CardImages); };
-                barrier.SignalAndWait(threadID);
-            }
-        }
+		public override void setupAdrius(int player)
+		{
+			if (player == 2)
+			{
+				StartGame.signal = () => { return StartGame.setupAdrius(OnClick.OCardImages); };
+				barrier.SignalAndWait(threadID);
+			}
+			else
+			{
+				StartGame.signal = () => { return StartGame.setupAdrius(OnClick.CardImages); };
+				barrier.SignalAndWait(threadID);
+			}
+		}
+
+		public override void setupAurian(int player)
+		{
+			if (player == 2)
+			{
+				StartGame.signal = () => { return StartGame.setupAurian(OnClick.OCardImages); };
+				barrier.SignalAndWait(threadID);
+			}
+			else
+			{
+				StartGame.signal = () => { return StartGame.setupAurian(OnClick.CardImages); };
+				barrier.SignalAndWait(threadID);
+			}
+		}
 
         public override void setupSeals()
         {

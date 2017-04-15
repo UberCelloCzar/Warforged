@@ -14,7 +14,8 @@ namespace Warforged
         {
             name = "Aurian";
             title = "the Hand of Era";
-            //strike = false; UNCOMMENT, done for test build
+            waitingForStrike = false;
+			waitingForGuard = false;
         }
 
         public override void takeDamage(int dmg)
@@ -34,6 +35,7 @@ namespace Warforged
                     }
                 }
                 takeStandby(cardToTake);
+				waitingForGuard = false;
             }
         }
 
@@ -61,11 +63,12 @@ namespace Warforged
                     }
                     takeStandby(cardToTake);
                 }
+				waitingForStrike = false;
             }
             return 0; // DO NOT LEAVE, TEMP FOR TEST BUILD
         }
 
-        private class OpeningBlow : Card
+        public class OpeningBlow : Card
         {
             public OpeningBlow() : base()
             {
@@ -81,7 +84,7 @@ namespace Warforged
             }
         }
 
-        private class RelentlessAssault : Card
+        public class RelentlessAssault : Card
         {
             public RelentlessAssault() : base()
             {
@@ -100,7 +103,7 @@ namespace Warforged
             }
         }
 
-        private class SoulStrike : Card
+        public class SoulStrike : Card
         {
             public SoulStrike() : base()
             {
@@ -119,7 +122,7 @@ namespace Warforged
             }
         }
 
-        private class PrimedAttack : Card
+        public class PrimedAttack : Card
         {
             public PrimedAttack() : base()
             {
@@ -138,7 +141,7 @@ namespace Warforged
         }
 
 // Intent
-        private class ClarityofMind : Card
+        public class ClarityofMind : Card
         {
             Card cardToTake = null;
 
@@ -174,7 +177,7 @@ namespace Warforged
         }
 
 // Defense
-        private class CounteringStrike : Card
+        public class CounteringStrike : Card
         {
             public CounteringStrike() : base()
             {
@@ -196,7 +199,7 @@ namespace Warforged
             }
         }
 
-        private class BodyandSoul : Card
+        public class BodyandSoul : Card
         {
             public BodyandSoul() : base()
             {
@@ -219,7 +222,7 @@ namespace Warforged
             }
         }
 
-        private class EvadingStep : Card
+        public class EvadingStep : Card
         {
             public EvadingStep() : base()
             {
@@ -231,17 +234,18 @@ namespace Warforged
             public override void activate()
             {
                 user.addNegate(2);
-                //user.waitingForGuard = true; UNCOMMENT, DONE FOR TEST BUILD
+				((Aurian)user).waitingForGuard = true;
             }
         }
 
-        private class EtherealStrike : Card
+        public class EtherealStrike : Card
         {
             public EtherealStrike() : base()
             {
                 name = "Ethereal Strike";
                 effect = "Deal 2 damage.\nPierce (2).";
                 color = Color.red;
+				active = false;
             }
 
             public override void activate()
@@ -251,13 +255,14 @@ namespace Warforged
             }
         }
 
-        private class WrathofEra : Card
+        public class WrathofEra : Card
         {
             public WrathofEra() : base()
             {
                 name = "Wrath of Era";
                 effect = "Chain (G, R, R): Deal 2 damage for every Standby Offense card.";
                 color = Color.red;
+				active = false;
             }
 
             public override void activate()
@@ -275,13 +280,14 @@ namespace Warforged
             }
         }
 
-        private class AbsoluteFocus : Card
+        public class AbsoluteFocus : Card
         {
             public AbsoluteFocus() : base()
             {
                 name = "Absolute Focus";
                 effect = "Chain (G, B): Empower (3).";
                 color = Color.green;
+				active = false;
             }
 
             public override void activate()
@@ -293,13 +299,14 @@ namespace Warforged
             }
         }
 
-        private class StrengthofSpirit : Card
+        public class StrengthofSpirit : Card
         {
             public StrengthofSpirit() : base()
             {
                 name = "Strength of Spirit";
                 effect = "Chain (B, R): Gain 2 health. Absorb.";
                 color = Color.blue;
+				active = false;
             }
 
             public override void activate()

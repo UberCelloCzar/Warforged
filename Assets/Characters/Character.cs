@@ -15,8 +15,9 @@ namespace Warforged
 		black
 	}
     [XmlInclude(typeof(Tyras))]
-    [XmlInclude(typeof(Edros))]
-    [XmlInclude(typeof(Adrius))]
+	[XmlInclude(typeof(Edros))]
+	[XmlInclude(typeof(Adrius))]
+	[XmlInclude(typeof(Aurian))]
     public abstract class Character
 	{
 		// Overall information
@@ -439,24 +440,32 @@ namespace Warforged
         public bool hasChain(string chain)
         {
             string currChain = "";
-            // Loop through the history backwards to see what chain we DO have
-            for (int i = prevCards.Count-1; i >= 0; i--)
-            {
-                switch (prevCards[i].color)
-                {
-                    case (Color.red):
-                        currChain += "R";
-                        break;
-                    case (Color.green):
-                        currChain += "G";
-                        break;
-                    case (Color.blue):
-                        currChain += "B";
-                        break;
-                }
-            }
-            string toCompare = currChain.Substring(0, chain.Length);
-            return chain.Equals(toCompare);
+			// Safety check; make sure we're far enough into the game to have chains
+			if (prevCards.Count >= chain.Length)
+			{
+				// Loop through the history backwards to see what chain we DO have
+				for (int i = prevCards.Count - 1; i >= 0; i--)
+				{
+					switch (prevCards [i].color)
+					{
+					case (Color.red):
+						currChain += "R";
+						break;
+					case (Color.green):
+						currChain += "G";
+						break;
+					case (Color.blue):
+						currChain += "B";
+						break;
+					}
+				}
+				string toCompare = currChain.Substring(0, chain.Length);
+				return chain.Equals(toCompare);
+			}
+			else
+			{
+				return false;
+			}
         }
 
 		/// Tells whether or not a player has an align on their standby
@@ -736,6 +745,19 @@ namespace Warforged
         [XmlInclude(typeof(Edros.SkyBlessedShield))]
         [XmlInclude(typeof(Edros.TorensFavored))]
         [XmlInclude(typeof(Edros.WrathofLightning))]
+
+		[XmlInclude(typeof(Aurian.AbsoluteFocus))]
+		[XmlInclude(typeof(Aurian.BodyandSoul))]
+		[XmlInclude(typeof(Aurian.ClarityofMind))]
+		[XmlInclude(typeof(Aurian.CounteringStrike))]
+		[XmlInclude(typeof(Aurian.EtherealStrike))]
+		[XmlInclude(typeof(Aurian.EvadingStep))]
+		[XmlInclude(typeof(Aurian.OpeningBlow))]
+		[XmlInclude(typeof(Aurian.PrimedAttack))]
+		[XmlInclude(typeof(Aurian.RelentlessAssault))]
+		[XmlInclude(typeof(Aurian.SoulStrike))]
+		[XmlInclude(typeof(Aurian.StrengthofSpirit))]
+		[XmlInclude(typeof(Aurian.WrathofEra))]
         public abstract class Card
 		{
 			public string name{get; protected set;}

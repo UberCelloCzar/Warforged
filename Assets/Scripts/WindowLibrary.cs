@@ -18,7 +18,8 @@ namespace Warforged
 		//This function must be called twice, once for each player.
 		public abstract void setupEdros(int player);
 		public abstract void setupTyras(int player);
-        public abstract void setupAdrius(int player);
+		public abstract void setupAdrius(int player);
+		public abstract void setupAurian(int player);
         public abstract void setupSeals();
 
         //Updates the UI for Player 1 based on the character object passed in.

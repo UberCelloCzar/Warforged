@@ -100,6 +100,34 @@ namespace Warforged
                     c.init(p1);
                 }
             }
+
+			else if (p1 is Aurian)
+			{
+				p1.hand.Add(new Aurian.OpeningBlow());
+				p1.hand.Add(new Aurian.RelentlessAssault());
+				p1.hand.Add(new Aurian.SoulStrike());
+				p1.hand.Add(new Aurian.PrimedAttack());
+				foreach (Character.Card c in p1.hand)
+				{
+					c.init(p1);
+				}
+				p1.standby.Add(new Aurian.ClarityofMind());
+				p1.standby.Add(new Aurian.CounteringStrike());
+				p1.standby.Add(new Aurian.BodyandSoul());
+				p1.standby.Add(new Aurian.EvadingStep());
+				foreach (Character.Card c in p1.standby)
+				{
+					c.init(p1);
+				}
+				p1.invocation.Add(new Aurian.EtherealStrike());
+				p1.invocation.Add(new Aurian.WrathofEra());
+				p1.invocation.Add(new Aurian.AbsoluteFocus());
+				p1.invocation.Add(new Aurian.StrengthofSpirit());
+				foreach (Character.Card c in p1.invocation)
+				{
+					c.init(p1);
+				}
+			}
                 Thread.Sleep(30);
             p2 = opponent;
 
@@ -184,9 +212,36 @@ namespace Warforged
                 {
                     c.init(p2);
                 }
-                p2.setOpponent(p2);
-            }
-            p2.setOpponent(p2);
+			}
+			else if (p2 is Aurian)
+			{
+				p2.hand.Add(new Aurian.OpeningBlow());
+				p2.hand.Add(new Aurian.RelentlessAssault());
+				p2.hand.Add(new Aurian.SoulStrike());
+				p2.hand.Add(new Aurian.PrimedAttack());
+				foreach (Character.Card c in p2.hand)
+				{
+					c.init(p2);
+				}
+				p2.standby.Add(new Aurian.ClarityofMind());
+				p2.standby.Add(new Aurian.CounteringStrike());
+				p2.standby.Add(new Aurian.BodyandSoul());
+				p2.standby.Add(new Aurian.EvadingStep());
+				foreach (Character.Card c in p2.standby)
+				{
+					c.init(p2);
+				}
+				p2.invocation.Add(new Aurian.EtherealStrike());
+				p2.invocation.Add(new Aurian.WrathofEra());
+				p2.invocation.Add(new Aurian.AbsoluteFocus());
+				p2.invocation.Add(new Aurian.StrengthofSpirit());
+				foreach (Character.Card c in p2.invocation)
+				{
+					c.init(p2);
+				}
+			}
+			p1.setOpponent(p2);
+			p2.setOpponent(p1);
         }
 		public void takeTurn()
         {
@@ -297,11 +352,15 @@ namespace Warforged
             else if (p1 is Tyras)
             {
                 library.setupTyras(1);
-            }
-            else if (p1 is Adrius)
-            {
-                library.setupAdrius(1);
-            }
+			}
+			else if (p1 is Adrius)
+			{
+				library.setupAdrius(1);
+			}
+			else if (p1 is Aurian)
+			{
+				library.setupAurian(1);
+			}
 
             Thread.Sleep(30);
 
@@ -312,11 +371,15 @@ namespace Warforged
             else if (p2 is Tyras)
             {
                 library.setupTyras(2);
-            }
-            else if (p2 is Adrius)
-            {
-                library.setupAdrius(2);
-            }
+			}
+			else if (p2 is Adrius)
+			{
+				library.setupAdrius(2);
+			}
+			else if (p2 is Aurian)
+			{
+				library.setupAurian(2);
+			}
 
             library.setupSeals();
 

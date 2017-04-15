@@ -687,6 +687,84 @@ public class StartGame : MonoBehaviour {
 		yield return null;
 	}
 
+	public static IEnumerator setupAurian(Dictionary<string, Sprite> CurrCardImages)
+	{
+		CurrCardImages.Add("Aurian", Resources.Load("CardImages/Aurian/Aurian", typeof(Sprite)) as Sprite);
+
+		CurrCardImages.Add("Absolute Focus", Resources.Load("CardImages/Aurian/Absolute Focus", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Body and Soul", Resources.Load("CardImages/Aurian/Body and Soul", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Clarity of Mind", Resources.Load<Sprite>("CardImages/Aurian/Clarity of Mind"));
+
+		CurrCardImages.Add("Countering Strike", Resources.Load("CardImages/Aurian/Countering Strike", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Ethereal Strike", Resources.Load("CardImages/Aurian/Ethereal Strike", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Evading Step", Resources.Load("CardImages/Aurian/Evading Step", typeof(Sprite)) as Sprite);
+
+		CurrCardImages.Add("Opening Blow", Resources.Load("CardImages/Aurian/Opening Blow", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Primed Attack", Resources.Load("CardImages/Aurian/Primed Attack", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Relentless Assault", Resources.Load("CardImages/Aurian/Relentless Assault", typeof(Sprite)) as Sprite);
+
+		CurrCardImages.Add("Soul Strike", Resources.Load("CardImages/Aurian/Soul Strike", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Strength of Spirit", Resources.Load("CardImages/Aurian/Strength of Spirit", typeof(Sprite)) as Sprite);
+		CurrCardImages.Add("Wrath of Era", Resources.Load("CardImages/Aurian/Wrath of Era", typeof(Sprite)) as Sprite);
+
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Absolute Focus"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Absolute Focus"], Resources.Load("CardZooms/Aurian/Absolute Focus", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Body and Soul"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Body and Soul"], Resources.Load("CardZooms/Aurian/Body and Soul", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Clarity of Mind"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Clarity of Mind"], Resources.Load("CardZooms/Aurian/Clarity of Mind", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Countering Strike"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Countering Strike"], Resources.Load<Sprite>("CardZooms/Aurian/Countering Strike"));
+		}
+
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ethereal Strike"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Ethereal Strike"], Resources.Load("CardZooms/Aurian/Ethereal Strike", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Evading Step"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Evading Step"], Resources.Load("CardZooms/Aurian/Evading Step", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Opening Blow"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Opening Blow"], Resources.Load("CardZooms/Aurian/Opening Blow", typeof(Sprite)) as Sprite);
+		}
+
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Primed Attack"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Primed Attack"], Resources.Load("CardZooms/Aurian/Primed Attack", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Relentless Assault"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Relentless Assault"], Resources.Load("CardZooms/Aurian/Relentless Assault", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Soul Strike"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Soul Strike"], Resources.Load("CardZooms/Aurian/Soul Strike", typeof(Sprite)) as Sprite);
+		}
+
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Strength of Spirit"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Strength of Spirit"], Resources.Load("CardZooms/Aurian/Strength of Spirit", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Aurian"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Aurian"], Resources.Load("CardZooms/Aurian/Aurian", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Wrath of Era"]))
+		{
+			OnClick.CardZooms.Add(CurrCardImages["Wrath of Era"], Resources.Load("CardZooms/Aurian/Wrath of Era", typeof(Sprite)) as Sprite);
+		}
+		yield return null;
+	}
+
     public static IEnumerator setupSeals(List<Sprite> seals)
     {
         seals.Add(Resources.Load("seal_symbol_blue", typeof(Sprite)) as Sprite);
