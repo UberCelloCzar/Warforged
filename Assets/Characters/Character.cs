@@ -58,7 +58,7 @@ namespace Warforged
         public List<Card> suspended{get; protected set;}
         public List<Card> recentSuspended{get; protected set;}
         // Keeps track of the last four cards played (for aligns and such)
-        // The most recent card played is at the end of the queue
+        // The most recent card played is at the end of the list
 		public List<Card> prevCards{get; protected set;}
         // Represents the opposing character
         // Should be fine this way since the game is 1v1
@@ -443,10 +443,10 @@ namespace Warforged
 			// Safety check; make sure we're far enough into the game to have chains
 			if (prevCards.Count >= chain.Length)
 			{
-				// Loop through the history backwards to see what chain we DO have
-				for (int i = prevCards.Count - 1; i >= 0; i--)
+				// Loop through the history to see what chain we DO have
+				for (int i = 0; i < prevCards.Count; i++)
 				{
-					switch (prevCards [i].color)
+					switch (prevCards[i].color)
 					{
 					case (Color.red):
 						currChain += "R";
@@ -459,8 +459,7 @@ namespace Warforged
 						break;
 					}
 				}
-				string toCompare = currChain.Substring(0, chain.Length);
-				return chain.Equals(toCompare);
+				return currChain.EndsWith(chain);
 			}
 			else
 			{
