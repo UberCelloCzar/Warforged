@@ -129,6 +129,18 @@ namespace Warforged
 			barrier.SignalAndWait(threadID);
 		}
 
+        public override void resetLock()
+        {
+            StartGame.signal = () => { return StartGame.resetLock(); };
+            barrier.SignalAndWait(threadID);
+        }
+
+        public override void LockIn(bool isServer)
+        {
+            StartGame.signal = () => { return StartGame.LockIn(isServer); };
+            barrier.SignalAndWait(threadID);
+        }
+
         public override void endSlate(Character ch) // End game UI method
         {
             StartGame.signal = () => { return StartGame.endSlate(ch); };
@@ -143,7 +155,22 @@ namespace Warforged
 			return (Character.Card)returnObject;
 		}
 
-		public override Character.Card waitForClickOrCancel(string text)
+        public override Character.Card waitForClickorLock()
+        {
+            OnClick.cardReturn = OnClick.NoReturn;
+            StartGame.signal = () => { return StartGame.waitForClickorLock(); };
+            barrier.SignalAndWait(threadID);
+            if (returnObject != null)
+            {
+                return (Character.Card)returnObject;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override Character.Card waitForClickOrCancel(string text)
 		{
 			OnClick.buttonReturn = OnClick.NoReturn;
 			OnClick.cardReturn = OnClick.NoReturn;

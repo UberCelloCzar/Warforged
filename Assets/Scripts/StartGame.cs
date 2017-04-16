@@ -103,9 +103,25 @@ public class StartGame : MonoBehaviour {
 		lib.setReturnObject(OnClick.cardReturn);
 		OnClick.cardReturn = OnClick.NoReturn;
 		yield return null;
-	}
+    }
 
-	public static IEnumerator waitForClickOrCancel(string text)
+    public static IEnumerator waitForClickorLock()
+    {
+        yield return new WaitUntil(() => !OnClick.NoReturn.Equals(OnClick.cardReturn) || Game.p1.lockedIn);
+        //Debug.Log("Got something");
+        if (!OnClick.NoReturn.Equals(OnClick.cardReturn))
+        {
+            lib.setReturnObject(OnClick.cardReturn);
+        }
+        else
+        {
+            lib.setReturnObject(null);
+        }
+        OnClick.cardReturn = OnClick.NoReturn;
+        yield return null;
+    }
+
+    public static IEnumerator waitForClickOrCancel(string text)
 	{
 		OnClick.setButtonOptions(text, new List<string>() { "Cancel" }, new List<object>() { null });
 		yield return new WaitUntil(() => !OnClick.NoReturn.Equals(OnClick.cardReturn) || !OnClick.NoReturn.Equals(OnClick.buttonReturn));
@@ -157,6 +173,34 @@ public class StartGame : MonoBehaviour {
         //else
         //{
         // 
+        yield return null;
+    }
+
+    public static IEnumerator resetLock()
+    {
+        OnClick.LockButton.enabled = true;
+        OnClick.LockButton.isOn = false;
+        OnClick.LockButtonImage.color = UnityEngine.Color.white;
+        OnClick.LockButtonText.text = "Lock In";
+        OnClick.OLockButtonImage.color = UnityEngine.Color.white;
+        OnClick.OLockButtonText.text = "Playing...";
+        yield return null;
+    }
+
+    public static IEnumerator LockIn(bool isServer)
+    {
+        //if (isServer == PlayerController.controller.localPlayer.isServer)
+        //{
+        //    PlayerController.controller.localPlayer.readyFlag2 = true;
+        //}
+        //else
+        //{
+        //    PlayerController.controller.remotePlayer.readyFlag2 = true;
+        //}
+        //OnClick.OLockButtonImage.color = UnityEngine.Color.gray;
+        //OnClick.OLockButtonText.text = "Locked In";
+        //Debug.Log("Enemy Locked");
+        PlayerController.controller.localPlayer.CmdImReady2(isServer);
         yield return null;
     }
 

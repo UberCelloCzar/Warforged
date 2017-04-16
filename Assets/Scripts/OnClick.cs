@@ -9,6 +9,7 @@ using Warforged;
 
 public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public static MatchController controller = null;// Match Controller reference
     public static List<Button> allButtons;
     public static object buttonReturn = NoReturn;
     public static object cardReturn = NoReturn;
@@ -58,6 +59,9 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static List<Image> Invocation = new List<Image>();
     public static List<Image> Suspend = new List<Image>();
     public static Image Seal = null;
+    public static Toggle LockButton;
+    public static Image LockButtonImage;
+    public static Text LockButtonText;
 
     public static Image OCharacterSlot = null;
     public static Image OPlaySlot = null;
@@ -69,13 +73,20 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public static object NoReturn = new object();
     public static Text GameOver = null;
     public static Text Phase = null;
+    public static Image OLockButtonImage;
+    public static Text OLockButtonText;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        if (controller == null)
+        {
+            controller = GameObject.Find("Match Controller").GetComponent<MatchController>(); // Sets match controller reference.
+        }
         //Thread t = new Thread(()=>new Game());
         im = gameObject.GetComponent<Image>();
         button = gameObject.GetComponent<Button>();
-        if(cardDict == null)
+        if (cardDict == null)
         {
             cardDict = new Dictionary<string, object>();
             foreach(string t in cardTags)
@@ -183,6 +194,29 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             }
         }
 
+        if (LockButton == null)
+        {
+            LockButton = gameObject.GetComponent<Toggle>();
+            if (LockButton != null && !LockButton.tag.Equals("LockButton"))
+            {
+                LockButton = null;
+            }
+            else
+            {
+                LockButtonText = gameObject.GetComponentInChildren<Text>();
+                LockButtonImage = gameObject.GetComponentInChildren<Image>();
+            }
+        }
+
+        if (OLockButtonImage == null)
+        {
+            if (gameObject.tag == "OLockButton")
+            {
+                OLockButtonImage = gameObject.GetComponentInChildren<Image>();
+                OLockButtonText = gameObject.GetComponentInChildren<Text>();
+            }
+        }
+
         if (im == null)
         {
             return;
@@ -281,6 +315,21 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             {
                 allButtons[i].gameObject.SetActive(false);
                 allButtons[i].GetComponentInChildren<Text>().text = "";
+            }
+        }
+        else if (LockButton.enabled && gameObject.tag == "LockButton")
+        {
+            if (Game.p1.currCard != null)
+            {
+                Prompt.text = "";
+                Game.p1.lockedIn = true;
+                LockButton.enabled = false;
+                LockButtonImage.color = UnityEngine.Color.gray;
+                LockButtonText.text = "Locked In";
+            }
+            else
+            {
+                Prompt.text = "You can't lock in without playing a card!";
             }
         }
     }

@@ -25,6 +25,8 @@ namespace Warforged
         //Updates the UI for Player 1 based on the character object passed in.
         //@param showCurrCard: If this is true the played card will be shown on the UI, otherwise the back of the card is used.
         public abstract void updateUI(Character ch, bool showCurrCard);
+        public abstract void resetLock();
+        public abstract void LockIn(bool isServer);
         public abstract void endSlate(Character ch); // End game UI method
 
         //Updates the Network, so that the opponent recieves our changes
@@ -46,8 +48,9 @@ namespace Warforged
 		public abstract object multiPrompt(string text, List<string> buttonTexts, List<object> returnTypes);
 
 		public abstract Character.Card waitForClick();
+        public abstract Character.Card waitForClickorLock();
 
-		public abstract Character.Card waitForClickOrCancel(string text);
+        public abstract Character.Card waitForClickOrCancel(string text);
 
 		//These highlighting functions highlight a given card with a given color.
 		//They may also clear highlighting from a card.

@@ -23,7 +23,7 @@ namespace Warforged
 		// Overall information
 		public string name{get; set;}
 		public string title{get; protected set;}
-		public int hp{get; protected set;}
+		public int hp{get; protected set; }
         // Information about the current turn
         // Card color that cannot be played this turn; set one turn in advance and reset after a card is played
         public Color seal;
@@ -50,6 +50,7 @@ namespace Warforged
 		public bool bloodlust{get; protected set;}
 		protected int overheal;
         public int turn = 0;
+        public bool lockedIn = false;
 		// Information about cards
 		public Card currCard{get; protected set;}
 		public List<Card> standby{get; protected set;}
@@ -218,7 +219,7 @@ namespace Warforged
 		/// Returns true otherwise
 		public bool playCard()
 		{
-            
+            lockedIn = false;
             if (hand.Count == 0)
 			{
 				currCard = null;
@@ -226,12 +227,24 @@ namespace Warforged
                 return false;
 			}
 			while (true)
-			{
-                Card card = Game.library.waitForClick();
+            {
+                Card card = Game.library.waitForClickorLock();
+                if (lockedIn)
+                {
+                    //Debug.Log("Leaving loop");
+                    Game.library.LockIn(OnClick.controller.localPlayer.isServer);
+                    return true;
+                }
                 //Card card = hand[0];
-
+                //Debug.Log("got " + card.name);
+                if (card == null) // This might happen if somehow an edge case slips through the lock in
+                {
+                    //Debug.Log("Card was null");
+                    continue;
+                }
                 if (!hand.Contains(card))
 				{
+                    //Debug.Log("Card not in hand");
 					continue;
 				}
 				if (card.color == seal)
@@ -239,11 +252,22 @@ namespace Warforged
                     //Debug.Log("Sealed: " + seal);
 					continue;
 				}
-				currCard = card;
-				hand.Remove(card);
+                if (currCard == null)
+                {
+                    //Debug.Log("Added first card");
+                    currCard = card;
+                    hand.Remove(card);
+                }
+                else
+                {
+                    //Debug.Log("Swapping cards");
+                    hand.Add(currCard);
+                    currCard = card;
+                    hand.Remove(card);
+                }
                 seal = Color.black; // Reset any seal from last turn
-                return true;
-			}
+                Game.library.updateUI(Game.p1, false); // Display the new card that's down
+            }
 		}
 
 		/// After both players have played their cards, activate this method.

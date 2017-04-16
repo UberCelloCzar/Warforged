@@ -11,9 +11,9 @@ namespace Warforged
 		public static Character p1;
 		public static Character p2;
 		public static WindowLibrary library = null;
-		public Game ()
-		{
-		}
+        public Game ()
+        {
+        }
         public static void setup(Character character, Character opponent)
         {
             p1 = character;
@@ -245,21 +245,32 @@ namespace Warforged
         }
 		public void takeTurn()
         {
+            //Debug.Log("taketurn");
             try
             {
+                OnClick.controller.localPlayer.readyFlag2 = false;
+                OnClick.controller.remotePlayer.readyFlag2 = false;
+                //Debug.Log("First updates");
                 p1.nextPhase();
                 //library.setPromptText("before sleep0");
                 library.updateUI(p1, true);
                 ++p1.turn;
+                //Debug.Log("Attempting to update network");
                 library.updateNetwork(p1, p2, false);
+                //Debug.Log("Waiting on network");
                 library.waitOnNetwork(ref p1, ref p2);
                 //library.updateNetowrk(p1);
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("before sleep");
-
+                //Debug.Log("Got to card phase");
+                library.resetLock();
                 p1.playCard();
                 //p2.playCard();
-          
+                while (OnClick.controller.remotePlayer.readyFlag2 != true)
+                {
+                    //Debug.Log("Waiting for enemy lock in");
+                }
+                //Debug.Log("Both Players Locked in");
                 library.updateUI(p1, false);
                 p1.nextPhase();
                 library.updateUI(p1, false);

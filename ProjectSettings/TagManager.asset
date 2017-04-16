@@ -89,6 +89,8 @@ TagManager:
   - Phase
   - Seal
   - OSeal
+  - OLockButton
+  - LockButton
   layers:
   - Default
   - TransparentFX

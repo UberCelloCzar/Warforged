@@ -254,10 +254,15 @@ public class PlayerController : NetworkBehaviour
         implemented twice so you can get an idea.
         */
         if (isServer == controller.localPlayer.isServer)
+        {
             controller.localPlayer.readyFlag2 = true;
+        }
         else
         {
             controller.remotePlayer.readyFlag2 = true;
+            OnClick.OLockButtonImage.color = UnityEngine.Color.gray;
+            OnClick.OLockButtonText.text = "Locked In";
+            //Debug.Log("Enemy Locked");
         }
     }
 

@@ -62,34 +62,14 @@ public class ButtonManager : MonoBehaviour
     public void connectToPlayer(string playerName)
     {
         // Just add more const Ip's as we get more people until we need a server.
-
-		const string joeIP = "174.44.156.42";
-        const string benIP = "50.30.232.143";
-        const string jeremyIP = "192.168.2.12";
-        const string steveIP = "129.21.141.231";
-        const string trevorIP = "129.21.104.188";
+        
+        const string ownIP = "127.0.0.1";
 
         switch (playerName)
         {
-            case "joe":
-                ipAddressfield.text = joeIP;
-                manager.networkAddress = joeIP;
-                break;
-            case "ben":
-                ipAddressfield.text = benIP;
-                manager.networkAddress = benIP;
-                break;
-            case "jeremy":
-                ipAddressfield.text = jeremyIP;
-                manager.networkAddress = jeremyIP;
-                break;
-            case "steve":
-                ipAddressfield.text = steveIP;
-                manager.networkAddress = steveIP;
-                break;
-            case "trevor":
-                ipAddressfield.text = trevorIP;
-                manager.networkAddress = trevorIP;
+            case "own":
+                ipAddressfield.text = ownIP;
+                manager.networkAddress = ownIP;
                 break;
         }
 
