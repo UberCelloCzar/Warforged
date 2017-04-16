@@ -271,7 +271,6 @@ namespace Warforged
                 // Remove the first card in the list if it's getting too long
                 prevCards.RemoveAt(0);
             }
-			rotate();
             currEmpower = empower;
             empower = 0;
             //Debug.Log(name + " Empower reset, curr: " + currEmpower);
@@ -284,6 +283,7 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
 		{
+			rotate();
             // TODO will need changing based on stuff
             // Can't think of any examples, but I know they exist.
             bloodlust = (damage > opponent.negate) ? true : false;
@@ -437,7 +437,7 @@ namespace Warforged
         /// Tells if the user has a chain active.
         /// chain is formatted without any spaces, just letters
         /// e.g. "GB"
-        public bool hasChain(string chain)
+        public virtual bool hasChain(string chain)
         {
             string currChain = "";
 			// Safety check; make sure we're far enough into the game to have chains

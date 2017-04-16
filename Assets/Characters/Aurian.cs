@@ -21,7 +21,7 @@ namespace Warforged
         public override void takeDamage(int dmg)
         {
             base.takeDamage(dmg);
-            if (negate > (opponent.damage + opponent.pierce) && waitingForGuard)
+			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard)
             {
                 Card cardToTake;
                 while (true)
@@ -35,14 +35,15 @@ namespace Warforged
                     }
                 }
                 takeStandby(cardToTake);
-				waitingForGuard = false;
-            }
+			}
+			waitingForGuard = false;
         }
 
 
         public override int dealDamage()
         {
-            if (base.dealDamage() > 0) // This deals damage and checks that it is >0
+			int damageDealt = base.dealDamage();
+            if (damageDealt > 0) // This deals damage and checks that it is >0
             {
                 if (waitingForStrike)
                 {
@@ -63,10 +64,20 @@ namespace Warforged
                     }
                     takeStandby(cardToTake);
                 }
-				waitingForStrike = false;
-            }
-            return 0; // DO NOT LEAVE, TEMP FOR TEST BUILD
+			}
+			waitingForStrike = false;
+			return damageDealt;
         }
+
+		public override bool hasChain(string chain)
+		{
+			bool returnValue = base.hasChain(chain);
+			if (returnValue)
+			{
+				bolster();
+			}
+			return returnValue;
+		}
 
         public class OpeningBlow : Card
         {
@@ -244,7 +255,8 @@ namespace Warforged
             {
                 name = "Ethereal Strike";
                 effect = "Deal 2 damage.\nPierce (2).";
-                color = Color.red;
+				color = Color.red;
+				setAwakening();
 				active = false;
             }
 
@@ -261,7 +273,8 @@ namespace Warforged
             {
                 name = "Wrath of Era";
                 effect = "Chain (G, R, R): Deal 2 damage for every Standby Offense card.";
-                color = Color.red;
+				color = Color.red;
+				setAwakening();
 				active = false;
             }
 
@@ -286,7 +299,8 @@ namespace Warforged
             {
                 name = "Absolute Focus";
                 effect = "Chain (G, B): Empower (3).";
-                color = Color.green;
+				color = Color.green;
+				setAwakening();
 				active = false;
             }
 
@@ -305,7 +319,8 @@ namespace Warforged
             {
                 name = "Strength of Spirit";
                 effect = "Chain (B, R): Gain 2 health. Absorb.";
-                color = Color.blue;
+				color = Color.blue;
+				setAwakening();
 				active = false;
             }
 
