@@ -304,9 +304,9 @@ public class StartGame : MonoBehaviour {
         }
         OnClick.CharacterSlot.sprite = OnClick.CardImages[ch.name];
         OnClick.CharacterSlot.color = new UnityEngine.Color(1, 1, 1);
-        OnClick.Health.text = ch.hp + "HP";
-        OnClick.Empower.text = "Empower(" + ch.currEmpower + ")";
-        OnClick.Reinforce.text = "Reinforce(" + ch.reinforce + ")";
+        OnClick.Health.text = ch.hp + "";
+        OnClick.Empower.text = "" + ch.currEmpower + "";
+        OnClick.Reinforce.text = "" + ch.reinforce + "";
         OnClick.Phase.text = ch.displayPhase();
         switch (ch.seal)
         {
@@ -454,9 +454,9 @@ public class StartGame : MonoBehaviour {
         }
         OnClick.OCharacterSlot.sprite = OnClick.OCardImages[ch.name];
         OnClick.OCharacterSlot.color = new UnityEngine.Color(1, 1, 1);
-        OnClick.OHealth.text = ch.hp + "HP";
-        OnClick.OEmpower.text = "Empower(" + ch.currEmpower + ")";
-        OnClick.OReinforce.text = "Reinforce(" + ch.reinforce + ")";
+        OnClick.OHealth.text = ch.hp +"";
+        OnClick.OEmpower.text = "" + ch.currEmpower + "";
+        OnClick.OReinforce.text = "" + ch.reinforce + "";
         switch (ch.seal)
         {
             case Warforged.Color.blue:
