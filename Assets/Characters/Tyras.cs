@@ -48,32 +48,14 @@ namespace Warforged
                     if (card is AnOathUnforgotten && card.active
                         && standby.Count > 0)
                     {
-                        // TODO Hard coding this case due to time constraints; I will take the time to properly implement this later
-                        //      The "proper" way would be to keep a running tally of how many cards are being taken from the standby
-                        if (currCard is WarriorsResolve && standby.Count < 2)
-                        {
-                            break;
-                        }
-                        else if (currCard is WarriorsResolve && opponent.currCard.color == Color.blue && standby.Count < 3)
-                        {
-                            break;
-                        }
                         Game.library.setPromptText("Choose a card to take from your standby.");
                         while (true)
                         {
                             var card1 = Game.library.waitForClick();
                             if (standby.Contains(card1))
                             {
-                                if (currCard is WarriorsResolve &&
-                                    (card1 == ((WarriorsResolve)currCard).card1 || card1 == ((WarriorsResolve)currCard).card2))
-                                {
-                                    // Do nothing, repeat the loop
-                                }
-                                else
-                                {
-                                    takeStandby(card1);
-                                    break;
-                                }
+                                takeStandby(card1);
+                                break;
                             }
                         }
                     }
