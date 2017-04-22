@@ -168,8 +168,8 @@ namespace Warforged
 
         public class WarriorsResolve : Card
         {
-            Card card1 = null;
-            Card card2 = null;
+            public Card card1 = null;
+            public Card card2 = null;
             public WarriorsResolve() : base()
             {
                 name = "Warrior's Resolve";

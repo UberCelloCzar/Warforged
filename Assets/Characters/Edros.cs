@@ -269,7 +269,7 @@ namespace Warforged
                     }
                 }*/
                 ((FaithUnquestioned)this).strove = false;
-                bool canStrive = false;
+                bool hasBlueStandby = false;
                 foreach (Character.Card c in user.standby)
                 {
                     if (c.color == Color.blue && c != standbyCard)

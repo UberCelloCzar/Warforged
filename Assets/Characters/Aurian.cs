@@ -21,7 +21,7 @@ namespace Warforged
         public override void takeDamage(int dmg)
         {
             base.takeDamage(dmg);
-			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard && user.standby.Count > 0)
+			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard && standby.Count > 0)
             {
                 Card cardToTake;
                 while (true)
@@ -45,7 +45,7 @@ namespace Warforged
 			int damageDealt = base.dealDamage();
             if (damageDealt > 0) // This deals damage and checks that it is >0
             {
-                if (waitingForStrike && user.standby.Count > 0 && user.hasStandbyColor(Color.red))
+                if (waitingForStrike && standby.Count > 0 && hasStandbyColor(Color.red))
                 {
                     Card cardToTake;
                     while (true)
