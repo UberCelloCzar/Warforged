@@ -183,7 +183,7 @@ namespace Warforged
                     }
                 }
                 Game.library.setPromptText("");
-                if (user.opponent.currCard.color == Color.blue && user.opponent.standby.Count > 1)
+                if (user.opponent.currCard.color == Color.blue && user.standby.Count > 1)
                 {
                     while (true)
                     {
