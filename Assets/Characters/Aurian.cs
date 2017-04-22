@@ -21,7 +21,7 @@ namespace Warforged
         public override void takeDamage(int dmg)
         {
             base.takeDamage(dmg);
-			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard)
+			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard && user.standby.Count > 0)
             {
                 Card cardToTake;
                 while (true)
@@ -45,7 +45,7 @@ namespace Warforged
 			int damageDealt = base.dealDamage();
             if (damageDealt > 0) // This deals damage and checks that it is >0
             {
-                if (waitingForStrike)
+                if (waitingForStrike && user.standby.Count > 0 && user.hasStandbyColor(Color.red))
                 {
                     Card cardToTake;
                     while (true)
@@ -174,14 +174,17 @@ namespace Warforged
 
             public override void declare()
             {
-                while (true)
+                if (user.standby.Count > 0)
                 {
-                    Game.library.setPromptText("Choose your leftmost OR rightmost standby card to send to your hand.");
-                    cardToTake = Game.library.waitForClick();
-                    if (cardToTake.Equals(user.standby[0]) || cardToTake.Equals(user.standby[user.standby.Count-1]))
+                    while (true)
                     {
-                        Game.library.setPromptText("");
-                        break;
+                        Game.library.setPromptText("Choose your leftmost OR rightmost standby card to send to your hand.");
+                        cardToTake = Game.library.waitForClick();
+                        if (cardToTake.Equals(user.standby[0]) || cardToTake.Equals(user.standby[user.standby.Count-1]))
+                        {
+                            Game.library.setPromptText("");
+                            break;
+                        }
                     }
                 }
             }

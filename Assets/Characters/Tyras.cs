@@ -48,14 +48,32 @@ namespace Warforged
                     if (card is AnOathUnforgotten && card.active
                         && standby.Count > 0)
                     {
+                        // TODO Hard coding this case due to time constraints; I will take the time to properly implement this later
+                        //      The "proper" way would be to keep a running tally of how many cards are being taken from the standby
+                        if (currCard is WarriorsResolve && standby.Count < 2)
+                        {
+                            break;
+                        }
+                        else if (currCard is WarriorsResolve && opponent.currCard.color == Color.blue && standby.Count < 3)
+                        {
+                            break;
+                        }
                         Game.library.setPromptText("Choose a card to take from your standby.");
                         while (true)
                         {
                             var card1 = Game.library.waitForClick();
                             if (standby.Contains(card1))
                             {
-                                takeStandby(card1);
-                                break;
+                                if (currCard is WarriorsResolve &&
+                                    (card1 == ((WarriorsResolve)currCard).card1 || card1 == ((WarriorsResolve)currCard).card2))
+                                {
+                                    // Do nothing, repeat the loop
+                                }
+                                else
+                                {
+                                    takeStandby(card1);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -126,7 +144,7 @@ namespace Warforged
 
             public override void declare()
             {
-                if (user.hasChain("R"))
+                if (user.hasChain("R") && user.hasStandbyColor(Color.blue))
                 {
                     while (true)
                     {
@@ -169,24 +187,27 @@ namespace Warforged
 
             public override void declare()
             {
-                while (true)
-                {
-                    Game.library.setPromptText("Choose a standby card to send to your hand.");
-                    card1 = Game.library.waitForClick();
-                    if (user.standby.Contains(card1))
-                    {
-                        break;
-                    }
-
-                }
-                Game.library.setPromptText("");
-                if (user.opponent.currCard.color == Color.blue)
+                if (user.standby.Count > 0)
                 {
                     while (true)
                     {
                         Game.library.setPromptText("Choose a standby card to send to your hand.");
+                        card1 = Game.library.waitForClick();
+                        if (user.standby.Contains(card1))
+                        {
+                            break;
+                        }
+
+                    }
+                }
+                Game.library.setPromptText("");
+                if (user.opponent.currCard.color == Color.blue && user.opponent.standby.Count > 1)
+                {
+                    while (true)
+                    {
+                        Game.library.setPromptText("Choose another standby card to send to your hand.");
                         card2 = Game.library.waitForClick();
-                        if (user.standby.Contains(card2))
+                        if (user.standby.Contains(card2) && card2 != card1)
                         {
                             break;
                         }

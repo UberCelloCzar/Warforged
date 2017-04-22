@@ -191,7 +191,6 @@ namespace Warforged
 
             public override void declare()
             {
-                // TODO MAJOR
                 // Prompt for input
                 // null should be accepted as input; that means they choose not to strive
                 // store input in striveCard
@@ -203,7 +202,7 @@ namespace Warforged
             }
         }
 
-        // Utility TODO
+        // Utility
         public class FaithUnquestioned : Card
         {
             private bool strove = false;
@@ -224,28 +223,31 @@ namespace Warforged
                 {
                     user.takeStandby(defenseCard);
                 }
+                offenseCard = null;
+                standbyCard = null;
+                defenseCard = null;
             }
 
             public override void declare()
             {
                 // GUI should do checking for offense cards, or right here
                 // TODO ASK FOR CARDS TO SWAP
-                if(canSwap())
+                if (canSwap())
                 {
                     Game.library.setPromptText("Swap an offense card from your hand with a standbycard");
-                    while(true)
+                    while (true)
                     {
                         Character.Card card1 = Game.library.waitForClick();
                         Game.library.highlight(card1, 255, 255, 0);
                         Character.Card card2 = Game.library.waitForClick();
                         Game.library.clearAllHighlighting();
-                        if(user.hand.Contains(card1) && user.standby.Contains(card2) && card1.color == Color.red)
+                        if (user.hand.Contains(card1) && user.standby.Contains(card2) && card1.color == Color.red)
                         {
                             offenseCard = card1;
                             standbyCard = card2;
                             break;
                         }
-                        else if(user.hand.Contains(card2) && user.standby.Contains(card1) && card2.color == Color.red)
+                        else if (user.hand.Contains(card2) && user.standby.Contains(card1) && card2.color == Color.red)
                         {
                             offenseCard = card2;
                             standbyCard = card1;
@@ -266,31 +268,35 @@ namespace Warforged
                         blueCardsInStandby += 1;
                     }
                 }*/
-                while (true /*&& (blueCardsInStandby == 2 || standbyCard.color != Color.blue)*/)
-                {
-                    Character.Card card = Game.library.waitForClickOrCancel("Choose an inherent to strive");
-                    if(card == null)
-                    {
-                        ((FaithUnquestioned)this).strove = false;
-                        break;
-                    }
-                    else if (user.strive(card))
-                    {
-                        ((FaithUnquestioned)this).strove = true;
-                        break;
-                    }
-                }
+                ((FaithUnquestioned)this).strove = false;
                 bool canStrive = false;
                 foreach (Character.Card c in user.standby)
                 {
                     if (c.color == Color.blue && c != standbyCard)
                     {
-                        canStrive = true;
+                        hasBlueStandby = true;
                         break;
                     }
                 }
+                if (hasBlueStandby)
+                {
+                    while (true /*&& (blueCardsInStandby == 2 || standbyCard.color != Color.blue)*/)
+                    {
+                        Character.Card card = Game.library.waitForClickOrCancel("Choose an inherent to strive");
+                        if(card == null)
+                        {
+                            ((FaithUnquestioned)this).strove = false;
+                            break;
+                        }
+                        else if (user.strive(card))
+                        {
+                            ((FaithUnquestioned)this).strove = true;
+                            break;
+                        }
+                    }
+                }
                 // ASK WHAT TO TAKE
-                while (((FaithUnquestioned)this).strove && canStrive)
+                while (((FaithUnquestioned)this).strove && hasBlueStandby)
                 {
                     Game.library.setPromptText("Choose a blue standby card to send to your hand");
                     Character.Card card = Game.library.waitForClick();
@@ -460,6 +466,7 @@ namespace Warforged
                 {
                     user.addDamage(3);
                 }
+                strove = 0;
             }
 
             public override void declare()

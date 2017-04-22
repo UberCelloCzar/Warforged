@@ -568,6 +568,20 @@ namespace Warforged
             }
 		}
 
+        /// Tells if the character has a certain color in his/her standby row
+        public bool hasStandbyColor(Color color)
+        {
+            foreach (Card card in standby)
+            {
+                if (card.color == color)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
 
 		/// Seals a certain card type for the opponent next turn
 		public void sealCard(Color color)
