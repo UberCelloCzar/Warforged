@@ -306,7 +306,7 @@ public class StartGame : MonoBehaviour {
         OnClick.CharacterSlot.color = new UnityEngine.Color(1, 1, 1);
         OnClick.Health.text = ch.hp + "";
         OnClick.Empower.text = "" + ch.currEmpower + "";
-        OnClick.Reinforce.text = "" + ch.reinforce + "";
+        OnClick.Reinforce.text = "" + ch.currReinforce + "";
         OnClick.Phase.text = ch.displayPhase();
         switch (ch.seal)
         {

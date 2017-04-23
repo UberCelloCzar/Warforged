@@ -186,12 +186,57 @@ namespace Warforged
 		/// Also removes overheal from further back than last turn
 		public virtual void dawn()
 		{
+
+            if (reinforce > 0)
+            {
+                GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = true;
+                GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = false;
+                GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = false;
+            }
+            if (opponent.reinforce > 0)
+            {
+                GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = true;
+                GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = false;
+                GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = false;
+            }
+            if (empower > 0)
+            {
+                GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = true;
+                GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = false;
+                GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = false;
+            }
+            if (opponent.empower > 0)
+            {
+                GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = true;
+                GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = false;
+                GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = false;
+            }
+
+
             stroveCards = new List<Card>();
             recentSuspended.Clear();
 			negate = 0;
 			damage = 0;
             currReinforce = reinforce;
             reinforce = 0;
+            currEmpower = empower;
+            empower = 0;
             pierce = 0;
 			heal = 0;
 			reflect = false;
@@ -286,6 +331,10 @@ namespace Warforged
         {
             //Debug.Log(name + " Added " + currEmpower + " to dmg");
             damage += currEmpower;
+            if(reflect == false && absorb == false && (opponent.damage - currReinforce- negate > 0))
+            {
+                GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = true;
+            }
             dealDamage();
 			healSelf();
             // Keeps track of the last four cards played
@@ -295,8 +344,7 @@ namespace Warforged
                 // Remove the first card in the list if it's getting too long
                 prevCards.RemoveAt(0);
             }
-            currEmpower = empower;
-            empower = 0;
+            
             //Debug.Log(name + " Empower reset, curr: " + currEmpower);
             lifesteal = false;
         }
@@ -307,7 +355,9 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
 		{
-			rotate();
+            GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = false;
+            GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = false;
+            rotate();
             // TODO will need changing based on stuff
             // Can't think of any examples, but I know they exist.
             bloodlust = (damage > opponent.negate) ? true : false;
@@ -422,6 +472,7 @@ namespace Warforged
                 {
                     heal += tempdamage;
                 }
+                if(tempdamage > 0) { GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = true; }
                 return tempdamage;
 			}
 		}
