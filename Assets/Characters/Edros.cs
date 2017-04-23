@@ -25,7 +25,7 @@ namespace Warforged
 			// Guard check
 			if (negate > opponent.pierce && opponent.damage > 0 && torensGuard)
 			{
-				torensGuard = false;
+				((Edros)this).torensGuard = false;
 				healSelf(2);
 			}
             // Will probably need more logic in the future
