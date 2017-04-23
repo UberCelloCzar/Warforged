@@ -91,6 +91,14 @@ TagManager:
   - OSeal
   - OLockButton
   - LockButton
+  - Reinforce_Icon
+  - Health_Icon
+  - Empower_Icon
+  - OHealth_Icon
+  - OEmpower_Icon
+  - OReinforce_Icon
+  - Dmg_Icon
+  - ODmg_Icon
   layers:
   - Default
   - TransparentFX
