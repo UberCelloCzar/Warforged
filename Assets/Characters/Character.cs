@@ -715,7 +715,7 @@ namespace Warforged
             }
             else if(phase.Equals(Phase.WaitingDeclare))
             {
-                return "Waiting: Phase: Waiting for other player to select a card.";
+                return "Waiting: Phase: Waiting for other player to resolve card effects.";
             }
             else if (phase.Equals(Phase.Damage))
             {
