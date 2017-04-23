@@ -26,7 +26,7 @@ namespace Warforged
 			if (negate > opponent.pierce && opponent.damage > 0 && torensGuard)
 			{
 				torensGuard = false;
-				hp += 2;
+				healSelf(2);
 			}
             // Will probably need more logic in the future
             int tempdamage = damage - opponent.negate;

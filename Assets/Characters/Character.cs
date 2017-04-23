@@ -293,7 +293,7 @@ namespace Warforged
                 Game.library.setDmgUI(1);
             }
             dealDamage();
-			healSelf();
+			healSelf(heal);
             // Keeps track of the last four cards played
 			prevCards.Add(currCard);
             if (prevCards.Count > 4)
@@ -390,9 +390,9 @@ namespace Warforged
         }
 
 		/// Definitely doesn't need to be its own function
-		public virtual void healSelf()
+		public virtual void healSelf(int toHeal)
 		{
-			hp += heal;
+			hp += toHeal;
 		}
 
 		/// Deal damage to another character
@@ -417,7 +417,7 @@ namespace Warforged
 			}
 			else if (opponent.absorb)
 			{
-				opponent.hp += tempdamage;
+				opponent.healSelf(tempdamage);
                 return 0;
 			}
 			else

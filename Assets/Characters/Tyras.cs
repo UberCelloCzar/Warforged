@@ -67,7 +67,7 @@ namespace Warforged
                     // Guard effect
                     if (negate > opponent.pierce && opponent.damage > 0 && hp <= 4)
                     {
-                        hp += 1;
+						healSelf(1);
                     }
                 }
             }
