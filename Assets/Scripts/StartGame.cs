@@ -241,7 +241,7 @@ public class StartGame : MonoBehaviour {
 
     public static IEnumerator setDmgUI(int player)
     {
-        if (player > 1)
+        if (player == 1)
         {
             GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = true;
         }
