@@ -76,7 +76,7 @@ namespace Warforged
                     while (true)
                     {
                         Game.library.setPromptText("You may choose a standby Offense card to send to your hand.");
-                        Card cardToTake = Game.library.waitForClickOrCancel();
+                        Card cardToTake = Game.library.waitForClickOrCancel("");
                         if (cardToTake == null)
                         {
                             break;
@@ -90,6 +90,7 @@ namespace Warforged
                 }
                 aldrasGuard = false;
             }
+			return damage;
         }
 
         // dusk()
@@ -157,7 +158,7 @@ namespace Warforged
                         // Ideally this should only happen once
                         // But if the user chooses an invalid card, try again
                         Game.library.setPromptText("Choose a blue standby card to send to your hand.");
-                        standbyCard = Game.library.waitForClickOrCancel();
+                        standbyCard = Game.library.waitForClickOrCancel("");
                         if (standbyCard != null) // Safety check
                         {
                             if (standbyCard.color == Color.blue && user.standby.Contains(standbyCard))

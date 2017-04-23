@@ -8,18 +8,26 @@ namespace Warforged
     {
         private bool bolster2;
         private bool bonusEmp;
+		private bool torensGuard;
         public Edros() : base()
         {
             name = "Edros";
             title = "Envoy of Toren";
             bolster2 = false;
             bonusEmp = false;
+			torensGuard = false;
         }
         
 
         /// Deal damage to another character
         public override int dealDamage()
         {
+			// Guard check
+			if (negate > opponent.pierce && opponent.damage > 0 && torensGuard)
+			{
+				torensGuard = false;
+				hp += 2;
+			}
             // Will probably need more logic in the future
             int tempdamage = damage - opponent.negate;
             if (opponent.reflect) {
@@ -400,8 +408,8 @@ namespace Warforged
                 }
                 Game.library.clearAllHighlighting();
                 user.takeStandby(card1);
-                user.takeStandby(card1);
                 user.takeStandby(card2);
+                user.takeStandby(card3);
 
             }
         }

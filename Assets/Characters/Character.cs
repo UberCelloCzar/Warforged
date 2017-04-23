@@ -778,7 +778,7 @@ namespace Warforged
         [XmlInclude(typeof(Edros.PillarofLightning))]
         [XmlInclude(typeof(Edros.PurgingLightning))]
         [XmlInclude(typeof(Edros.RollingThunder))]
-        [XmlInclude(typeof(Edros.ScornofThunder))]
+        [XmlInclude(typeof(Edros.ImminentStorm))]
         [XmlInclude(typeof(Edros.SkyBlessedShield))]
         [XmlInclude(typeof(Edros.TorensFavored))]
         [XmlInclude(typeof(Edros.WrathofLightning))]
