@@ -28,8 +28,8 @@ namespace Warforged
                 {
                     c.init(p1);
                 }
-                p1.standby.Add(new Edros.SkyBlessedShield());
-                p1.standby.Add(new Edros.RollingThunder());
+				p1.standby.Add(new Edros.RollingThunder());
+				p1.standby.Add(new Edros.SkyBlessedShield());
                 p1.standby.Add(new Edros.PurgingLightning());
                 p1.standby.Add(new Edros.FaithUnquestioned());
                 foreach (Character.Card c in p1.standby)
@@ -119,9 +119,9 @@ namespace Warforged
 				{
 					c.init(p1);
 				}
+				p1.invocation.Add(new Aurian.AbsoluteFocus());
 				p1.invocation.Add(new Aurian.EtherealStrike());
 				p1.invocation.Add(new Aurian.WrathofEra());
-				p1.invocation.Add(new Aurian.AbsoluteFocus());
 				p1.invocation.Add(new Aurian.StrengthofSpirit());
 				foreach (Character.Card c in p1.invocation)
 				{
@@ -142,8 +142,8 @@ namespace Warforged
                 {
                     c.init(p1);
                 }
-                p2.standby.Add(new Edros.SkyBlessedShield());
-                p2.standby.Add(new Edros.RollingThunder());
+				p2.standby.Add(new Edros.RollingThunder());
+				p2.standby.Add(new Edros.SkyBlessedShield());
                 p2.standby.Add(new Edros.PurgingLightning());
                 p2.standby.Add(new Edros.FaithUnquestioned());
                 foreach (Character.Card c in p2.standby)
@@ -223,7 +223,7 @@ namespace Warforged
 				{
 					c.init(p2);
 				}
-				p2.standby.Add(new Aurian.ClarityofMind());
+				p2.hand.Add(new Aurian.ClarityofMind());
 				p2.standby.Add(new Aurian.CounteringStrike());
 				p2.standby.Add(new Aurian.BodyandSoul());
 				p2.standby.Add(new Aurian.EvadingStep());
@@ -231,9 +231,9 @@ namespace Warforged
 				{
 					c.init(p2);
 				}
+				p2.invocation.Add(new Aurian.AbsoluteFocus());
 				p2.invocation.Add(new Aurian.EtherealStrike());
 				p2.invocation.Add(new Aurian.WrathofEra());
-				p2.invocation.Add(new Aurian.AbsoluteFocus());
 				p2.invocation.Add(new Aurian.StrengthofSpirit());
 				foreach (Character.Card c in p2.invocation)
 				{

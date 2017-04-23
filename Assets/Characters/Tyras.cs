@@ -18,9 +18,11 @@ namespace Warforged
 
         // playCard()
 
-        public override void declarePhase()
+		// declarePhase()
+
+        public override void damagePhase()
         {
-            base.declarePhase(); // Activate effects of cards first
+			// Activate effects of cards first, then the UI updates, then this stuff happens
             if (currCard.color - opponent.currCard.color == -1
                 || currCard.color - opponent.currCard.color == 2)
             {
@@ -45,8 +47,9 @@ namespace Warforged
                 }
                 Game.library.setPromptText("");
                 bolster(); // This may cause problems; idk how things should be ordered
-            }
-            // Damage applies after this; I don't think that should be an issue
+			}
+			// Damage applies after this; I don't think that should be an issue
+			base.damagePhase();
         }
 
         public override int dealDamage()
@@ -75,8 +78,7 @@ namespace Warforged
                 {
                     while (true)
                     {
-                        Game.library.setPromptText("You may choose a standby Offense card to send to your hand.");
-                        Card cardToTake = Game.library.waitForClickOrCancel("");
+						Card cardToTake = Game.library.waitForClickOrCancel("You may choose a standby Offense card to send to your hand.");
                         if (cardToTake == null)
                         {
                             break;
@@ -157,8 +159,7 @@ namespace Warforged
                     {
                         // Ideally this should only happen once
                         // But if the user chooses an invalid card, try again
-                        Game.library.setPromptText("Choose a blue standby card to send to your hand.");
-                        standbyCard = Game.library.waitForClickOrCancel("");
+						standbyCard = Game.library.waitForClickOrCancel("Choose a blue standby card to send to your hand.");
                         if (standbyCard != null) // Safety check
                         {
                             if (standbyCard.color == Color.blue && user.standby.Contains(standbyCard))

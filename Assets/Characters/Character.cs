@@ -169,7 +169,8 @@ namespace Warforged
 		/// Also adds empower and resets empower to 0.
 		public void addDamage(int dmg)
 		{
-            damage += dmg;
+			damage += dmg + currEmpower;
+			currEmpower = 0;
 		}
 
 		/// Add negation effects from a blue card.
@@ -285,7 +286,6 @@ namespace Warforged
 		public virtual void damagePhase()
         {
             //Debug.Log(name + " Added " + currEmpower + " to dmg");
-            damage += currEmpower;
             dealDamage();
 			healSelf();
             // Keeps track of the last four cards played
@@ -412,7 +412,7 @@ namespace Warforged
 			}
 			else if (opponent.absorb)
 			{
-				opponent.heal += tempdamage;
+				opponent.hp += tempdamage;
                 return 0;
 			}
 			else
