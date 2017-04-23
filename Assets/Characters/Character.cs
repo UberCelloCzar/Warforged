@@ -766,7 +766,7 @@ namespace Warforged
             }
             else if(phase.Equals(Phase.WaitingDeclare))
             {
-                return "Waiting: Phase: Waiting for other player to select a card.";
+                return "Waiting: Phase: Waiting for other player to resolve card effects.";
             }
             else if (phase.Equals(Phase.Damage))
             {
@@ -829,7 +829,7 @@ namespace Warforged
         [XmlInclude(typeof(Edros.PillarofLightning))]
         [XmlInclude(typeof(Edros.PurgingLightning))]
         [XmlInclude(typeof(Edros.RollingThunder))]
-        [XmlInclude(typeof(Edros.ScornofThunder))]
+        [XmlInclude(typeof(Edros.ImminentStorm))]
         [XmlInclude(typeof(Edros.SkyBlessedShield))]
         [XmlInclude(typeof(Edros.TorensFavored))]
         [XmlInclude(typeof(Edros.WrathofLightning))]

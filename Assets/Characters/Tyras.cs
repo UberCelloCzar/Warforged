@@ -6,32 +6,15 @@ namespace Warforged
 {
     public class Tyras : Character
     {
+        private bool aldrasGuard;
         public Tyras() : base()
         {
             name = "Tyras";
             title = "Hero of a Lost Age";
+            aldrasGuard = false;
         }
 
-        public override void dawn()
-        {
-            base.dawn();
-            // A Promise Unbroken
-            foreach (Card card in invocation)
-            {
-                if (card is APromiseUnbroken && card.active)
-                {
-                    if (bloodlust)
-                    {
-                        currEmpower += 1;
-                        //Debug.Log("Added Tyras Emp 1");
-                    }
-                    if (stalwart)
-                    {
-                        reinforce += 1;
-                    }
-                }
-            }
-        }
+        // dawn()
 
         // playCard()
 
@@ -66,7 +49,49 @@ namespace Warforged
             // Damage applies after this; I don't think that should be an issue
         }
 
-        // damagePhase()
+        public override int dealDamage()
+        {
+            int damage = base.dealDamage();
+            // A Promise Unbroken
+            foreach (Card card in invocation)
+            {
+                if (card is APromiseUnbroken && card.active)
+                {
+                    if (damage > 0)
+                    {
+                        empower += 1;
+                    }
+                    // Guard effect
+                    if (negate > opponent.pierce && opponent.damage > 0 && hp <= 4)
+                    {
+                        hp += 1;
+                    }
+                }
+            }
+            if (negate > opponent.pierce && opponent.damage > 0 && aldrasGuard)
+            {
+                // May take a standby offense
+                if (hasStandbyColor(Color.red))
+                {
+                    while (true)
+                    {
+                        Game.library.setPromptText("You may choose a standby Offense card to send to your hand.");
+                        Card cardToTake = Game.library.waitForClickOrCancel("");
+                        if (cardToTake == null)
+                        {
+                            break;
+                        }
+                        else if (standby.Contains(cardToTake) && cardToTake.color == Color.red)
+                        {
+                            takeStandby(cardToTake);
+                            break;
+                        }
+                    }
+                }
+                aldrasGuard = false;
+            }
+			return damage;
+        }
 
         // dusk()
 
@@ -114,7 +139,7 @@ namespace Warforged
             public ASoldiersRemorse() : base()
             {
                 name = "A Soldier's Remorse";
-                effect = "Deal 2 damage.\nChain (R): Send a Standby Defense card to your hand.";
+                effect = "Deal 2 damage.\nChain (R): You may send a Standby Defense card to your hand.";
                 color = Color.red;
             }
 
@@ -133,16 +158,21 @@ namespace Warforged
                         // Ideally this should only happen once
                         // But if the user chooses an invalid card, try again
                         Game.library.setPromptText("Choose a blue standby card to send to your hand.");
-                        standbyCard = Game.library.waitForClick();
+                        standbyCard = Game.library.waitForClickOrCancel("");
                         if (standbyCard != null) // Safety check
                         {
                             if (standbyCard.color == Color.blue && user.standby.Contains(standbyCard))
                             {
+                                Game.library.setPromptText("");
                                 break;
                             }
                         }
+                        else
+                        {
+                            Game.library.setPromptText("");
+                            break;
+                        }
 
-                        Game.library.setPromptText("");
                     }
                 }
             }
@@ -315,13 +345,14 @@ namespace Warforged
             public ArmorofAldras() : base()
             {
                 name = "Armor of Aldras";
-                effect = "Gain 2 health.\nAlign (G, R): Safeguard.";
+                effect = "Negate 2 damage.\nGuard: You may send a standby Offense card to you hand.\nAlign (G, R): Safeguard.";
                 color = Color.blue;
             }
 
             public override void activate()
             {
-                user.heal += 2;
+                user.addNegate(2);
+                ((Tyras)user).aldrasGuard = true;
                 if (user.hasAlign("GR"))
                 {
                     user.negate = 255;
@@ -366,7 +397,7 @@ namespace Warforged
             public APromiseUnbroken() : base()
             {
                 name = "A Promise Unbroken";
-                effect = "Bloodlust: Empower (1).\nStalwart: Reinforce (1).";
+                effect = "Strike: Empower (1)\nGuard: Endure (4): Gain 1 health";
                 color = Color.black;
                 active = false;
             }
@@ -378,7 +409,7 @@ namespace Warforged
             public SunderingStar() : base()
             {
                 name = "Sundering Star";
-                effect = "Strive (2): Deal 2 damage for each of your standby Offense cards.\nCounter (G): Deal 3 additional damage.";
+                effect = "Strive (2): Deal 2 damage for each of your standby Offense cards.\nCounter (G): Deal 2 additional damage.";
                 color = Color.red;
                 setAwakening();
                 active = false;
@@ -422,7 +453,7 @@ namespace Warforged
                 // Counter (G)
                 if (user.opponent.currCard.color == Color.green)
                 {
-                    user.damage += 3; // TODO ???
+                    user.damage += 2;
                 }
             }
         }
@@ -433,7 +464,7 @@ namespace Warforged
             public IntheKingsWake() : base()
             {
                 name = "In the King's Wake";
-                effect = "Strive (X): Gain 3 health for every Inherent Card you deactivated.\nCounter (R): Safeguard.";
+                effect = "Strive (X): Gain 2 health for every Inherent Card you deactivated.\nCounter (R): Safeguard.";
                 color = Color.blue;
                 setAwakening();
                 active = false;
@@ -441,7 +472,7 @@ namespace Warforged
 
             public override void activate()
             {
-                user.heal += 3 * strove;
+                user.heal += 2 * strove;
                 strove = 0;
                 if (user.opponent.currCard.color == Color.red)
                 {
@@ -454,10 +485,10 @@ namespace Warforged
                 // First declare
                 while (true)
                 {
-                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive.");
+                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive or cancel.");
                     if (card1 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card1))
                     {
@@ -469,10 +500,10 @@ namespace Warforged
                 // Second declare
                 while (true)
                 {
-                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive or cancel.");
                     if (card2 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card2))
                     {

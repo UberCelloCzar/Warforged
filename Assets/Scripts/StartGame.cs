@@ -334,11 +334,15 @@ public class StartGame : MonoBehaviour {
     {
         //Debug.Log("Game Over reached top");
         OnClick.GameOver.text = "Game Over.\n";
-        if (ch.endGame == 1)
+		if (ch.hp <= 0 && ch.opponent.hp <= 0)
+		{
+			OnClick.GameOver.text += "You tied";
+		}
+        else if (ch.endGame == 1)
         {
             OnClick.GameOver.text += "You win"; // Add the appropriate name to the win text
         }
-        else
+		else if (ch.endGame == 2)
         {
             OnClick.GameOver.text += "Your opponent wins";
         }

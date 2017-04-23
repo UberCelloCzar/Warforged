@@ -8,18 +8,26 @@ namespace Warforged
     {
         private bool bolster2;
         private bool bonusEmp;
+		private bool torensGuard;
         public Edros() : base()
         {
             name = "Edros";
             title = "Envoy of Toren";
             bolster2 = false;
             bonusEmp = false;
+			torensGuard = false;
         }
         
 
         /// Deal damage to another character
         public override int dealDamage()
         {
+			// Guard check
+			if (negate > opponent.pierce && opponent.damage > 0 && torensGuard)
+			{
+				torensGuard = false;
+				hp += 2;
+			}
             // Will probably need more logic in the future
             int tempdamage = damage - opponent.negate;
             if (opponent.reflect) {
@@ -120,13 +128,13 @@ namespace Warforged
             public PillarofLightning() : base()
             {
                 name = "Suppressing Bolt";
-                effect = "Deal 2 damage.\nCounter(G): Seal (B)";
+                effect = "Deal 1 damage.\nCounter(G): Seal (B)";
                 color = Color.red;
             }
 
             public override void activate()
             {
-                user.addDamage(2);
+                user.addDamage(1);
                 if (user.opponent.currCard.color == Color.green)
                 {
                     user.sealCard(Color.blue);
@@ -151,22 +159,25 @@ namespace Warforged
             }
         }
 
-        // Defense TODO
+        // Defense
         public class SkyBlessedShield : Card
         {
             public SkyBlessedShield() : base()
             {
                 name = "Sky Blessed Shield";
-                effect = "Gain 2 health.\nEndure (3): Counter (R): Reflect.";
+                effect = "Negate 2 damage.\nEndure (3): Counter (R): Instead, Reflect.";
                 color = Color.blue;
             }
 
             public override void activate()
             {
-                user.heal += 2;
                 if (user.hp <= 3 && user.opponent.currCard.color == Color.red)
                 {
                     user.reflect = true;
+                }
+                else
+                {
+                    user.addNegate(2);
                 }
             }
         }
@@ -177,15 +188,16 @@ namespace Warforged
             public TorensFavored() : base()
             {
                 name = "Toren's Favored";
-                effect = "Strive(1): Negate 3 damage.";
+                effect = "Negate 2 damage.\nStrive(1): Guard: Gain 2 health.";
                 color = Color.blue;
             }
 
             public override void activate()
             {
+                user.addNegate(2);
                 if (((TorensFavored)this).strove)
                 {
-                    user.addNegate(3);
+                    ((Edros)user).torensGuard = true;
                 }
             }
 
@@ -194,11 +206,20 @@ namespace Warforged
                 // Prompt for input
                 // null should be accepted as input; that means they choose not to strive
                 // store input in striveCard
-                Card striveCard = Game.library.waitForClickOrCancel("Strive 1 card");
-                if (user.strive(striveCard))
+                while (true)
                 {
-                    ((TorensFavored)this).strove = true;
+                    Card striveCard = Game.library.waitForClickOrCancel("Strive 1 card");
+                    if (user.strive(striveCard))
+                    {
+                        ((TorensFavored)this).strove = true;
+                        break;
+                    }
+                    else if (striveCard == null)
+                    {
+                        break;
+                    }
                 }
+                Game.library.setPromptText("");
             }
         }
 
@@ -206,57 +227,29 @@ namespace Warforged
         public class FaithUnquestioned : Card
         {
             private bool strove = false;
-            Card offenseCard = null;
             Card standbyCard = null;
-            Card defenseCard = null;
             public FaithUnquestioned() : base()
             {
                 name = "Faith Unquestioned";
-                effect = "Swap 1 Offense card in your hand with 1 Standby card.\nStrive(1): Send a Standby Defense card to your hand.";
+                effect = "Counter (B): Empower (2).\nStrive(1): Send a Standby card to your hand.";
                 color = Color.green;
             }
 
             public override void activate()
             {
-                user.swap(offenseCard, standbyCard);
+                if (user.opponent.currCard.color == Color.blue)
+                {
+                    user.empower += 2;
+                }
                 if (((FaithUnquestioned)this).strove)
                 {
-                    user.takeStandby(defenseCard);
+                    user.takeStandby(standbyCard);
                 }
-                offenseCard = null;
                 standbyCard = null;
-                defenseCard = null;
             }
 
             public override void declare()
             {
-                // GUI should do checking for offense cards, or right here
-                // TODO ASK FOR CARDS TO SWAP
-                if (canSwap())
-                {
-                    Game.library.setPromptText("Swap an offense card from your hand with a standbycard");
-                    while (true)
-                    {
-                        Character.Card card1 = Game.library.waitForClick();
-                        Game.library.highlight(card1, 255, 255, 0);
-                        Character.Card card2 = Game.library.waitForClick();
-                        Game.library.clearAllHighlighting();
-                        if (user.hand.Contains(card1) && user.standby.Contains(card2) && card1.color == Color.red)
-                        {
-                            offenseCard = card1;
-                            standbyCard = card2;
-                            break;
-                        }
-                        else if (user.hand.Contains(card2) && user.standby.Contains(card1) && card2.color == Color.red)
-                        {
-                            offenseCard = card2;
-                            standbyCard = card1;
-                            break;
-                        }
-                    }
-                }
-                Game.library.highlight(offenseCard,255,255,0);
-                Game.library.highlight(standbyCard, 255, 255, 0);
                 // ASK IF WANT TO STRIVE
                 // ASK WHAT TO STRIVE
                 /*
@@ -298,11 +291,11 @@ namespace Warforged
                 // ASK WHAT TO TAKE
                 while (((FaithUnquestioned)this).strove && hasBlueStandby)
                 {
-                    Game.library.setPromptText("Choose a blue standby card to send to your hand");
+                    Game.library.setPromptText("Choose a standby card to send to your hand");
                     Character.Card card = Game.library.waitForClick();
-                    if(card.color == Color.blue && user.standby.Contains(card) && card != standbyCard)
+                    if (user.standby.Contains(card) && card != standbyCard)
                     {
-                        ((FaithUnquestioned)this).defenseCard = card;
+                        ((FaithUnquestioned)this).standbyCard = card;
                         break;
                     }
                 }
@@ -333,7 +326,7 @@ namespace Warforged
             public WrathofLightning() : base()
             {
                 name = "Wrath of Lightning";
-                effect = "Depart: Deal damage equal to the amount of Standby Offense cards you have.";
+                effect = "Depart: Deal damage equal to the amount of Standby Non-Offense cards you have.";
                 color = Color.black;
                 active = false;
             }
@@ -341,9 +334,9 @@ namespace Warforged
             public override void depart()
             {
                 int offenseCards = 0;
-                foreach(Character.Card card in user.standby)
+                foreach (Character.Card card in user.standby)
                 {
-                    if(card.color == Color.red)
+                    if(card.color != Color.red)
                     {
                         offenseCards += 1;
                     }
@@ -351,75 +344,72 @@ namespace Warforged
                 user.damage += offenseCards; // No empower here
             }
         }
+
         //TODO: We might be changing the name of this card.
-        public class ScornofThunder : Card
+        public class ImminentStorm : Card
         {
-            public ScornofThunder() : base()
+            public ImminentStorm() : base()
             {
                 name = "Imminent Storm";
-                effect = "Depart: Return up to 2 Standby cards to your hand.";
+                effect = "Depart: Return up to 3 Standby cards to your hand.";
                 color = Color.black;
                 active = false;
             }
 
             public override void depart()
             {
-            Character.Card card1 = null;
-            Character.Card card2 = null;
-            while (true)
+                Character.Card card1 = null;
+                Character.Card card2 = null;
+                Character.Card card3 = null;
+                if (user.standby.Count > 0)
                 {
-                    if (user.standby.Count > 0)
+                    while (true)
                     {
-                        card1 = Game.library.waitForClickOrCancel("Select up to 2 standby cards to send to your hand");
-                        if(card1 != null && !user.standby.Contains(card1))
-                        {
-                            continue;
-                        }
-                        if(card1 == null)
+                        card1 = Game.library.waitForClickOrCancel("Select up to 3 standby cards to send to your hand");
+                        if (user.standby.Contains(card1))
                         {
                             break;
                         }
-                        Game.library.highlight(card1, 0, 0, 255);
-                        while (true)
+                        if (card1 == null)
                         {
-                            if (user.standby.Count > 1)
-                            {
-                                card2 = Game.library.waitForClickOrCancel("Select up to 1 more standby card to send to your hand");
-                                if (card2 != null && !user.standby.Contains(card2))
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    goto EndLoop;
-                                }
-                            }
-                            else
-                            {
-                                goto EndLoop;
-                            }
+                            break;
                         }
                     }
-                    else
+                }
+                if (user.standby.Count > 1)
+                {
+                    while (true)
                     {
-                        break;
+                        card2 = Game.library.waitForClickOrCancel("Select up to 2 more standby cards to send to your hand");
+                        if (user.standby.Contains(card2))
+                        {
+                            break;
+                        }
+                        if (card2 == null)
+                        {
+                            break;
+                        }
                     }
                 }
-            EndLoop:
+                if (user.standby.Count > 2)
+                {
+                    while (true)
+                    {
+                        card3 = Game.library.waitForClickOrCancel("Select up to 1 more standby card to send to your hand");
+                        if (user.standby.Contains(card3))
+                        {
+                            break;
+                        }
+                        if (card3 == null)
+                        {
+                            break;
+                        }
+                    }
+                }
                 Game.library.clearAllHighlighting();
-                if (card1 == null)
-                {
-                    return;
-                }
-                else if(card2 == null)
-                {
-                    user.takeStandby(card1);
-                }
-                else
-                {
-                    user.takeStandby(card1);
-                    user.takeStandby(card2);
-                }
+                user.takeStandby(card1);
+                user.takeStandby(card2);
+                user.takeStandby(card3);
 
             }
         }
@@ -429,7 +419,7 @@ namespace Warforged
             public GraceofHeaven() : base()
             {
                 name = "Grace of Heaven";
-                effect = "Depart: Gain 2 health for every non-Offense Standby card.";
+                effect = "Depart: Gain 1 health for every non-Offense Standby card.";
                 color = Color.black;
                 active = false;
             }
@@ -441,7 +431,7 @@ namespace Warforged
                 {
                     if(c.color != Color.red)
                     {
-                        hpToGain += 2;
+                        hpToGain += 1;
                     }
                 }
                 user.heal += hpToGain;
