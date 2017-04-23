@@ -187,6 +187,71 @@ public class StartGame : MonoBehaviour {
         yield return null;
     }
 
+    public static IEnumerator resetIcons()
+    {
+        if (Game.p1.reinforce > 0)
+        {
+            GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = true;
+            GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = false;
+            GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = false;
+        }
+        if (Game.p2.reinforce > 0)
+        {
+            GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = true;
+            GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = false;
+            GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = false;
+        }
+        if (Game.p1.empower > 0)
+        {
+            GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = true;
+            GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = false;
+            GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = false;
+        }
+        if (Game.p2.empower > 0)
+        {
+            GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = true;
+            GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = false;
+            GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = false;
+        }
+        yield return null;
+    }
+
+    public static IEnumerator resetDmgUI()
+    {
+        GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = false;
+        GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = false;
+        yield return null;
+    }
+
+    public static IEnumerator setDmgUI(int player)
+    {
+        if (player > 1)
+        {
+            GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = true;
+        }
+        yield return null;
+    }
+
     public static IEnumerator LockIn(bool isServer)
     {
         //if (isServer == PlayerController.controller.localPlayer.isServer)

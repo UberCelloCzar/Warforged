@@ -135,6 +135,24 @@ namespace Warforged
             barrier.SignalAndWait(threadID);
         }
 
+        public override void resetIcons()
+        {
+            StartGame.signal = () => { return StartGame.resetIcons(); };
+            barrier.SignalAndWait(threadID);
+        }
+
+        public override void resetDmgUI()
+        {
+            StartGame.signal = () => { return StartGame.resetDmgUI(); };
+            barrier.SignalAndWait(threadID);
+        }
+
+        public override void setDmgUI(int player)
+        {
+            StartGame.signal = () => { return StartGame.setDmgUI(player); };
+            barrier.SignalAndWait(threadID);
+        }
+
         public override void LockIn(bool isServer)
         {
             StartGame.signal = () => { return StartGame.LockIn(isServer); };

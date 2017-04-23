@@ -26,6 +26,9 @@ namespace Warforged
         //@param showCurrCard: If this is true the played card will be shown on the UI, otherwise the back of the card is used.
         public abstract void updateUI(Character ch, bool showCurrCard);
         public abstract void resetLock();
+        public abstract void resetDmgUI();
+        public abstract void resetIcons();
+        public abstract void setDmgUI(int player);
         public abstract void LockIn(bool isServer);
         public abstract void endSlate(Character ch); // End game UI method
 

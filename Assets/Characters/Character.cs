@@ -187,49 +187,6 @@ namespace Warforged
 		/// Also removes overheal from further back than last turn
 		public virtual void dawn()
 		{
-
-            if (reinforce > 0)
-            {
-                GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = true;
-                GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = true;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("Reinforce_Icon").GetComponent<Image>().enabled = false;
-                GameObject.FindGameObjectWithTag("Reinforce").GetComponent<Text>().enabled = false;
-            }
-            if (opponent.reinforce > 0)
-            {
-                GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = true;
-                GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = true;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = false;
-                GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = false;
-            }
-            if (empower > 0)
-            {
-                GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = true;
-                GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = true;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = false;
-                GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = false;
-            }
-            if (opponent.empower > 0)
-            {
-                GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = true;
-                GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = true;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("OEmpower_Icon").GetComponent<Image>().enabled = false;
-                GameObject.FindGameObjectWithTag("OEmpower").GetComponent<Text>().enabled = false;
-            }
-
-
             stroveCards = new List<Card>();
             recentSuspended.Clear();
 			negate = 0;
@@ -333,7 +290,7 @@ namespace Warforged
             //Debug.Log(name + " Added " + currEmpower + " to dmg");
             if(reflect == false && absorb == false && (opponent.damage - currReinforce- negate > 0))
             {
-                GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = true;
+                Game.library.setDmgUI(1);
             }
             dealDamage();
 			healSelf();
@@ -355,8 +312,6 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
 		{
-            GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = false;
-            GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = false;
             rotate();
             // TODO will need changing based on stuff
             // Can't think of any examples, but I know they exist.
@@ -472,7 +427,7 @@ namespace Warforged
                 {
                     heal += tempdamage;
                 }
-                if(tempdamage > 0) { GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = true; }
+                if(tempdamage > 0) { Game.library.setDmgUI(2); }
                 return tempdamage;
 			}
 		}
