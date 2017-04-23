@@ -467,7 +467,7 @@ namespace Warforged
                     Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive.");
                     if (card1 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card1))
                     {
@@ -482,7 +482,7 @@ namespace Warforged
                     Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
                     if (card2 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card2))
                     {
@@ -497,7 +497,7 @@ namespace Warforged
                     Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
                     if (card2 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card2))
                     {

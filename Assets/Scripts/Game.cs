@@ -248,6 +248,7 @@ namespace Warforged
             //Debug.Log("taketurn");
             try
             {
+                // Start Selection Phase
                 OnClick.controller.localPlayer.readyFlag2 = false;
                 OnClick.controller.remotePlayer.readyFlag2 = false;
                 //Debug.Log("First updates");
@@ -265,21 +266,34 @@ namespace Warforged
                 //Debug.Log("Got to card phase");
                 library.resetLock();
                 p1.playCard();
-                //p2.playCard();
+
+                // Start Waiting Selection
+                if (OnClick.controller.remotePlayer.readyFlag2 == true)
+                {
+                    p1.phase = Character.Phase.Declare;
+                }
+                else
+                {
+                    p1.nextPhase();
+                }
+                library.updateUI(p1, false);
                 while (OnClick.controller.remotePlayer.readyFlag2 != true)
                 {
                     //Debug.Log("Waiting for enemy lock in");
                 }
                 //Debug.Log("Both Players Locked in");
-                library.updateUI(p1, false);
-                p1.nextPhase();
+
+                // Start Declare Phase
                 library.updateUI(p1, false);
                 ++p1.turn;
                 library.updateNetwork(p1, p2, false);
                 library.waitOnNetwork(ref p1, ref p2);
                 library.updateOpponentUI(p2, false, false);
                 //library.setPromptText("before sleep1");
-                p1.nextPhase();
+                if(!p1.phase.Equals(Character.Phase.Declare))
+                {
+                    p1.nextPhase();
+                }
                 library.updateUI(p1, false);
 
                 p1.declarePhase();
@@ -298,6 +312,7 @@ namespace Warforged
                 //Debug.Log("My seal updated: " + p1.seal);
                 //Debug.Log("His seal updated: " + p2.seal);
 
+                // Start Damage Phase
                 p1.nextPhase();
                 p2.nextPhase();
                 library.updateUI(p1, true);
@@ -308,6 +323,7 @@ namespace Warforged
                 Thread.Sleep(2500);
                 //library.setPromptText("after sleep");
 
+                // Start Dusk Phase
                 p1.nextPhase();
                 library.updateUI(p1, true);
                 ++p1.turn;
@@ -327,6 +343,7 @@ namespace Warforged
                 p1.dusk();
                 Thread.Sleep(1500);
 
+                // Start Dawn Phase
                 p1.nextPhase();
                 library.updateUI(p1, true);
                 ++p1.turn;
