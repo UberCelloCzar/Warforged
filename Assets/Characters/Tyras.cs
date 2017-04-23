@@ -484,10 +484,10 @@ namespace Warforged
                 // First declare
                 while (true)
                 {
-                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive.");
+                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive or cancel.");
                     if (card1 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card1))
                     {
@@ -499,10 +499,10 @@ namespace Warforged
                 // Second declare
                 while (true)
                 {
-                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive or cancel.");
                     if (card2 == null)
                     {
-                        break;
+                        return;
                     }
                     else if (user.strive(card2))
                     {
