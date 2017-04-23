@@ -38,7 +38,7 @@ namespace Warforged
                 }
                 p1.invocation.Add(new Edros.WrathofLightning());
                 p1.invocation.Add(new Edros.GraceofHeaven());
-                p1.invocation.Add(new Edros.ScornofThunder());
+                p1.invocation.Add(new Edros.ImminentStorm());
                 p1.invocation.Add(new Edros.CrashingSky());
                 foreach (Character.Card c in p1.invocation)
                 {
