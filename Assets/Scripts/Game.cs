@@ -103,18 +103,18 @@ namespace Warforged
 
 			else if (p1 is Aurian)
 			{
+				p1.hand.Add(new Aurian.ClarityofMind());
 				p1.hand.Add(new Aurian.OpeningBlow());
-				p1.hand.Add(new Aurian.RelentlessAssault());
-				p1.hand.Add(new Aurian.SoulStrike());
 				p1.hand.Add(new Aurian.PrimedAttack());
+				p1.hand.Add(new Aurian.EvadingStep());
 				foreach (Character.Card c in p1.hand)
 				{
 					c.init(p1);
 				}
-				p1.standby.Add(new Aurian.ClarityofMind());
 				p1.standby.Add(new Aurian.CounteringStrike());
+				p1.standby.Add(new Aurian.RelentlessAssault());
+				p1.standby.Add(new Aurian.SoulStrike());
 				p1.standby.Add(new Aurian.BodyandSoul());
-				p1.standby.Add(new Aurian.EvadingStep());
 				foreach (Character.Card c in p1.standby)
 				{
 					c.init(p1);
@@ -215,18 +215,18 @@ namespace Warforged
 			}
 			else if (p2 is Aurian)
 			{
+				p2.hand.Add(new Aurian.ClarityofMind());
 				p2.hand.Add(new Aurian.OpeningBlow());
-				p2.hand.Add(new Aurian.RelentlessAssault());
-				p2.hand.Add(new Aurian.SoulStrike());
 				p2.hand.Add(new Aurian.PrimedAttack());
+				p2.hand.Add(new Aurian.EvadingStep());
 				foreach (Character.Card c in p2.hand)
 				{
 					c.init(p2);
 				}
-				p2.hand.Add(new Aurian.ClarityofMind());
 				p2.standby.Add(new Aurian.CounteringStrike());
+				p2.standby.Add(new Aurian.RelentlessAssault());
+				p2.standby.Add(new Aurian.SoulStrike());
 				p2.standby.Add(new Aurian.BodyandSoul());
-				p2.standby.Add(new Aurian.EvadingStep());
 				foreach (Character.Card c in p2.standby)
 				{
 					c.init(p2);

@@ -157,12 +157,6 @@ namespace Warforged
 			{
 				hp = 1;
 			}
-            if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
-            {
-                //Debug.Log("Endgame triggered");
-                endGame = 2;
-                opponent.endGame = 1;
-            }
             //Debug.Log("I'm opponent, taking damage: " + hp);
         }
 
@@ -300,7 +294,14 @@ namespace Warforged
             }
             
             //Debug.Log(name + " Empower reset, curr: " + currEmpower);
-            lifesteal = false;
+			lifesteal = false;
+			if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
+			{
+				hp = 0;
+				//Debug.Log("Endgame triggered");
+				endGame = 2;
+				opponent.endGame = 1;
+			}
         }
 
 		/// Calculates if the character dealt or negated damage this turn
@@ -390,6 +391,11 @@ namespace Warforged
 		public virtual void healSelf(int toHeal)
 		{
 			hp += toHeal;
+		}
+
+		public virtual void healSelf()
+		{
+			healSelf(this.heal);
 		}
 
 		/// Deal damage to another character
