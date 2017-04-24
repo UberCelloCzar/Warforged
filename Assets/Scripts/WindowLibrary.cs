@@ -29,6 +29,13 @@ namespace Warforged
         public abstract void resetDmgUI();
         public abstract void resetIcons();
         public abstract void setDmgUI(bool isPlayer1);
+        public abstract void setSafeguardPromptUI(bool isPlayer1);
+        public abstract void setReflectPromptUI(bool isPlayer1);
+        public abstract void setNegatePromptUI(bool isPlayer1, int ngt);
+        public abstract void setAbsorbPromptUI(bool isPlayer1);
+        public abstract void resetPrompts();
+        public abstract void resetHealingUI();
+        public abstract void setHealingUI(bool isPlayer1);
         public abstract void LockIn(bool isServer);
         public abstract void endSlate(Character ch); // End game UI method
 

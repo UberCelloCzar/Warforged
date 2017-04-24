@@ -146,10 +146,45 @@ namespace Warforged
             StartGame.signal = () => { return StartGame.resetDmgUI(); };
             barrier.SignalAndWait(threadID);
         }
+        public override void resetHealingUI()
+        {
+            StartGame.signal = () => { return StartGame.resetHealingUI(); };
+            barrier.SignalAndWait(threadID);
+        }
 
         public override void setDmgUI(bool isPlayer1)
         {
             StartGame.signal = () => { return StartGame.setDmgUI(isPlayer1); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void setSafeguardPromptUI(bool isPlayer1)
+        {
+            StartGame.signal = () => { return StartGame.setSafeguardPromptUI(isPlayer1); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void setReflectPromptUI(bool isPlayer1)
+        {
+            StartGame.signal = () => { return StartGame.setReflectPromptUI(isPlayer1); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void setNegatePromptUI(bool isPlayer1, int ngt)
+        {
+            StartGame.signal = () => { return StartGame.setNegatePromptUI(isPlayer1,ngt); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void setAbsorbPromptUI(bool isPlayer1)
+        {
+            StartGame.signal = () => { return StartGame.setAbsorbPromptUI(isPlayer1); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void resetPrompts()
+        {
+            StartGame.signal = () => { return StartGame.resetPrompts(); };
+            barrier.SignalAndWait(threadID);
+        }
+        public override void setHealingUI(bool isPlayer1)
+        {
+            StartGame.signal = () => { return StartGame.setHealingUI(isPlayer1); };
             barrier.SignalAndWait(threadID);
         }
 

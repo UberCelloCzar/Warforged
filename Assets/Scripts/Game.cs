@@ -336,6 +336,7 @@ namespace Warforged
                 //library.setPromptText("after sleep1");
 
                 library.resetDmgUI();
+                library.resetHealingUI();
                 p1.dusk();
 
                 if (p1.endGame != 0) // If the endgame is triggered, show it

@@ -180,9 +180,9 @@ public class StartGame : MonoBehaviour {
     {
         OnClick.LockButton.enabled = true;
         OnClick.LockButton.isOn = false;
-        OnClick.LockButtonImage.color = UnityEngine.Color.white;
+        OnClick.LockButtonImage.color = new UnityEngine.Color(0f,149/255f,255/255f);
         OnClick.LockButtonText.text = "Lock In";
-        OnClick.OLockButtonImage.color = UnityEngine.Color.white;
+        OnClick.OLockButtonImage.color = new UnityEngine.Color(240/255f, 5/255f, 5/255f);
         OnClick.OLockButtonText.text = "Playing...";
         yield return null;
     }
@@ -239,6 +239,13 @@ public class StartGame : MonoBehaviour {
         yield return null;
     }
 
+    public static IEnumerator resetHealingUI()
+    {
+        GameObject.FindGameObjectWithTag("Healing_Icon").GetComponent<Image>().enabled = false;
+        GameObject.FindGameObjectWithTag("OHealing_Icon").GetComponent<Image>().enabled = false;
+        yield return null;
+    }
+
     public static IEnumerator setDmgUI(bool isPlayer1)
     {
         if (isPlayer1)
@@ -248,6 +255,76 @@ public class StartGame : MonoBehaviour {
         else
         {
             GameObject.FindGameObjectWithTag("ODmg_Icon").GetComponent<Image>().enabled = true;
+        }
+        yield return null;
+    }
+    public static IEnumerator setReflectPromptUI(bool isPlayer1)
+    {
+        if (isPlayer1)
+        {
+            GameObject.FindGameObjectWithTag("MadPromptsB").GetComponent<Text>().text = "You Reflect!";
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OPrompt").GetComponent<Text>().text = "Opponent Reflected!";
+        }
+        yield return null;
+    }
+    public static IEnumerator setNegatePromptUI(bool isPlayer1, int ngt)
+    {
+        if (isPlayer1)
+        {
+            GameObject.FindGameObjectWithTag("MadPromptsB").GetComponent<Text>().text = "You Negate " + ngt + " Damage!";
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OPrompt").GetComponent<Text>().text = "Opponent Negated " + ngt + " Damage!";
+        }
+        yield return null;
+    }
+    public static IEnumerator setSafeguardPromptUI(bool isPlayer1)
+    {
+        if (isPlayer1)
+        {
+            GameObject.FindGameObjectWithTag("MadPromptsB").GetComponent<Text>().text = "You Safeguarded!";
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OPrompt").GetComponent<Text>().text = "Opponent Safeguarded!";
+        }
+        yield return null;
+    }
+    public static IEnumerator setAbsorbPromptUI(bool isPlayer1)
+    {
+        if (isPlayer1)
+        {
+            GameObject.FindGameObjectWithTag("MadPromptsB").GetComponent<Text>().text = "You Absorbed Damage!";
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OPrompt").GetComponent<Text>().text = "Opponent Absorbed Damage!";
+        }
+        yield return null;
+    }
+    public static IEnumerator resetPrompts()
+    {
+        
+        GameObject.FindGameObjectWithTag("MadPromptsB").GetComponent<Text>().text = "";
+        
+        
+        GameObject.FindGameObjectWithTag("OPrompt").GetComponent<Text>().text = "";
+        
+        yield return null;
+    }
+    public static IEnumerator setHealingUI(bool isPlayer1)
+    {
+        if (isPlayer1)
+        {
+            GameObject.FindGameObjectWithTag("Healing_Icon").GetComponent<Image>().enabled = true;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("OHealing_Icon").GetComponent<Image>().enabled = true;
         }
         yield return null;
     }

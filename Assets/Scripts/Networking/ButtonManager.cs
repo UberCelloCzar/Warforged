@@ -107,10 +107,41 @@ public class ButtonManager : MonoBehaviour
             controller.remotePlayer.readyFlag = false;
             controller.localPlayer.readyFlag = false;
             controller.localPlayer.CmdMoveToScene("WarforgedBoard");
+
+            if (StartGame.characterPick.name == "Edros") { GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("AurianPicked").GetComponent<Image>().enabled = false;
+            }
+            if (StartGame.characterPick.name == "Tyras") { GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("AurianPicked").GetComponent<Image>().enabled = false;
+            }
+            if (StartGame.characterPick.name == "Aurian") { GameObject.Find("AurianPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = false;
+            }
         }
         else
         {
             controller.localPlayer.CmdImReady(controller.localPlayer.isServer);
+            if (StartGame.characterPick.name == "Edros")
+            {
+                GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("AurianPicked").GetComponent<Image>().enabled = false;
+            }
+            if (StartGame.characterPick.name == "Tyras")
+            {
+                GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("AurianPicked").GetComponent<Image>().enabled = false;
+            }
+            if (StartGame.characterPick.name == "Aurian")
+            {
+                GameObject.Find("AurianPicked").GetComponent<Image>().enabled = true;
+                GameObject.Find("TyrasPicked").GetComponent<Image>().enabled = false;
+                GameObject.Find("EdrosPicked").GetComponent<Image>().enabled = false;
+            }
         }
     }
 }

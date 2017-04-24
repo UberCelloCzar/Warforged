@@ -324,7 +324,7 @@ public class OnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
                 Prompt.text = "";
                 Game.p1.lockedIn = true;
                 LockButton.enabled = false;
-                LockButtonImage.color = UnityEngine.Color.gray;
+                LockButtonImage.color = new UnityEngine.Color(3/255f, 69/255f, 116/255f);
                 LockButtonText.text = "Locked In";
             }
             else
