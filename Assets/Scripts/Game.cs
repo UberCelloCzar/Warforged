@@ -335,14 +335,14 @@ namespace Warforged
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("after sleep1");
 
+                library.resetDmgUI();
+                p1.dusk();
+
                 if (p1.endGame != 0) // If the endgame is triggered, show it
                 {
                     //Debug.Log("Game Over escalated");
                     library.endSlate(p1);
-                 }
-
-                library.resetDmgUI();
-                p1.dusk();
+                }
                 Thread.Sleep(1500);
 
                 // Start Dawn Phase
@@ -354,8 +354,8 @@ namespace Warforged
                 library.updateOpponentUI(p2, true, false);
                 //library.setPromptText("after sleep2");
 
-                library.resetIcons();
                 p1.dawn();
+                library.resetIcons();
                 Thread.Sleep(1500);
             } catch(Exception e)
             {

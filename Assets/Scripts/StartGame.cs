@@ -275,13 +275,14 @@ public class StartGame : MonoBehaviour {
         {
             if (ch.hand.Count <= i)
             {
+                OnClick.Hand[i].name = "Hand"+i;
                 OnClick.Hand[i].sprite = null;
                 OnClick.Hand[i].color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.0f);
                 OnClick.Hand[i].gameObject.SetActive(false);
             }
             else
             {
-
+                OnClick.Hand[i].name = ch.hand[i].name;
                 OnClick.Hand[i].sprite = OnClick.CardImages[ch.hand[i].name];
                 OnClick.Hand[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.Hand[i].gameObject.SetActive(true);
@@ -304,12 +305,14 @@ public class StartGame : MonoBehaviour {
         {
             if (ch.standby.Count <= i)
             {
+                OnClick.Standby[i].name = "Standby"+i;
                 OnClick.Standby[i].sprite = null;
                 OnClick.Standby[i].color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.33f);
                 OnClick.Standby[i].gameObject.SetActive(false);
             }
             else
             {
+                OnClick.Standby[i].name = ch.standby[i].name;
                 OnClick.Standby[i].sprite = OnClick.CardImages[ch.standby[i].name];
 				if (ch.standby [i].active)
 				{
@@ -328,19 +331,22 @@ public class StartGame : MonoBehaviour {
         {
             if (ch.invocation.Count <= i)
             {
+                OnClick.Invocation[i].name = "Invocation"+i;
                 OnClick.Invocation[i].sprite = null;
                 OnClick.Invocation[i].color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.33f);
                 OnClick.Invocation[i].gameObject.SetActive(false);
             }
             else if (!ch.invocation[i].active)
-			{
-				OnClick.Invocation[i].sprite = OnClick.CardImages[ch.invocation[i].name];
-                OnClick.Invocation[i].color = new UnityEngine.Color(0, 0, 0);
+            {
+                OnClick.Invocation[i].name = ch.invocation[i].name;
+                OnClick.Invocation[i].sprite = OnClick.CardImages["Back"];
+                OnClick.Invocation[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.Invocation[i].gameObject.SetActive(true);
-                OnClick.cardDict["Invocation" + (i + 1)] = OnClick.NoReturn; ;
+                OnClick.cardDict["Invocation" + (i + 1)] = OnClick.NoReturn;
             }
             else
             {
+                OnClick.Invocation[i].name = ch.invocation[i].name;
                 OnClick.Invocation[i].sprite = OnClick.CardImages[ch.invocation[i].name];
                 OnClick.Invocation[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.Invocation[i].gameObject.SetActive(true);
@@ -355,6 +361,7 @@ public class StartGame : MonoBehaviour {
         }
         else if (showCurrCard)
         {
+            OnClick.PlaySlot.name = ch.currCard.name;
             OnClick.PlaySlot.sprite = OnClick.CardImages[ch.currCard.name];
             OnClick.PlaySlot.color = new UnityEngine.Color(1, 1, 1);
             OnClick.PlaySlot.gameObject.SetActive(true);
@@ -362,11 +369,13 @@ public class StartGame : MonoBehaviour {
         }
         else
         {
-			OnClick.PlaySlot.sprite = OnClick.CardImages[ch.currCard.name]; // CHANGED
-            OnClick.PlaySlot.color = new UnityEngine.Color(0, 0, 0);
+            OnClick.PlaySlot.name = ch.currCard.name;
+            OnClick.PlaySlot.sprite = OnClick.CardImages["Back"]; // CHANGED
+            OnClick.PlaySlot.color = new UnityEngine.Color(1, 1, 1);
             OnClick.PlaySlot.gameObject.SetActive(true);
             OnClick.cardDict["PlaySlot"] = ch.currCard;
         }
+        OnClick.CharacterSlot.name = ch.name;
         OnClick.CharacterSlot.sprite = OnClick.CardImages[ch.name];
         OnClick.CharacterSlot.color = new UnityEngine.Color(1, 1, 1);
         OnClick.Health.text = ch.hp + "";
@@ -430,20 +439,22 @@ public class StartGame : MonoBehaviour {
         {
             if (ch.hand.Count <= i)
             {
+                OnClick.OHand[i].name = "OHand"+i;
                 OnClick.OHand[i].sprite = null;
                 OnClick.OHand[i].color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.0f);
                 OnClick.OHand[i].gameObject.SetActive(false);
             }
             else if (!showHand)
             {
-                OnClick.OHand[i].sprite = null;
-                OnClick.OHand[i].color = new UnityEngine.Color(0, 0, 0, 1);
+                OnClick.OHand[i].name = "OHand"+i;
+                OnClick.OHand[i].sprite = OnClick.OCardImages["Back"];
+                OnClick.OHand[i].color = new UnityEngine.Color(1, 1, 1, 1);
                 OnClick.OHand[i].gameObject.SetActive(true);
                 OnClick.cardDict["OHand" + i] = ch.hand[i];
             }
             else
             {
-
+                OnClick.OHand[i].name = ch.hand[i].name;
                 OnClick.OHand[i].sprite = OnClick.OCardImages[ch.hand[i].name];
                 OnClick.OHand[i].color = new UnityEngine.Color(1, 1, 1, 1);
                 OnClick.OHand[i].gameObject.SetActive(true);
@@ -472,6 +483,7 @@ public class StartGame : MonoBehaviour {
             }
             else
             {
+                OnClick.OStandby[i].name = ch.standby[i].name;
                 OnClick.OStandby[i].sprite = OnClick.OCardImages[ch.standby[i].name];
                 OnClick.OStandby[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.OStandby[i].gameObject.SetActive(true);
@@ -482,19 +494,22 @@ public class StartGame : MonoBehaviour {
         {
             if (ch.invocation.Count <= i)
             {
+                OnClick.OInvocation[i].name = "OInvocation" + i;
                 OnClick.OInvocation[i].sprite = null;
                 OnClick.OInvocation[i].color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.33f);
                 OnClick.OInvocation[i].gameObject.SetActive(false);
             }
             else if (!ch.invocation[i].active)
             {
-                OnClick.OInvocation[i].sprite = null;
-                OnClick.OInvocation[i].color = new UnityEngine.Color(0, 0, 0);
+                OnClick.OInvocation[i].name = "OInvocation"+i;
+                OnClick.OInvocation[i].sprite = OnClick.OCardImages["Back"];
+                OnClick.OInvocation[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.OInvocation[i].gameObject.SetActive(true);
                 OnClick.cardDict["OInvocation" + (i + 1)] = OnClick.NoReturn;
             }
             else
             {
+                OnClick.OInvocation[i].name = ch.invocation[i].name;
                 OnClick.OInvocation[i].sprite = OnClick.OCardImages[ch.invocation[i].name];
                 OnClick.OInvocation[i].color = new UnityEngine.Color(1, 1, 1);
                 OnClick.OInvocation[i].gameObject.SetActive(true);
@@ -503,12 +518,14 @@ public class StartGame : MonoBehaviour {
         }
         if (ch.currCard == null)
         {
+            OnClick.OPlaySlot.name = "OPlaySlot";
             OnClick.OPlaySlot.sprite = null;
             OnClick.OPlaySlot.color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 0.33f);
             OnClick.OPlaySlot.gameObject.SetActive(false);
         }
         else if (showCurrCard)
         {
+            OnClick.OPlaySlot.name = ch.currCard.name;
             OnClick.OPlaySlot.sprite = OnClick.OCardImages[ch.currCard.name];
             OnClick.OPlaySlot.color = new UnityEngine.Color(1, 1, 1);
             OnClick.OPlaySlot.gameObject.SetActive(true);
@@ -516,11 +533,13 @@ public class StartGame : MonoBehaviour {
         }
         else
         {
-            OnClick.OPlaySlot.sprite = null;
-            OnClick.OPlaySlot.color = new UnityEngine.Color(0, 0, 0);
+            OnClick.OPlaySlot.name = "OPlaySlot";
+            OnClick.OPlaySlot.sprite = OnClick.OCardImages["Back"];
+            OnClick.OPlaySlot.color = new UnityEngine.Color(1, 1, 1);
             OnClick.OPlaySlot.gameObject.SetActive(true);
             OnClick.cardDict["OPlaySlot"] = ch.currCard;
         }
+        OnClick.OCharacterSlot.name = ch.name;
         OnClick.OCharacterSlot.sprite = OnClick.OCardImages[ch.name];
         OnClick.OCharacterSlot.color = new UnityEngine.Color(1, 1, 1);
         OnClick.OHealth.text = ch.hp +"";
@@ -551,8 +570,7 @@ public class StartGame : MonoBehaviour {
 
     public static IEnumerator setupEdros(Dictionary<string, Sprite> CurrCardImages)
 	{
-
-		CurrCardImages.Add("Celestial Surge", Resources.Load("CardImages/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
+        CurrCardImages.Add("Celestial Surge", Resources.Load("CardImages/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Purging Lightning", Resources.Load("CardImages/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Crashing Sky", Resources.Load("CardImages/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Edros", Resources.Load<Sprite>("CardImages/Edros/Edros"));
@@ -569,60 +587,62 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Toren's Favored", Resources.Load("CardImages/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Wrath of Lightning", Resources.Load("CardImages/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Celestial Surge"]))
+        CurrCardImages.Add("Back", Resources.Load("CardImages/Edros/Card Back (Edros)", typeof(Sprite)) as Sprite);
+
+        if (!OnClick.CardZooms.ContainsKey("Celestial Surge"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Celestial Surge"], Resources.Load("CardZooms/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Celestial Surge", Resources.Load("CardZooms/Edros/Celestial Surge", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Purging Lightning"]))
+        if (!OnClick.CardZooms.ContainsKey("Purging Lightning"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Purging Lightning"], Resources.Load("CardZooms/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Purging Lightning", Resources.Load("CardZooms/Edros/Purging Lightning", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Crashing Sky"]))
+        if (!OnClick.CardZooms.ContainsKey("Crashing Sky"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Crashing Sky"], Resources.Load("CardZooms/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Crashing Sky", Resources.Load("CardZooms/Edros/Crashing Sky", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Edros"]))
+        if (!OnClick.CardZooms.ContainsKey("Edros"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Edros"], Resources.Load<Sprite>("CardZooms/Edros/Edros"));
+            OnClick.CardZooms.Add("Edros", Resources.Load<Sprite>("CardZooms/Edros/Edros"));
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Faith Unquestioned"]))
+        if (!OnClick.CardZooms.ContainsKey("Faith Unquestioned"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Faith Unquestioned"], Resources.Load("CardZooms/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Faith Unquestioned", Resources.Load("CardZooms/Edros/Faith Unquestioned", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Grace of Heaven"]))
+        if (!OnClick.CardZooms.ContainsKey("Grace of Heaven"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Grace of Heaven"], Resources.Load("CardZooms/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Hand of Toren"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Hand of Toren"], Resources.Load("CardZooms/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Suppressing Bolt"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Suppressing Bolt"], Resources.Load("CardZooms/Edros/Suppressing Bolt", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Rolling Thunder"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Rolling Thunder"], Resources.Load("CardZooms/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Grace of Heaven", Resources.Load("CardZooms/Edros/Grace of Heaven", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Imminent Storm"]))
+        if (!OnClick.CardZooms.ContainsKey("Hand of Toren"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Imminent Storm"], Resources.Load("CardZooms/Edros/Imminent Storm", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Hand of Toren", Resources.Load("CardZooms/Edros/Hand of Toren", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sky Blessed Shield"]))
+        if (!OnClick.CardZooms.ContainsKey("Suppressing Bolt"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Sky Blessed Shield"], Resources.Load("CardZooms/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Suppressing Bolt", Resources.Load("CardZooms/Edros/Suppressing Bolt", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Toren's Favored"]))
+        if (!OnClick.CardZooms.ContainsKey("Rolling Thunder"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Toren's Favored"], Resources.Load("CardZooms/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Rolling Thunder", Resources.Load("CardZooms/Edros/Rolling Thunder", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Wrath of Lightning"]))
+
+        if (!OnClick.CardZooms.ContainsKey("Imminent Storm"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Wrath of Lightning"], Resources.Load("CardZooms/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Imminent Storm", Resources.Load("CardZooms/Edros/Imminent Storm", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Sky Blessed Shield"))
+        {
+            OnClick.CardZooms.Add("Sky Blessed Shield", Resources.Load("CardZooms/Edros/Sky Blessed Shield", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Toren's Favored"))
+        {
+            OnClick.CardZooms.Add("Toren's Favored", Resources.Load("CardZooms/Edros/Toren's Favored", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Wrath of Lightning"))
+        {
+            OnClick.CardZooms.Add("Wrath of Lightning", Resources.Load("CardZooms/Edros/Wrath of Lightning", typeof(Sprite)) as Sprite);
         }
 		yield return null;
 	}
@@ -651,81 +671,80 @@ public class StartGame : MonoBehaviour {
         CurrCardImages.Add("Unyielding Faith", Resources.Load("CardImages/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
         CurrCardImages.Add("Will Unbreakable", Resources.Load("CardImages/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
 
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ascendance"]))
+		if (!OnClick.CardZooms.ContainsKey("Ascendance"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Ascendance"], Resources.Load("CardZooms/Adrius/Ascendance", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Ascendance", Resources.Load("CardZooms/Adrius/Ascendance", typeof(Sprite)) as Sprite);
 		}
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Divine Cataclysm"]))
+        if (!OnClick.CardZooms.ContainsKey("Divine Cataclysm"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Divine Cataclysm"], Resources.Load("CardZooms/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Divine Cataclysm", Resources.Load("CardZooms/Adrius/Divine Cataclysm", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Earth Piercer"]))
+        if (!OnClick.CardZooms.ContainsKey("Earth Piercer"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Earth Piercer"], Resources.Load("CardZooms/Adrius/Earth Piercer", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (Ral'Taris Incarnate)"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Adrius (Ral'Taris Incarnate)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (Ral'Taris Incarnate)"));
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (The Aspirer)"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Adrius (The Aspirer)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Aspirer)"));
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Adrius (The Realm Bearer)"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Adrius (The Realm Bearer)"], Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Realm Bearer)"));
+            OnClick.CardZooms.Add("Earth Piercer", Resources.Load("CardZooms/Adrius/Earth Piercer", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Emerald Core"]))
+        if (!OnClick.CardZooms.ContainsKey("Adrius (Ral'Taris Incarnate)"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Emerald Core"], Resources.Load("CardZooms/Adrius/Emerald Core", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Adrius (Ral'Taris Incarnate)", Resources.Load<Sprite>("CardZooms/Adrius/Adrius (Ral'Taris Incarnate)"));
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Fist of Ruin"]))
+        if (!OnClick.CardZooms.ContainsKey("Adrius (The Aspirer)"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Fist of Ruin"], Resources.Load("CardZooms/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Adrius (The Aspirer)", Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Aspirer)"));
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Hero’s Resolution"]))
+        if (!OnClick.CardZooms.ContainsKey("Adrius (The Realm Bearer)"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Hero’s Resolution"], Resources.Load("CardZooms/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ruby Heart"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Ruby Heart"], Resources.Load("CardZooms/Adrius/Ruby Heart", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sapphire Mantle"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Sapphire Mantle"], Resources.Load("CardZooms/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Shattering Blow"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Shattering Blow"], Resources.Load("CardZooms/Adrius/Shattering Blow", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Adrius (The Realm Bearer)", Resources.Load<Sprite>("CardZooms/Adrius/Adrius (The Realm Bearer)"));
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Surging Hope"]))
+        if (!OnClick.CardZooms.ContainsKey("Emerald Core"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Surging Hope"], Resources.Load("CardZooms/Adrius/Surging Hope", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Emerald Core", Resources.Load("CardZooms/Adrius/Emerald Core", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Tremoring Impact"]))
+        if (!OnClick.CardZooms.ContainsKey("Fist of Ruin"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Tremoring Impact"], Resources.Load("CardZooms/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Fist of Ruin", Resources.Load("CardZooms/Adrius/Fist of Ruin", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Unyielding Faith"]))
+        if (!OnClick.CardZooms.ContainsKey("Hero’s Resolution"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Unyielding Faith"], Resources.Load("CardZooms/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Hero’s Resolution", Resources.Load("CardZooms/Adrius/Hero’s Resolution", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Will Unbreakable"]))
+
+        if (!OnClick.CardZooms.ContainsKey("Ruby Heart"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Will Unbreakable"], Resources.Load("CardZooms/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Ruby Heart", Resources.Load("CardZooms/Adrius/Ruby Heart", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Sapphire Mantle"))
+        {
+            OnClick.CardZooms.Add("Sapphire Mantle", Resources.Load("CardZooms/Adrius/Sapphire Mantle", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Shattering Blow"))
+        {
+            OnClick.CardZooms.Add("Shattering Blow", Resources.Load("CardZooms/Adrius/Shattering Blow", typeof(Sprite)) as Sprite);
+        }
+
+        if (!OnClick.CardZooms.ContainsKey("Surging Hope"))
+        {
+            OnClick.CardZooms.Add("Surging Hope", Resources.Load("CardZooms/Adrius/Surging Hope", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Tremoring Impact"))
+        {
+            OnClick.CardZooms.Add("Tremoring Impact", Resources.Load("CardZooms/Adrius/Tremoring Impact", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Unyielding Faith"))
+        {
+            OnClick.CardZooms.Add("Unyielding Faith", Resources.Load("CardZooms/Adrius/Unyielding Faith", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Will Unbreakable"))
+        {
+            OnClick.CardZooms.Add("Will Unbreakable", Resources.Load("CardZooms/Adrius/Will Unbreakable", typeof(Sprite)) as Sprite);
         }
         yield return null;
     }
 
     public static IEnumerator setupTyras(Dictionary<string, Sprite> CurrCardImages)
-	{
-
-		CurrCardImages.Add("A Brother's Virtue", Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
+    {
+        CurrCardImages.Add("A Brother's Virtue", Resources.Load("CardImages/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("A Promise Unbroken", Resources.Load("CardImages/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("A Soldier's Remorse", Resources.Load("CardImages/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("An Oath Unforgotten", Resources.Load<Sprite>("CardImages/Tyras/An Oath Unforgotten"));
@@ -742,67 +761,69 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Tyras", Resources.Load("CardImages/Tyras/Tyras", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Warrior's Resolve", Resources.Load("CardImages/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Brother's Virtue"]))
+        CurrCardImages.Add("Back", Resources.Load("CardImages/Tyras/Card Back (Tyras)", typeof(Sprite)) as Sprite);
+
+        if (!OnClick.CardZooms.ContainsKey("A Brother's Virtue"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["A Brother's Virtue"], Resources.Load("CardZooms/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("A Brother's Virtue", Resources.Load("CardZooms/Tyras/A Brother's Virtue", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Promise Unbroken"]))
+        if (!OnClick.CardZooms.ContainsKey("A Promise Unbroken"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["A Promise Unbroken"], Resources.Load("CardZooms/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("A Promise Unbroken", Resources.Load("CardZooms/Tyras/A Promise Unbroken", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["A Soldier's Remorse"]))
+        if (!OnClick.CardZooms.ContainsKey("A Soldier's Remorse"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["A Soldier's Remorse"], Resources.Load("CardZooms/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("A Soldier's Remorse", Resources.Load("CardZooms/Tyras/A Soldier's Remorse", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["An Oath Unforgotten"]))
+        if (!OnClick.CardZooms.ContainsKey("An Oath Unforgotten"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["An Oath Unforgotten"], Resources.Load<Sprite>("CardZooms/Tyras/An Oath Unforgotten"));
+            OnClick.CardZooms.Add("An Oath Unforgotten", Resources.Load<Sprite>("CardZooms/Tyras/An Oath Unforgotten"));
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Armor of Aldras"]))
+        if (!OnClick.CardZooms.ContainsKey("Armor of Aldras"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Armor of Aldras"], Resources.Load("CardZooms/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Armor of Aldras", Resources.Load("CardZooms/Tyras/Armor of Aldras", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Decrying Roar"]))
+        if (!OnClick.CardZooms.ContainsKey("Decrying Roar"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Decrying Roar"], Resources.Load("CardZooms/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Decrying Roar", Resources.Load("CardZooms/Tyras/Decrying Roar", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Grim Knight's Dread"]))
+        if (!OnClick.CardZooms.ContainsKey("Grim Knight's Dread"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Grim Knight's Dread"], Resources.Load("CardZooms/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
-        }
-
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["In the King's Wake"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["In the King's Wake"], Resources.Load("CardZooms/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Onrai's Strike"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Onrai's Strike"], Resources.Load("CardZooms/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
-        }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Onslaught of Tyras"]))
-        {
-            OnClick.CardZooms.Add(CurrCardImages["Onslaught of Tyras"], Resources.Load("CardZooms/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Grim Knight's Dread", Resources.Load("CardZooms/Tyras/Grim Knight's Dread", typeof(Sprite)) as Sprite);
         }
 
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Sundering Star"]))
+        if (!OnClick.CardZooms.ContainsKey("In the King's Wake"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Sundering Star"], Resources.Load("CardZooms/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("In the King's Wake", Resources.Load("CardZooms/Tyras/In the King's Wake", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Tyras"]))
+        if (!OnClick.CardZooms.ContainsKey("Onrai's Strike"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Tyras"], Resources.Load("CardZooms/Tyras/Tyras", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Onrai's Strike", Resources.Load("CardZooms/Tyras/Onrai's Strike", typeof(Sprite)) as Sprite);
         }
-        if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Warrior's Resolve"]))
+        if (!OnClick.CardZooms.ContainsKey("Onslaught of Tyras"))
         {
-            OnClick.CardZooms.Add(CurrCardImages["Warrior's Resolve"], Resources.Load("CardZooms/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
+            OnClick.CardZooms.Add("Onslaught of Tyras", Resources.Load("CardZooms/Tyras/Onslaught of Tyras", typeof(Sprite)) as Sprite);
+        }
+
+        if (!OnClick.CardZooms.ContainsKey("Sundering Star"))
+        {
+            OnClick.CardZooms.Add("Sundering Star", Resources.Load("CardZooms/Tyras/Sundering Star", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Tyras"))
+        {
+            OnClick.CardZooms.Add("Tyras", Resources.Load("CardZooms/Tyras/Tyras", typeof(Sprite)) as Sprite);
+        }
+        if (!OnClick.CardZooms.ContainsKey("Warrior's Resolve"))
+        {
+            OnClick.CardZooms.Add("Warrior's Resolve", Resources.Load("CardZooms/Tyras/Warrior's Resolve", typeof(Sprite)) as Sprite);
         }
 		yield return null;
 	}
 
 	public static IEnumerator setupAurian(Dictionary<string, Sprite> CurrCardImages)
-	{
-		CurrCardImages.Add("Aurian", Resources.Load("CardImages/Aurian/Aurian", typeof(Sprite)) as Sprite);
+    {
+        CurrCardImages.Add("Aurian", Resources.Load("CardImages/Aurian/Aurian", typeof(Sprite)) as Sprite);
 
 		CurrCardImages.Add("Absolute Focus", Resources.Load("CardImages/Aurian/Absolute Focus", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Body and Soul", Resources.Load("CardImages/Aurian/Body and Soul", typeof(Sprite)) as Sprite);
@@ -820,60 +841,62 @@ public class StartGame : MonoBehaviour {
 		CurrCardImages.Add("Strength of Spirit", Resources.Load("CardImages/Aurian/Strength of Spirit", typeof(Sprite)) as Sprite);
 		CurrCardImages.Add("Wrath of Era", Resources.Load("CardImages/Aurian/Wrath of Era", typeof(Sprite)) as Sprite);
 
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Absolute Focus"]))
+        CurrCardImages.Add("Back", Resources.Load("CardImages/Aurian/Card Back (Aurian)", typeof(Sprite)) as Sprite);
+
+        if (!OnClick.CardZooms.ContainsKey("Absolute Focus"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Absolute Focus"], Resources.Load("CardZooms/Aurian/Absolute Focus", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Absolute Focus", Resources.Load("CardZooms/Aurian/Absolute Focus", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Body and Soul"]))
+		if (!OnClick.CardZooms.ContainsKey("Body and Soul"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Body and Soul"], Resources.Load("CardZooms/Aurian/Body and Soul", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Body and Soul", Resources.Load("CardZooms/Aurian/Body and Soul", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Clarity of Mind"]))
+		if (!OnClick.CardZooms.ContainsKey("Clarity of Mind"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Clarity of Mind"], Resources.Load("CardZooms/Aurian/Clarity of Mind", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Clarity of Mind", Resources.Load("CardZooms/Aurian/Clarity of Mind", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Countering Strike"]))
+		if (!OnClick.CardZooms.ContainsKey("Countering Strike"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Countering Strike"], Resources.Load<Sprite>("CardZooms/Aurian/Countering Strike"));
+			OnClick.CardZooms.Add("Countering Strike", Resources.Load<Sprite>("CardZooms/Aurian/Countering Strike"));
 		}
 
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Ethereal Strike"]))
+		if (!OnClick.CardZooms.ContainsKey("Ethereal Strike"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Ethereal Strike"], Resources.Load("CardZooms/Aurian/Ethereal Strike", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Ethereal Strike", Resources.Load("CardZooms/Aurian/Ethereal Strike", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Evading Step"]))
+		if (!OnClick.CardZooms.ContainsKey("Evading Step"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Evading Step"], Resources.Load("CardZooms/Aurian/Evading Step", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Evading Step", Resources.Load("CardZooms/Aurian/Evading Step", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Opening Blow"]))
+		if (!OnClick.CardZooms.ContainsKey("Opening Blow"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Opening Blow"], Resources.Load("CardZooms/Aurian/Opening Blow", typeof(Sprite)) as Sprite);
-		}
-
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Primed Attack"]))
-		{
-			OnClick.CardZooms.Add(CurrCardImages["Primed Attack"], Resources.Load("CardZooms/Aurian/Primed Attack", typeof(Sprite)) as Sprite);
-		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Relentless Assault"]))
-		{
-			OnClick.CardZooms.Add(CurrCardImages["Relentless Assault"], Resources.Load("CardZooms/Aurian/Relentless Assault", typeof(Sprite)) as Sprite);
-		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Soul Strike"]))
-		{
-			OnClick.CardZooms.Add(CurrCardImages["Soul Strike"], Resources.Load("CardZooms/Aurian/Soul Strike", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Opening Blow", Resources.Load("CardZooms/Aurian/Opening Blow", typeof(Sprite)) as Sprite);
 		}
 
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Strength of Spirit"]))
+		if (!OnClick.CardZooms.ContainsKey("Primed Attack"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Strength of Spirit"], Resources.Load("CardZooms/Aurian/Strength of Spirit", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Primed Attack", Resources.Load("CardZooms/Aurian/Primed Attack", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Aurian"]))
+		if (!OnClick.CardZooms.ContainsKey("Relentless Assault"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Aurian"], Resources.Load("CardZooms/Aurian/Aurian", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Relentless Assault", Resources.Load("CardZooms/Aurian/Relentless Assault", typeof(Sprite)) as Sprite);
 		}
-		if (!OnClick.CardZooms.ContainsKey(CurrCardImages["Wrath of Era"]))
+		if (!OnClick.CardZooms.ContainsKey("Soul Strike"))
 		{
-			OnClick.CardZooms.Add(CurrCardImages["Wrath of Era"], Resources.Load("CardZooms/Aurian/Wrath of Era", typeof(Sprite)) as Sprite);
+			OnClick.CardZooms.Add("Soul Strike", Resources.Load("CardZooms/Aurian/Soul Strike", typeof(Sprite)) as Sprite);
+		}
+
+		if (!OnClick.CardZooms.ContainsKey("Strength of Spirit"))
+		{
+			OnClick.CardZooms.Add("Strength of Spirit", Resources.Load("CardZooms/Aurian/Strength of Spirit", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey("Aurian"))
+		{
+			OnClick.CardZooms.Add("Aurian", Resources.Load("CardZooms/Aurian/Aurian", typeof(Sprite)) as Sprite);
+		}
+		if (!OnClick.CardZooms.ContainsKey("Wrath of Era"))
+		{
+			OnClick.CardZooms.Add("Wrath of Era", Resources.Load("CardZooms/Aurian/Wrath of Era", typeof(Sprite)) as Sprite);
 		}
 		yield return null;
 	}

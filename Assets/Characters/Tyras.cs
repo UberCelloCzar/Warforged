@@ -74,7 +74,7 @@ namespace Warforged
             if (negate > opponent.pierce && opponent.damage > 0 && aldrasGuard)
             {
                 // May take a standby offense
-                if (hasStandbyColor(Color.red))
+                if (isPlayer1 && hasStandbyColor(Color.red))
                 {
                     while (true)
                     {

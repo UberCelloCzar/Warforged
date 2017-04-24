@@ -295,13 +295,6 @@ namespace Warforged
             
             //Debug.Log(name + " Empower reset, curr: " + currEmpower);
 			lifesteal = false;
-			if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
-			{
-				hp = 0;
-				//Debug.Log("Endgame triggered");
-				endGame = 2;
-				opponent.endGame = 1;
-			}
         }
 
 		/// Calculates if the character dealt or negated damage this turn
@@ -309,7 +302,16 @@ namespace Warforged
 		/// e.g. If a card effect happens at dusk, then make a new field in the child class
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
-		{
+        {
+            //Debug.Log(name + " is at " + hp);
+            if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
+            {
+                //Debug.Log("I lose");
+                hp = 0;
+                //Debug.Log("Endgame triggered");
+                endGame = 2;
+                opponent.endGame = 1;
+            }
             rotate();
             // TODO will need changing based on stuff
             // Can't think of any examples, but I know they exist.
