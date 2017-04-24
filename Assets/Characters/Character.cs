@@ -158,6 +158,15 @@ namespace Warforged
 				hp = 1;
 			}
             //Debug.Log("I'm opponent, taking damage: " + hp);
+            //Debug.Log(name + " is at " + hp);
+            if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
+            {
+                //Debug.Log("I lose");
+                hp = 0;
+                //Debug.Log("Endgame triggered");
+                endGame = 2;
+                opponent.endGame = 1;
+            }
         }
 
 		/// Add damage from a red card.
@@ -325,15 +334,6 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
         {
-            //Debug.Log(name + " is at " + hp);
-            if (hp <= 0) // When the player has died, set endgame to be resolved at turn end (See Game.cs)
-            {
-                //Debug.Log("I lose");
-                hp = 0;
-                //Debug.Log("Endgame triggered");
-                endGame = 2;
-                opponent.endGame = 1;
-            }
             Game.library.resetPrompts();
             rotate();
             // TODO will need changing based on stuff
@@ -463,7 +463,9 @@ namespace Warforged
                 }
                 if (lifesteal)
                 {
-                    heal += tempdamage;
+                    //Debug.Log("Stealing is wrong");
+                    healSelf(tempdamage);
+                    Game.library.setHealingUI(isPlayer1);
                 }
                 return tempdamage;
 			}

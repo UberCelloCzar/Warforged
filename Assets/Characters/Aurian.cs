@@ -21,7 +21,7 @@ namespace Warforged
         public override void takeDamage(int dmg)
         {
             base.takeDamage(dmg);
-			if (negate > opponent.pierce && opponent.damage > 0 && waitingForGuard && standby.Count > 0)
+			if (isPlayer1 && negate > opponent.pierce && opponent.damage > 0 && waitingForGuard && standby.Count > 0)
             {
                 Card cardToTake;
                 while (true)

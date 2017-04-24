@@ -321,6 +321,12 @@ namespace Warforged
 
                 p1.damagePhase();
                 p2.damagePhase();
+
+                if (p1.endGame != 0) // If the endgame is triggered, show it
+                {
+                    Debug.Log("Game Over escalated");
+                    library.endSlate(p1);
+                }
                 //library.setPromptText("before sleep3");
                 Thread.Sleep(2500);
                 //library.setPromptText("after sleep");
@@ -338,12 +344,6 @@ namespace Warforged
                 library.resetDmgUI();
                 library.resetHealingUI();
                 p1.dusk();
-
-                if (p1.endGame != 0) // If the endgame is triggered, show it
-                {
-                    //Debug.Log("Game Over escalated");
-                    library.endSlate(p1);
-                }
                 Thread.Sleep(1500);
 
                 // Start Dawn Phase
