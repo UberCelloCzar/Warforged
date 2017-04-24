@@ -218,7 +218,7 @@ namespace Warforged
                 // store input in striveCard
                 while (true)
                 {
-                    Card striveCard = Game.library.waitForClickOrCancel("Strive 1 card");
+                    Card striveCard = Game.library.waitForClickOrCancel("Strive one card or cancel");
                     if (user.strive(striveCard))
                     {
                         ((TorensFavored)this).strove = true;
@@ -285,7 +285,7 @@ namespace Warforged
                 {
                     while (true /*&& (blueCardsInStandby == 2 || standbyCard.color != Color.blue)*/)
                     {
-                        Character.Card card = Game.library.waitForClickOrCancel("Choose an inherent to strive");
+                        Character.Card card = Game.library.waitForClickOrCancel("Choose an inherent to strive or cancel");
                         if(card == null)
                         {
                             ((FaithUnquestioned)this).strove = false;
@@ -474,7 +474,7 @@ namespace Warforged
                 // First declare
                 while (true)
                 {
-                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive.");
+                    Card card1 = Game.library.waitForClickOrCancel("Choose an inherent to strive or cancel.");
                     if (card1 == null)
                     {
                         return;
@@ -489,7 +489,7 @@ namespace Warforged
                 // Second declare
                 while (true)
                 {
-                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive or cancel.");
                     if (card2 == null)
                     {
                         return;
@@ -504,7 +504,7 @@ namespace Warforged
                 // Third declare
                 while (true)
                 {
-                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive.");
+                    Card card2 = Game.library.waitForClickOrCancel("Choose an additional inherent to strive or cancel.");
                     if (card2 == null)
                     {
                         return;
