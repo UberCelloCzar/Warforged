@@ -209,7 +209,7 @@ public class StartGame : MonoBehaviour {
             GameObject.FindGameObjectWithTag("OReinforce_Icon").GetComponent<Image>().enabled = false;
             GameObject.FindGameObjectWithTag("OReinforce").GetComponent<Text>().enabled = false;
         }
-        if (Game.p1.empower > 0)
+        if (Game.p1.currEmpower > 0)
         {
             GameObject.FindGameObjectWithTag("Empower_Icon").GetComponent<Image>().enabled = true;
             GameObject.FindGameObjectWithTag("Empower").GetComponent<Text>().enabled = true;
