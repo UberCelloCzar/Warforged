@@ -282,9 +282,31 @@ namespace Warforged
 		/// Calculate all damage and healing occuring this turn.
 		public virtual void damagePhase()
         {
+           if(reflect == true) // tell you're reflecting
+            {
+                Game.library.setReflectPromptUI(isPlayer1);
+            }
+            if(negate > 0 && negate < 100) // tell you're negating
+            {
+                Game.library.setNegatePromptUI(isPlayer1, negate);
+            }
+            if(negate> 100) // tell you're safeguarding
+            {
+                Game.library.setSafeguardPromptUI(isPlayer1);
+            }
+            if(absorb == true) // tell you're absorbing
+            {
+                Game.library.setAbsorbPromptUI(isPlayer1);
+            }
             //Debug.Log(name + " Added " + currEmpower + " to dmg");
+            healSelf(heal);
+            if (heal > 0)
+            {
+                Game.library.setHealingUI(isPlayer1);
+            }
+            
             dealDamage();
-			healSelf(heal);
+			
             // Keeps track of the last four cards played
 			prevCards.Add(currCard);
             if (prevCards.Count > 4)
@@ -310,6 +332,7 @@ namespace Warforged
 		/// to represent if that effect is happening, then make it happen
 		public virtual void dusk()
 		{
+            Game.library.resetPrompts();
             rotate();
             // TODO will need changing based on stuff
             // Can't think of any examples, but I know they exist.

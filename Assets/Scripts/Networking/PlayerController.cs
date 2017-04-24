@@ -260,7 +260,7 @@ public class PlayerController : NetworkBehaviour
         else
         {
             controller.remotePlayer.readyFlag2 = true;
-            OnClick.OLockButtonImage.color = UnityEngine.Color.gray;
+            OnClick.OLockButtonImage.color = new UnityEngine.Color(144/255f, 12/255f, 12/255f);
             OnClick.OLockButtonText.text = "Locked In";
             //Debug.Log("Enemy Locked");
         }

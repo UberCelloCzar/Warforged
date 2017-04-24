@@ -99,6 +99,10 @@ TagManager:
   - OReinforce_Icon
   - Dmg_Icon
   - ODmg_Icon
+  - Healing_Icon
+  - OHealing_Icon
+  - OPrompt
+  - MadPromptsB
   layers:
   - Default
   - TransparentFX
