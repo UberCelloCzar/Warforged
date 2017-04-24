@@ -32,6 +32,11 @@ namespace Warforged
             int tempdamage = damage - opponent.negate;
             if (opponent.reflect) {
                 takeDamage(tempdamage);
+                if (tempdamage > 0)
+                {
+                    //Debug.Log("Edros is player 1 " + isPlayer1 + " and is turning on opponents dmg");
+                    Game.library.setDmgUI(isPlayer1); // Turn on own dmg icon
+                }
                 ((Edros)this).bonusEmp = false;
                 return 0;
             }
@@ -43,6 +48,11 @@ namespace Warforged
             else
             {
                 opponent.takeDamage(tempdamage);
+                if (tempdamage > 0)
+                {
+                    //Debug.Log("Edros is player 1 " + isPlayer1 + " and is turning on opponents dmg");
+                    Game.library.setDmgUI(!isPlayer1); // Turn on opponent's dmg icon
+                }
                 int opponentDamage = opponent.damage - negate;
                 if(tempdamage > 0 ||(opponentDamage > 0 && reflect))
                 {
@@ -155,7 +165,7 @@ namespace Warforged
             {
                 user.addDamage(2);
                 ((Edros)user).bonusEmp = true;
-                Debug.Log("Edros may or may not get empower");
+                //Debug.Log("Edros may or may not get empower");
             }
         }
 

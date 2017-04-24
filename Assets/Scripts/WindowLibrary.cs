@@ -28,7 +28,7 @@ namespace Warforged
         public abstract void resetLock();
         public abstract void resetDmgUI();
         public abstract void resetIcons();
-        public abstract void setDmgUI(int player);
+        public abstract void setDmgUI(bool isPlayer1);
         public abstract void LockIn(bool isServer);
         public abstract void endSlate(Character ch); // End game UI method
 

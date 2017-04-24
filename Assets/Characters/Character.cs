@@ -24,6 +24,7 @@ namespace Warforged
 		public string name{get; set;}
 		public string title{get; protected set;}
 		public int hp{get; protected set; }
+        public bool isPlayer1;
         // Information about the current turn
         // Card color that cannot be played this turn; set one turn in advance and reset after a card is played
         public Color seal;
@@ -288,10 +289,6 @@ namespace Warforged
 		public virtual void damagePhase()
         {
             //Debug.Log(name + " Added " + currEmpower + " to dmg");
-            if(reflect == false && absorb == false && (opponent.damage - currReinforce- negate > 0))
-            {
-                Game.library.setDmgUI(1);
-            }
             dealDamage();
 			healSelf(heal);
             // Keeps track of the last four cards played
@@ -413,6 +410,11 @@ namespace Warforged
 			if (opponent.reflect)
 			{
 				takeDamage(tempdamage);
+                if (tempdamage > 0)
+                {
+                    //Debug.Log("Tyras is player 1 " + isPlayer1 + " and is turning on opponents dmg");
+                    Game.library.setDmgUI(isPlayer1); // Turn on your own dmg icon
+                }
                 return 0;
 			}
 			else if (opponent.absorb)
@@ -423,11 +425,15 @@ namespace Warforged
 			else
 			{
 				opponent.takeDamage(tempdamage);
+                if (tempdamage > 0)
+                {
+                    //Debug.Log("Tyras is player 1 " + isPlayer1 + " and is turning on opponents dmg.");
+                    Game.library.setDmgUI(!isPlayer1); // Turn on opponent's dmg icon
+                }
                 if (lifesteal)
                 {
                     heal += tempdamage;
                 }
-                if(tempdamage > 0) { Game.library.setDmgUI(2); }
                 return tempdamage;
 			}
 		}

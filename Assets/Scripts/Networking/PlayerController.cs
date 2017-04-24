@@ -295,6 +295,7 @@ public class PlayerController : NetworkBehaviour
                 XmlSerializer xml = new XmlSerializer(typeof(Character));
                 Character ch2 = (Character)xml.Deserialize(new StringReader(character));
                 if (UpdateVars) ch2.seal = Game.p2.seal; // We take the enemy, but give them the seal we think they have
+                ch2.isPlayer1 = Game.p2.isPlayer1;
                 Game.p2 = ch2;
                 SetupReferences(Game.p2, Game.p1);
             }

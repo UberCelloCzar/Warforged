@@ -242,6 +242,8 @@ namespace Warforged
 			}
 			p1.setOpponent(p2);
 			p2.setOpponent(p1);
+            p1.isPlayer1 = true;
+            p2.isPlayer1 = false;
         }
 		public void takeTurn()
         {

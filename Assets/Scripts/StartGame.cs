@@ -239,9 +239,9 @@ public class StartGame : MonoBehaviour {
         yield return null;
     }
 
-    public static IEnumerator setDmgUI(int player)
+    public static IEnumerator setDmgUI(bool isPlayer1)
     {
-        if (player == 1)
+        if (isPlayer1)
         {
             GameObject.FindGameObjectWithTag("Dmg_Icon").GetComponent<Image>().enabled = true;
         }

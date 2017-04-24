@@ -147,9 +147,9 @@ namespace Warforged
             barrier.SignalAndWait(threadID);
         }
 
-        public override void setDmgUI(int player)
+        public override void setDmgUI(bool isPlayer1)
         {
-            StartGame.signal = () => { return StartGame.setDmgUI(player); };
+            StartGame.signal = () => { return StartGame.setDmgUI(isPlayer1); };
             barrier.SignalAndWait(threadID);
         }
 

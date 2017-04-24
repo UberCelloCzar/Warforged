@@ -69,10 +69,10 @@ public class CharacterTest {
     {
         // Arrange
 		player.heal += 3;
-		player.healSelf();
+		//player.healSelf();
 		player.dawn(); // Sets the overheal to 3
 		player.heal += 1;
-		player.healSelf();
+		//player.healSelf();
 		// End result: player has 14 hp with an overheal of 3
 		// They should lose 3 hp next dawn, then 1 more the dawn after
 
