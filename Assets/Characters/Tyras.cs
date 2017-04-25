@@ -23,8 +23,8 @@ namespace Warforged
         public override void damagePhase()
         {
 			// Activate effects of cards first, then the UI updates, then this stuff happens
-            if (currCard.color - opponent.currCard.color == -1
-                || currCard.color - opponent.currCard.color == 2)
+            if (isPlayer1 && (currCard.color - opponent.currCard.color == -1
+                || currCard.color - opponent.currCard.color == 2))
             {
                 // An Oath Unforgotten
                 // TODO I think there's a more efficient way to do this
